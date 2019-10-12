@@ -89,6 +89,14 @@
                                 <li><a href="#!">Logout</a></li>
                               </ul>
                           </li>
+                          <li>
+                              {{-- Chamado ao clicar em sair para logout --}}
+                              <a class="" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                              document.getElementById('logout-form').submit();">
+                                  Sair
+                              </a>
+                          </li>
                       </ul>
                   {{-- </div> --}}
               </div>

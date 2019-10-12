@@ -7,14 +7,6 @@
   @if (Route::has('login'))
       <div class="top-right links">
           @auth
-              <a href="{{ url('/home') }}">Home</a>
-
-              {{-- Chamado ao clicar em sair para logout --}}
-              <a class="" href="{{ route('logout') }}"
-                 onclick="event.preventDefault();
-                               document.getElementById('logout-form').submit();">
-                  Sair
-              </a>
 
               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                   @csrf
