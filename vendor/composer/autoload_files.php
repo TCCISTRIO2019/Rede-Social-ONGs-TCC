@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    '6124b4c8570aa390c21fafd04a26c69f' => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
     '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => $vendorDir . '/symfony/polyfill-mbstring/bootstrap.php',
     '25072dd6e2470089de65ae7bf11d3109' => $vendorDir . '/symfony/polyfill-php72/bootstrap.php',
     'f598d06aa772fa33d905e87be6398fb1' => $vendorDir . '/symfony/polyfill-intl-idn/bootstrap.php',
@@ -18,7 +19,6 @@ return array(
     '9cdd7b9056abc3081735233ba9dd9c7f' => $vendorDir . '/facade/flare-client-php/src/helpers.php',
     'f0906e6318348a765ffb6eb24e0d0938' => $vendorDir . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
     '58571171fd5812e6e447dce228f52f4d' => $vendorDir . '/laravel/framework/src/Illuminate/Support/helpers.php',
-    '6124b4c8570aa390c21fafd04a26c69f' => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
     '801c31d8ed748cfa537fa45402288c95' => $vendorDir . '/psy/psysh/src/functions.php',
     'b6ec61354e97f32c0ae683041c78392a' => $vendorDir . '/scrivo/highlight.php/HighlightUtilities/functions.php',
 );
