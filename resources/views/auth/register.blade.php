@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Criar Conta</div>
+                    <h3 class="center">Criar Conta</h3>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
@@ -49,6 +49,20 @@
 
                             <label for="password-confirm">Confirmar Senha</label>
                         </div>
+
+                        <p>
+                            <label>
+                                <input name="tipo" type="radio" value="fisica" checked />
+                                <span>Pessoa Fisica</span>
+                            </label>
+                        </p>
+
+                        <p>
+                            <label>
+                                <input name="tipo" type="radio" value="juridica" />
+                                <span>Pessoa Juridica (ONG)</span>
+                            </label>
+                        </p>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">

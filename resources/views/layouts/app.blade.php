@@ -30,14 +30,10 @@
 </head>
 <body style="font-family: 'IBM Plex Sans', sans-serif;">
   <header>
-  <nav>
-    <div class="nav-wrapper deep-purple darken-3">
+  <nav class="deep-purple darken-3">
+    <div class="nav-wrapper container">
       <a href="{{ route('welcome') }}" class="brand-logo">Logo Site</a>
       <a href="#" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-      {{-- <ul class="right hide-on-med-and-down">
-        <li><a href="/">Home</a></li>
-        <li><a href="#">ONGs</a></li>
-      </ul> --}}
 
       <!-- Right Side Of Navbar -->
       <ul class="right hide-on-med-and-down">
@@ -79,14 +75,27 @@
                   {{-- <div class="nav-wrapper"> --}}
                       <ul class="right hide-on-med-and-down">
                           <li>
-                              <a href="#" data-target='dropdown-perfil' class="dropdown-trigger">
+                              {{-- <a href="#" data-target='dropdown-perfil' class="dropdown-trigger">
+                                {{ Auth::user()->name }}
+                                <i class="material-icons right">arrow_drop_down</i>
+                                
+                                
+                              </a> --}}
+
+                              <!-- Dropdown Trigger -->
+                              <a class='dropdown-trigger' href='#' data-target='dropdown1'>
                                 {{ Auth::user()->name }}
                                 <i class="material-icons right">arrow_drop_down</i>
                               </a>
-                              <ul id='dropdown-perfil' class='dropdown-content'>
-                                <li><a href="#!">Perfil</a></li>
-                                <li><a href="#!">Configuracoes</a></li>
-                                <li><a href="#!">Logout</a></li>
+
+                              <!-- Dropdown Structure -->
+                              <ul id='dropdown1' class='dropdown-content'>
+                                <li><a href="#!">one</a></li>
+                                <li><a href="#!">two</a></li>
+                                <li class="divider" tabindex="-1"></li>
+                                <li><a href="#!">three</a></li>
+                                <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
+                                <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
                               </ul>
                           </li>
                           <li>
@@ -178,9 +187,9 @@
   {{-- Comandos materialize --}}
   <script type="text/javascript">
     $(document).ready(function(){
-      M.updateTextFields();
-      $('.sidenav').sidenav();
-      $('.dropdown-trigger').dropdown();
+        M.updateTextFields();
+        $('.sidenav').sidenav();
+        $('.dropdown-trigger').dropdown();
     });
   </script>
 

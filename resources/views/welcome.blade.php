@@ -56,7 +56,7 @@
                           </div>
                       </div>
                       <div class="card-action">
-                        <button type="submit" class="btn green">
+                        <button type="submit" class="btn white black-text">
                             Entrar
                         </button>
 
