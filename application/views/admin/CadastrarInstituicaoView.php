@@ -6,7 +6,7 @@
         <?php
         echo validation_errors();
 
-        echo form_open('IniciarController/logar');
+        echo form_open('Iniciar/logar');
         ?>
         <?php
         echo form_close();

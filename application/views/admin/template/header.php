@@ -1,4 +1,4 @@
-
+<!-- Modificar para nao ter o login -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container">
     <!-- Procurar maneira de verificar se a pessoa esta logada ou não para mudar o header -->
@@ -10,10 +10,10 @@
     <div class="collapse navbar-collapse" id="navbarsExample07">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-            <a class="nav-link" href="#">TCC Rede Social <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="<?php echo base_url('iniciar') ?>">TCC Rede Social <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="<?php echo base_url('HomeController') ?>">Home </a>
+          <a class="nav-link" href="<?php echo base_url('home') ?>">Home </a>
         </li>
 
         <!-- <li class="nav-item dropdown">

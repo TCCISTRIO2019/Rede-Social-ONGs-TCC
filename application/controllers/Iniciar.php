@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class IniciarController extends CI_Controller {
+class Iniciar extends CI_Controller {
 
 	public function __construct()
 	{
@@ -21,10 +21,10 @@ class IniciarController extends CI_Controller {
         // Dados a serem enviados para o Cabeçalho
         $dados['titulo'] = 'TCC Rede Social';
 
-		$this->load->view('public/template/html-header', $dados);
-		$this->load->view('public/template/header');
-		$this->load->view('public/IniciarView', $dados);
-		$this->load->view('public/template/footer');
-		$this->load->view('public/template/html-footer');
+		$this->load->view('template/html-header', $dados);
+		$this->load->view('template/header');
+		$this->load->view('IniciarView', $dados);
+		$this->load->view('template/footer');
+		$this->load->view('template/html-footer');
 	}
 }

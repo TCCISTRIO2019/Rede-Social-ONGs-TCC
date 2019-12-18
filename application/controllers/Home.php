@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class HomeController extends CI_Controller {
+class Home extends CI_Controller {
 
 	public function __construct()
 	{
@@ -16,11 +16,11 @@ class HomeController extends CI_Controller {
         $this->publicacoes = $this->modelpublicacao->listar_publicacoes(); // Chamando o metodo da model
         $dados['publicacoes'] = $this->publicacoes;
 
-		$this->load->view('public/template/html-header', $dados);
-		$this->load->view('public/template/header');
-		$this->load->view('public/HomeView', $dados);
-		$this->load->view('public/template/footer');
-		$this->load->view('public/template/html-footer');
+		$this->load->view('template/html-header', $dados);
+		$this->load->view('template/header');
+		$this->load->view('public/HomeView');
+		$this->load->view('template/footer');
+		$this->load->view('template/html-footer');
 	}
 
 	public function teste(){

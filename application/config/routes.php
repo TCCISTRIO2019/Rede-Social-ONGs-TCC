@@ -50,6 +50,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 
-$route['default_controller'] = 'IniciarController';
+$route['default_controller'] = 'iniciar';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+$route['home'] = 'home';
+$route['cadastrar'] = 'admin/usuario/pag_cadastrar';
