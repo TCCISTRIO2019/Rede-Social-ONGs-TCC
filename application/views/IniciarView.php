@@ -12,14 +12,14 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
                 </div>
-                <input name="" class="form-control" placeholder="Email" type="email">
+                <input class="form-control" name="email" placeholder="Email" type="email">
             </div>
 
             <div class="form-group input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                 </div>
-                <input class="form-control" placeholder="Criar senha" type="password">
+                <input class="form-control" name="senha" placeholder="Criar senha" type="password">
             </div>
 
             <div class="form-group input-group">

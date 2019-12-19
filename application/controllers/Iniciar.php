@@ -19,7 +19,7 @@ class Iniciar extends CI_Controller {
         $dados['publicacoes'] = $this->publicacoes;
 
         // Dados a serem enviados para o Cabeçalho
-        $dados['titulo'] = 'TCC Rede Social';
+        $dados['titulo'] = 'TCC Rede Social - Index';
 
 		$this->load->view('template/html-header', $dados);
 		$this->load->view('template/header');

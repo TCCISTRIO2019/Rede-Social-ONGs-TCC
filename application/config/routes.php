@@ -55,4 +55,5 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['home'] = 'home';
-$route['cadastrar'] = 'admin/usuario/pag_cadastrar';
+$route['admin/cadastrar_pessoa'] = 'admin/usuario/pag_cadastrar_pessoa';
+$route['admin/cadastrar_instituicao'] = 'admin/usuario/pag_cadastrar_instituicao';
