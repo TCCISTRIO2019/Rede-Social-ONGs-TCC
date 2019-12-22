@@ -12,16 +12,20 @@
             <li class="nav-item active">
                 <a class="nav-link" href="">TCC Rede Social <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="<?php echo base_url('home') ?>">Home </a>
-            </li>
-          </ul>
+<!--            <li class="nav-item active">-->
+<!--              <a class="nav-link" href="--><?php //echo base_url('home') ?><!--">Home </a>-->
+<!--            </li>-->
+<!--          </ul>-->
 
           <!-- Ajustar tamanho dos campos -->
             <?php
             // O usuario esta logado
             if($this->session->userdata('logado') == TRUE) {
                 ?>
+              <li class="nav-item active">
+                  <a class="nav-link" href="<?php echo base_url('home') ?>">Home</a>
+              </li>
+            </ul>
                 <ul class="nav nav-tabs">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle active" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
@@ -42,6 +46,10 @@
 
                 echo form_open('admin/usuario/logar');
                 ?>
+                <li class="nav-item active">
+                    <a class="nav-link" href="">Home</a>
+                </li>
+            </ul>
                 <div class="form-inline my-2 my-md-0">
                     <label class="sr-only" for="inlineFormInputName2">Email</label>
                     <input type="email" name="email" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2"
