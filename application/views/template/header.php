@@ -7,38 +7,58 @@
           <span class="navbar-toggler-icon"></span>
         </button> -->
 
-        <div class="collapse navbar-collapse" id="navbarsExample07">
+        <div class="collapse navbar-collapse">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="<?php echo base_url('iniciar') ?>">TCC Rede Social <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="">TCC Rede Social <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active">
               <a class="nav-link" href="<?php echo base_url('home') ?>">Home </a>
             </li>
-
-            <!-- <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-              <div class="dropdown-menu" aria-labelledby="dropdown07">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
-            </li> -->
           </ul>
 
           <!-- Ajustar tamanho dos campos -->
-          <form class="form-inline my-2 my-md-0" method="POST" action="">
-            <label class="sr-only" for="inlineFormInputName2">Email</label>
-            <input type="email" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="Email">
+            <?php
+            // O usuario esta logado
+            if($this->session->userdata('logado') == TRUE) {
+                ?>
+                <ul class="nav nav-tabs">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                            <?php echo $this->session->userdata('userlogado')->nome; ?>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="<?php echo base_url('admin/usuario/deslogar') ?>">Sair</a>
+                        </div>
+                    </li>
+                </ul>
+                <?php
+            } else {
+                echo validation_errors('<div class="alert alert-danger">', '</div>');
 
-            <label class="sr-only" for="inlineFormInputGroupUsername2">Senha</label>
-            <div class="input-group mb-2 mr-sm-2">
-              <input type="password" class="form-control" id="inlineFormInputGroupUsername2" placeholder="Senha">
-            </div>
+                echo form_open('admin/usuario/logar');
+                ?>
+                <div class="form-inline my-2 my-md-0">
+                    <label class="sr-only" for="inlineFormInputName2">Email</label>
+                    <input type="email" name="email" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2"
+                           placeholder="Email">
 
-            <button type="submit" class="btn btn-primary mb-2">Login</button>
-          </form>
+                    <label class="sr-only" for="inlineFormInputGroupUsername2">Senha</label>
+                    <div class="input-group mb-2 mr-sm-2">
+                        <input type="password" name="senha" class="form-control" id="inlineFormInputGroupUsername2"
+                               placeholder="Senha">
+                    </div>
 
+                    <button type="submit" class="btn btn-primary mb-2">Login</button>
+                </div>
+            <?php
+                echo form_close();
+            }
+            ?>
         </div>
       </div>
     </nav>

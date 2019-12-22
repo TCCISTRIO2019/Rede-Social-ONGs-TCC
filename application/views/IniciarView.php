@@ -26,7 +26,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                 </div>
-                <input class="form-control" placeholder="Repetir senha" type="password">
+                <input class="form-control" name="senha_conf" placeholder="Repetir senha" type="password">
             </div>  
 
 			<div class="input-group">

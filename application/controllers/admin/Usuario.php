@@ -27,7 +27,8 @@ class Usuario extends CI_Controller {
 	public function pag_cadastrar()
     {
 //        $this->load->library('form-validation');
-        $this->form_validation->set_rules('senha', 'Usuario', 'required|min_length[8]');    // Validacao do campo senha para ter 8 digitos
+        $this->form_validation->set_rules('senha', 'Senha', 'required|min_length[8]');    // Validacao do campo senha para ter 8 digitos
+        $this->form_validation->set_rules('senha_conf', 'Confirmacao Senha', 'required|matches[senha]');
 
         // Roda a validacao do formulario e valida os campos de "set_rules"
         if($this->form_validation->run() == FALSE){
@@ -81,5 +82,52 @@ class Usuario extends CI_Controller {
     public function cadastrar()
     {
 
+    }
+
+    public function logar()
+    {
+        $this->form_validation->set_rules('email', 'Email', 'required');
+        $this->form_validation->set_rules('senha', 'Senha', 'required|min_length[8]');    // Validacao do campo senha para ter 8 digitos
+
+        // Roda a validacao do formulario e valida os campos de "set_rules"
+        if($this->form_validation->run() == FALSE){
+            redirect(base_url('iniciar'));
+        } else {
+            $dadosRequest['email'] = $this->input->post( 'email');
+            $dadosRequest['senha'] = $this->input->post('senha');
+
+            $this->db->where('email', $dadosRequest['email']);
+            $this->db->where('senha', $dadosRequest['senha']);
+            $userLogado = $this->db->get('usuario')->result();
+
+            if(count($userLogado) == 1) {
+                $this->load->model('UsuarioModel', 'modelusuario');
+                $dadosUsuario = $this->modelusuario->verifica_login($userLogado[0]); // Chamando o metodo da model
+
+                $dadosSessao['userlogado'] = $dadosUsuario[0];
+                $dadosSessao['logado'] = TRUE;
+
+                $this->session->set_userdata($dadosSessao);
+
+                redirect(base_url('home'));
+            } else {
+                $dadosSessao['userlogado'] = NULL;
+                $dadosSessao['logado'] = FALSE;
+
+                $this->session->set_userdata($dadosSessao);
+
+                redirect(base_url('iniciar'));
+            }
+        }
+    }
+
+    public function deslogar()
+    {
+        $dadosSessao['userlogado'] = NULL;
+        $dadosSessao['logado'] = FALSE;
+
+        $this->session->set_userdata($dadosSessao);
+
+        redirect(base_url('iniciar'));
     }
 }
