@@ -22,8 +22,4 @@ class Home extends CI_Controller {
 		$this->load->view('template/footer');
 		$this->load->view('template/html-footer');
 	}
-
-	public function teste(){
-	    echo 'teste!!!!';
-    }
 }

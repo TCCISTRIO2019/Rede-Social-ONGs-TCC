@@ -30,28 +30,26 @@
             </div>  
 
 			<div class="input-group">
-				<div class="input-group-prepend">
-					<div class="input-group-text">
-						<input type="radio" name="tipo_usuario" value="fisica" aria-label="Radio button para tipo de usuario" checked>
-					</div>
-					<div class="input-group-text">
-						<label class="form-check-label">
-							Pessoa
-						</label>
-					</div>
-					<div class="input-group-text">
-						<input type="radio" name="tipo_usuario" value="juridica" aria-label="Radio button para tipo de usuario">
-					</div>
-					<div class="input-group-text">
-						<label class="form-check-label">
-							Instituição
-						</label>
-					</div>
-				</div>
+                <div class="input-group-text">
+                    <input type="radio" name="tipo_usuario" value="fisica" aria-label="Radio button para tipo de usuario" checked>
+                </div>
+                <div class="input-group-text">
+                    <label class="form-check-label">
+                        Pessoa
+                    </label>
+                </div>
+                <div class="input-group-text">
+                    <input type="radio" name="tipo_usuario" value="juridica" aria-label="Radio button para tipo de usuario">
+                </div>
+                <div class="input-group-text">
+                    <label class="form-check-label">
+                        Instituição
+                    </label>
+                </div>
 			</div>
 
             <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-block"> Cadastrar-se </button>
+                <button type="submit" class="form-control btn btn-primary btn-block"> Cadastrar-se </button>
             </div>
         <?php
             echo form_close();

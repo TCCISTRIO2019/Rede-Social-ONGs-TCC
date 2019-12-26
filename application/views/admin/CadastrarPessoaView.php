@@ -7,12 +7,19 @@
         <?php
         echo validation_errors('<div class="alert alert-danger">', '</div>');
 
-        echo form_open('admin/usuario/cadastrar');
+        echo form_open('admin/usuario/cadastrar_pessoa');
         ?>
 
         <input type="hidden" value="<?php echo $email ?>" name="email">
         <input type="hidden" value="<?php echo $senha ?>" name="senha">
         <input type="hidden" value="<?php echo $tipo_usuario ?>" name="tipo_usuario">
+
+        <div class="form-group input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"> Email <!--<i class="fa fa-envelope"></i>--> </span>
+            </div>
+            <input type="email" class="form-control" value="<?php echo $email ?>" disabled>
+        </div>
 
         <div class="form-group input-group">
             <div class="input-group-prepend">

@@ -40,4 +40,18 @@ class UsuarioModel extends CI_Model {
 
         return $this->db->get('')->result();
     }
+
+    public function inserir($dados)
+    {
+        $this->db->insert('usuario',$dados);
+
+        $this->db->where('email', $dados['email']);
+        $Usuario = $this->db->get('usuario')->result();
+
+        if(count($Usuario) == 1) {
+            return $Usuario[0];
+        } else {
+            return NULL;
+        }
+    }
 }
