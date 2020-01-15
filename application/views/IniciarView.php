@@ -56,3 +56,14 @@
         ?>
     </article>
 </div>
+
+<!--<script>-->
+<!--    function setDate()-->
+<!--    {-->
+<!--        var date = document.querySelector("#data").value;-->
+<!---->
+<!--        var vetDate = date.split("/");-->
+<!---->
+<!--        var newDate = vetDate[2].concat("-", vetDate[1],"-", vetDate[0]);-->
+<!--    }-->
+<!--</script>-->

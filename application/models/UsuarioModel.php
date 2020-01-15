@@ -26,17 +26,23 @@ class UsuarioModel extends CI_Model {
     public function verifica_login($dados)
     {
         if ($dados->tipo_usuario == 'fisica') {
+            // Checar se está chegando uma entrada e se é o id correto
             $this->db->select('usuario.id_usuario, usuario.email, usuario.senha, usuario.criacao, usuario.modificacao, usuario.foto_perfil, usuario.tipo_usuario,
-            pessoa.id_pessoa, pessoa.id_usuario, pessoa.nome, pessoa.sobrenome, pessoa.nascimento');
+            pessoa.id_pessoa, pessoa.id_usuario, pessoa.nome, pessoa.sobrenome, pessoa.nascimento,
+            telefone.id_telefone, telefone.id_usuario, telefone.telefone');
             $this->db->from('usuario');
             $this->db->join('pessoa', 'usuario.id_usuario = pessoa.id_usuario');
         } else {
             $this->db->select('usuario.id_usuario, usuario.email, usuario.senha, usuario.criacao, usuario.modificacao, usuario.foto_perfil, usuario.tipo_usuario,
             instituicao.id_instituicao, instituicao.id_usuario, instituicao.nome, instituicao.criacao_instituicao, instituicao.logradouro,
-            instituicao.numero, instituicao.bairro, instituicao.complemento, instituicao.cidade, instituicao.estado, instituicao.cep, instituicao.qtd_funcionarios');
+            instituicao.numero, instituicao.bairro, instituicao.complemento, instituicao.cidade, instituicao.estado, instituicao.cep, instituicao.qtd_funcionarios,
+            telefone.id_telefone, telefone.id_usuario, telefone.telefone');
             $this->db->from('usuario');
             $this->db->join('instituicao', 'usuario.id_usuario = instituicao.id_usuario');
         }
+
+        $this->db->join('telefone', 'usuario.id_usuario = telefone.id_usuario');
+        $this->db->where('usuario.id_usuario', $dados->id_usuario);
 
         return $this->db->get('')->result();
     }

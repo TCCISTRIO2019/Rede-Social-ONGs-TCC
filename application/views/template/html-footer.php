@@ -8,6 +8,21 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="<?php echo base_url('js/bootstrap.min.js') ?>"></script>
 
+    <script>
+        var er = new RegExp('([0-9]{5}-[0-9]{3})');
+
+        if(er.test(cep.value))
+        {
+            return true;
+        }else{
+            var unsetPHPError = document.querySelector("#errMessage");
+            if(unsetPHPError.innerHTML != ""){ unsetPHPError.innerHTML = ""; }
+
+            message.textContent = "E-mail digitado não está escrito corretamente! formato: ex@anything.a (.b)";
+            return false;
+        }
+    </script>
+
 </body>
 
 </html>

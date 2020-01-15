@@ -186,7 +186,7 @@ class Usuario extends CI_Controller {
                 $dadosInstituicao['id_usuario'] = $idUsuario;
                 $dadosTelefone['id_usuario'] = $idUsuario;
 
-                if($retorno = $this->modelinstituicao->inserir($dadosInstituicao) && $this->modeltelefone->inserir($dadosTelefone)){
+                if($this->modelinstituicao->inserir($dadosInstituicao) && $this->modeltelefone->inserir($dadosTelefone)){
                     $dadosUsuario = $this->modelusuario->verifica_login($retornoUsuario);
 
                     $dadosSessao['userlogado'] = $dadosUsuario[0];
