@@ -38,4 +38,9 @@ class PublicacaoModel extends CI_Model {
 
         return $this->db->get('usuario')->result();
     }
+
+    public function inserir_publicacao($publicacao)
+    {
+        return $this->db->insert('publicacao',$publicacao);
+    }
 }
