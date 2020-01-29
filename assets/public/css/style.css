@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap');
 
 html,body{
-height: 100%;
-font-family: 'IBM Plex Sans', sans-serif;
+    height: 100%;
+    font-family: 'IBM Plex Sans', sans-serif;
 }
 
 .divider-text {
@@ -34,4 +34,13 @@ font-family: 'IBM Plex Sans', sans-serif;
 .btn-twitter {
     background-color: #42AEEC;
     color: #fff;
+}
+
+.base {
+    margin-top: 5rem;
+}
+
+a:link {
+    text-decoration: none;
+    color: black;
 }

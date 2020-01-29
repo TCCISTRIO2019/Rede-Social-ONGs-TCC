@@ -18,10 +18,10 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
     <!-- Custom CSS -->
-    <link href="<?php echo base_url('/assets/public/css/style.css') ?>" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url('assets/public/css/style.css') ?>" rel="stylesheet" type="text/css">
 
     <!-- Custom Fonts -->
-    <link href="<?php echo base_url('assets/public/ss/font-awesome/css/font-awesome.min.css') ?>" rel="stylesheet" type="text/css">
+<!--    <link href="--><?php //echo base_url('assets/public/ss/font-awesome/css/font-awesome.min.css') ?><!--" rel="stylesheet" type="text/css">-->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -32,4 +32,4 @@
 
 </head>
 
-<body>
+<body class="base container">

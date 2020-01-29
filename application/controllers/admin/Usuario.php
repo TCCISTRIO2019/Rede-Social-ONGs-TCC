@@ -245,6 +245,12 @@ class Usuario extends CI_Controller {
 
         redirect(base_url('iniciar'));
     }
+
+    public function atualizar_usuario()
+    {
+
+    }
+
 //
 //    public function callback_data_check($data)
 //    {

@@ -23,7 +23,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
+
+//  HOMOLOG:
 $config['base_url'] = 'http://localhost/tcc_rede_social';
+
+//  PROD:
+//$config['base_url'] = 'https://tccistredesocial.000webhostapp.com/';
 
 /*
 |--------------------------------------------------------------------------
