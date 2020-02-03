@@ -25,7 +25,7 @@ class Publicacao extends CI_Controller {
 //            $dadosUsuario = $this->modelusuario->verifica_login($retornoUsuario);
 //            $dadosSessao['userlogado'] = $dadosUsuario[0];
             $dadosSessao['logado'] = TRUE;
-//
+
             $this->session->set_userdata($dadosSessao);
 
             redirect(base_url('home'));

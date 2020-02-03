@@ -34,9 +34,18 @@ class PublicacaoModel extends CI_Model {
 
     public function publicacoes_usuario($id)
     {
-        $this->db->order_by('id_usuario','ASC');
+        $this->db->select('usuario.id_usuario, usuario.email, 
+            publicacao.id_publicacao, publicacao.id_usuario, publicacao.curtidas, publicacao.corpo, publicacao.imagem, publicacao.data_criacao,
+            pessoa.id_pessoa, pessoa.id_usuario, pessoa.nome');
+        $this->db->from('publicacao');
+        $this->db->join('usuario','usuario.id_usuario = publicacao.id_usuario');
+        $this->db->join('pessoa','usuario.id_usuario = pessoa.id_usuario');
 
-        return $this->db->get('usuario')->result();
+        $this->db->where('md5(usuario.id_usuario)',$id);
+
+        $this->db->order_by('publicacao.data_criacao','DESC');
+
+        return $this->db->get('')->result();
     }
 
     public function inserir_publicacao($publicacao)

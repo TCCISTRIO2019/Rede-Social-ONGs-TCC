@@ -25,7 +25,7 @@
                             <a class="dropdown-item" href="#"><?php echo $this->session->userdata('userlogado')->telefone; ?></a>
                             <a class="dropdown-item" href="#">Pessoa <?php echo $this->session->userdata('userlogado')->tipo_usuario; ?></a>
                             <a class="dropdown-item" href="#"><?php echo $this->session->userdata('userlogado')->criacao; ?></a>
-                            <a class="dropdown-item" href="<?php echo base_url('/configurar/'.$this->session->userdata('userlogado')->id_usuario) ?>">Configurar Conta</a>
+                            <a class="dropdown-item" href="<?php echo base_url('/admin/usuario/id_'.md5($this->session->userdata('userlogado')->id_usuario)) ?>">Perfil</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="<?php echo base_url('admin/usuario/deslogar') ?>">Sair</a>
                         </div>

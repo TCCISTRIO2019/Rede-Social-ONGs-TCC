@@ -10,6 +10,11 @@ class Iniciar extends CI_Controller {
 
 	public function index()
 	{
+	    // Se estiver logado, mandar para home
+        if($this->session->userdata('logado')) {
+            redirect(base_url('home'));
+        }
+
         // Dados a serem enviados para o Cabeçalho
         $dados['titulo'] = 'TCC Rede Social - Index';
 

@@ -5,21 +5,12 @@
 <div class="row justify-content-md-center">
     <aside class="col-md-3">
         <div class="card mx-auto sticky-top" style="width: 11rem; top:5rem;">
-            <?php
-            echo validation_errors('<div class="alert alert-danger">', '</div>');
-
-            echo form_open('publicacao/fazer_publicacao');
-            ?>
-
-            <a href="<?php echo base_url('/configurar/'.$this->session->userdata('userlogado')->id_usuario) ?>">
+            <a href="<?php echo base_url('/admin/usuario/id_'.md5($this->session->userdata('userlogado')->id_usuario)) ?>">
                 <img class="img-thumbnail card-img-top rounded-circle" src="http://s2.glbimg.com/7Et2QlxLzBs1FQ5Z_C-GDSa2DTE=/i.glbimg.com/og/ig/infoglobo1/f/original/2017/01/16/blog_shark.jpg" alt="Sua foto de perfil">
                 <div class="card-body">
                     <p class="card-text"><?php echo $this->session->userdata('userlogado')->nome." ".$this->session->userdata('userlogado')->sobrenome; ?></p>
                 </div>
             </a>
-            <?php
-            echo form_close();
-            ?>
         </div>
     </aside>
 

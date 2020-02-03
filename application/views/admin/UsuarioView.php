@@ -1,114 +1,56 @@
-<!-- Tela de gestao das publicacoes do usuario (modificar, excluir e fazer novas) -->
+<div class="row justify-content-md-center">
+    <h4 class="col-md-auto">Usuario Teste</h4>
+</div>
 
-<div class="card bg-light">
-    <article class="card-body mx-auto" style="max-width: 400px;">
-        <h4 class="card-title mt-3 text-center">Cadastrar Instituição</h4>
+<div class="row justify-content-md-center">
 
-        <p class="text-center">Informe os dados de sua instituição</p>
+    <section class="col-md-6">
 
-        <?php
-        echo validation_errors('<div class="alert alert-danger">', '</div>');
+        <div class="row justify-content-md-center">
+            <div class="col-md-auto">
 
-        echo form_open('admin/usuario/cadastrar_instituicao');
-        ?>
-
-        <input type="hidden" value="<?php echo $email ?>" name="email">
-        <input type="hidden" value="<?php echo $senha ?>" name="senha">
-        <input type="hidden" value="<?php echo $tipo_usuario ?>" name="tipo_usuario">
-
-        <div class="form-group input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text"> Email <!--<i class="fa fa-envelope"></i>--> </span>
+                <ul class="list-unstyled">
+                    <?php
+                    foreach ($publicacoes as $publicacao){
+                        ?>
+                        <li class="card bg-light" style="width: 30rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Usuario: <a href="<?php echo base_url('autor/'.$publicacao->id_usuario.'/'.limpar($publicacao->nome)) ?>">
+                                        <?php echo $publicacao->nome ?> </a>
+                                </h5>
+                            </div>
+                            <img src="http://s2.glbimg.com/7Et2QlxLzBs1FQ5Z_C-GDSa2DTE=/i.glbimg.com/og/ig/infoglobo1/f/original/2017/01/16/blog_shark.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <p class="card-text"> <?php echo $publicacao->corpo ?> </p>
+                            </div>
+                            <!--                        <ul class="list-group list-group-flush">-->
+                            <!--                            <li class="list-group-item">Cras justo odio</li>-->
+                            <!--                            <li class="list-group-item">Dapibus ac facilisis in</li>-->
+                            <!--                            <li class="list-group-item">Vestibulum at eros</li>-->
+                            <!--                        </ul>-->
+                            <div class="card-body">
+                                <p class="card-text"> Curtidas: <a href="#" class="card-link"><?php echo $publicacao->curtidas ?></a> </p>
+                                <p class="card-text"> Postado em: <?php echo postadoem($publicacao->data_criacao) ?></p>
+                            </div>
+                        </li>
+                        <br><br>
+                        <!--                    <li>ID: --><?php //echo $publicacao->id_publicacao ?><!--</li>-->
+                        <!--                    <li>Usuario: <a href="--><?php //echo base_url('autor/'.$publicacao->id_usuario.'/'.limpar($publicacao->nome)) ?><!--">-->
+                        <!--                            --><?php //echo $publicacao->nome ?><!-- </a>-->
+                        <!--                    </li>-->
+                        <!--                    <li>Corpo: --><?php //echo $publicacao->corpo ?><!--</li>-->
+                        <!--                    <li>Curtidas: --><?php //echo $publicacao->curtidas ?><!--</li>-->
+                        <!--                    <li>Imagem: --><?php //echo $publicacao->imagem ?><!--</li>-->
+                        <!--                    <li>Data Publicacao: --><?php //echo postadoem($publicacao->data_criacao) /*Helper*/ ?><!--</li>-->
+                        <!--                    <br><br>-->
+                        <?php
+                    }
+                    ?>
+                </ul>
             </div>
-            <input type="email" class="form-control" value="<?php echo $email ?>" name="email" disabled>
         </div>
+    </section>
 
-        <div class="form-group input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text"> Nome <!--<i class="fa fa-envelope"></i>--> </span>
-            </div>
-            <input name="nome" class="form-control" placeholder="Digite o nome" type="text">
-        </div>
-
-        <div class="form-group input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text"> Data de fundação <!--<i class="fa fa-lock"></i>--> </span>
-            </div>
-            <input name="criacao_instituicao" class="form-control" type="date">
-        </div>
-
-        <div class="form-group input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text"> Logradouro <!--<i class="fa fa-lock"></i>--> </span>
-            </div>
-            <input name="logradouro" class="form-control" placeholder="Digite o logradouro" type="text">
-        </div>
-
-        <div class="form-group input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text"> Numero <!--<i class="fa fa-lock"></i>--> </span>
-            </div>
-            <input name="numero" class="form-control" placeholder="Digite o numero do endereço" type="text">
-        </div>
-
-        <div class="form-group input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text"> Bairro <!--<i class="fa fa-lock"></i>--> </span>
-            </div>
-            <input name="bairro" class="form-control" placeholder="Digite o bairro" type="text">
-        </div>
-
-        <div class="form-group input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text"> Complemento <!--<i class="fa fa-lock"></i>--> </span>
-            </div>
-            <input name="complemento" class="form-control" placeholder="Digite o complemento" type="text">
-        </div>
-
-        <div class="form-group input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text"> Cidade <!--<i class="fa fa-lock"></i>--> </span>
-            </div>
-            <input name="cidade" class="form-control" placeholder="Digite a cidade" type="text">
-        </div>
-
-        <!-- Mudar para "Selecione o estado" -->
-        <div class="form-group input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text"> Estado <!--<i class="fa fa-lock"></i>--> </span>
-            </div>
-            <input name="estado" class="form-control" placeholder="Digite o estado" type="text">
-        </div>
-
-        <!-- Criar mascara com JS -->
-        <div class="form-group input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text"> Cep <!--<i class="fa fa-lock"></i>--> </span>
-            </div>
-            <input name="cep" class="form-control" placeholder="Digite o cep" type="text">
-        </div>
-
-        <div class="form-group input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text"> Quantidade atual de funcionários <!--<i class="fa fa-lock"></i>--> </span>
-            </div>
-            <input name="qtd_funcionarios" class="form-control" placeholder="0" type="number">
-        </div>
-
-        <!-- Criar mascara com JS -->
-        <div class="form-group input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text"> Telefone <!--<i class="fa fa-lock"></i>--> </span>
-            </div>
-            <input name="telefone" class="form-control" placeholder="Digite seu telefone" type="text">
-        </div>
-
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-block"> Cadastrar-se </button>
-        </div>
-
-        <?php
-        echo form_close();
-        ?>
-    </article>
+    <section class="col-md-3">
+    </section>
 </div>

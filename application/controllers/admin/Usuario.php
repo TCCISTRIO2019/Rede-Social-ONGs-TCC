@@ -9,16 +9,28 @@ class Usuario extends CI_Controller {
 
         $this->load->model('UsuarioModel', 'modelusuario');
         $this->load->model('TelefoneModel', 'modeltelefone');
+        $this->load->model('PublicacaoModel', 'modelpublicacao');
 	}
 
-	public function index()
+	public function index($id)
 	{
+	    // Se nao estiver logado, mandar para tela inicial
+        if(!$this->session->userdata('logado')){
+            redirect(base_url('iniciar'));
+        } elseif (md5($this->session->userdata('userlogado')->id_usuario) != $id) { // Validar se o id sendo passado na url eh o mesmo do usuario que estah logado
+            redirect(base_url('home'));
+        }
+
+        $publicacoes = $this->modelpublicacao->publicacoes_usuario($id);
+
         // Dados a serem enviados para o Cabeçalho
-        $dados['titulo'] = 'TCC Rede Social - Index';
+        $dados['titulo'] = 'TCC Rede Social - Perfil Usuario';
+//        $dados['id'] = $publicacoes->id;
+        $dados['publicacoes'] = $publicacoes;
 
         $this->load->view('template/html-header', $dados);
         $this->load->view('template/header');
-        $this->load->view('IniciarView');
+        $this->load->view('admin/usuarioview');
         $this->load->view('template/footer');
         $this->load->view('template/html-footer');
 	}
@@ -220,6 +232,7 @@ class Usuario extends CI_Controller {
             $this->db->where('senha', $dadosRequest['senha']);
             $userLogado = $this->db->get('usuario')->result();
 
+            // Verifica se o usuario estah correto
             if(count($userLogado) == 1) {
                 // Chamando o metodo da model para logicas de tipos diferentes
                 $dadosUsuario = $this->modelusuario->verifica_login($userLogado[0]);
