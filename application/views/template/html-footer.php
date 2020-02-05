@@ -3,23 +3,23 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
     <!-- jQuery -->
-    <script src="<?php echo base_url('js/jquery.js') ?>"></script>
+    <script src="<?php echo base_url('assets/public/js/jquery.js') ?>"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="<?php echo base_url('js/bootstrap.min.js') ?>"></script>
+    <script src="<?php echo base_url('assets/public/js/bootstrap.min.js') ?>"></script>
 
     <script>
         var er = new RegExp('([0-9]{5}-[0-9]{3})');
 
         if(er.test(cep.value))
         {
-            return true;
+            // return true;
         }else{
             var unsetPHPError = document.querySelector("#errMessage");
             if(unsetPHPError.innerHTML != ""){ unsetPHPError.innerHTML = ""; }
 
             message.textContent = "E-mail digitado não está escrito corretamente! formato: ex@anything.a (.b)";
-            return false;
+            // return false;
         }
     </script>
 

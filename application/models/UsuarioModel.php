@@ -60,4 +60,9 @@ class UsuarioModel extends CI_Model {
             return NULL;
         }
     }
+
+    public function atualizar($dados){
+	    $this->db->update('usuario',$dados);
+        $this->db->where('id', $dados['email']);
+    }
 }

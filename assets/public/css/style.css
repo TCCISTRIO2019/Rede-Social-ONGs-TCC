@@ -44,3 +44,11 @@ a:link {
     text-decoration: none;
     color: black;
 }
+
+.capa {
+
+}
+
+.capa > img {
+    width: 100%;
+}

@@ -25,7 +25,6 @@ class Usuario extends CI_Controller {
 
         // Dados a serem enviados para o Cabeçalho
         $dados['titulo'] = 'TCC Rede Social - Perfil Usuario';
-//        $dados['id'] = $publicacoes->id;
         $dados['publicacoes'] = $publicacoes;
 
         $this->load->view('template/html-header', $dados);
@@ -259,9 +258,73 @@ class Usuario extends CI_Controller {
         redirect(base_url('iniciar'));
     }
 
-    public function atualizar_usuario()
+    public function pag_configurar($id)
     {
+        // Se nao estiver logado, mandar para tela inicial
+        if(!$this->session->userdata('logado')){
+            redirect(base_url('iniciar'));
+        } elseif (md5($this->session->userdata('userlogado')->id_usuario) != $id) { // Validar se o id sendo passado na url eh o mesmo do usuario que estah logado
+            redirect(base_url('home'));
+        }
 
+        $this->db->where('md5(id_usuario)', $id);
+        $dados = $this->db->get('usuario')->result();  // Executa a query montada acima no where
+
+        if($dados[0]->tipo_usuario == "fisica"){    // Ja existe um usuario com esse email
+            $this->pag_configurar_pessoa($dados);
+        } else {
+            $this->pag_configurar_instituicao($dados);
+        }
+    }
+
+    public function pag_configurar_pessoa($dados){
+        $dados['titulo'] = 'Configurar Pessoa - TCC Rede Social';
+
+        $this->load->view('template/html-header', $dados);
+        $this->load->view('admin/template/header');
+        $this->load->view('admin/configurarusuariopessoaview');
+        $this->load->view('template/footer');
+        $this->load->view('template/html-footer');
+    }
+
+    public function pag_configurar_instituicao($dados){
+        $dados['titulo'] = 'Configurar Instituicao - TCC Rede Social';
+
+        $this->load->view('template/html-header', $dados);
+        $this->load->view('admin/template/header');
+        $this->load->view('admin/configurarusuarioinstituicaoview');
+        $this->load->view('template/footer');
+        $this->load->view('template/html-footer');
+    }
+
+    public function atualizar_pessoa($id){
+        // Se nao estiver logado, mandar para tela inicial
+        if(!$this->session->userdata('logado')){
+            redirect(base_url('iniciar'));
+        } elseif (md5($this->session->userdata('userlogado')->id_usuario) != $id) { // Validar se o id sendo passado na url eh o mesmo do usuario que estah logado
+            redirect(base_url('home'));
+        }
+
+        if($this->modelusuario->atualizar($dados)){
+            redirect(base_url('iniciar'));
+        } else {
+            echo "Ocorreu um erro no sistema, por favor tente novamente!";
+        }
+    }
+
+    public function atualizar_instituicao($id){
+        // Se nao estiver logado, mandar para tela inicial
+        if(!$this->session->userdata('logado')){
+            redirect(base_url('iniciar'));
+        } elseif (md5($this->session->userdata('userlogado')->id_usuario) != $id) { // Validar se o id sendo passado na url eh o mesmo do usuario que estah logado
+            redirect(base_url('home'));
+        }
+
+        if($this->modelusuario->atualizar($dados)){
+            redirect(base_url('iniciar'));
+        } else {
+            echo "Ocorreu um erro no sistema, por favor tente novamente!";
+        }
     }
 
 //

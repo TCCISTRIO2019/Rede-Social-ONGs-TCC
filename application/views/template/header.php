@@ -7,14 +7,15 @@
                 <a class="nav-link" href="">TCC Rede Social</a>
             </li>
 
+            <li class="nav-item active">
+              <a class="nav-link" href="<?php echo base_url('home') ?>">Home</a>
+            </li>
+
           <!-- Ajustar tamanho dos campos -->
             <?php
             // O usuario esta logado
             if($this->session->userdata('logado') == TRUE) {
                 ?>
-              <li class="nav-item active">
-                  <a class="nav-link" href="<?php echo base_url('home') ?>">Home</a>
-              </li>
             </ul>
                 <ul class="nav nav-tabs">
                     <li class="nav-item dropdown">
@@ -26,6 +27,7 @@
                             <a class="dropdown-item" href="#">Pessoa <?php echo $this->session->userdata('userlogado')->tipo_usuario; ?></a>
                             <a class="dropdown-item" href="#"><?php echo $this->session->userdata('userlogado')->criacao; ?></a>
                             <a class="dropdown-item" href="<?php echo base_url('/admin/usuario/id_'.md5($this->session->userdata('userlogado')->id_usuario)) ?>">Perfil</a>
+                            <a class="dropdown-item" href="<?php echo base_url('/admin/usuario/pag_configurar/'.md5($this->session->userdata('userlogado')->id_usuario)) ?>">Configuração</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="<?php echo base_url('admin/usuario/deslogar') ?>">Sair</a>
                         </div>
@@ -37,9 +39,6 @@
 
                 echo form_open('admin/usuario/logar');
                 ?>
-                <li class="nav-item active">
-                    <a class="nav-link" href="">Home</a>
-                </li>
             </ul>
                 <div class="form-inline my-2 my-md-0">
                     <label class="sr-only" for="inlineFormInputName2">Email</label>
