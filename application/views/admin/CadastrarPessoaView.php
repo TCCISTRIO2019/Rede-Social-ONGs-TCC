@@ -1,5 +1,5 @@
 <div class="card bg-light">
-    <article class="card-body mx-auto" style="max-width: 400px;">
+    <section class="card-body mx-auto" style="max-width: 400px;">
         <h4 class="card-title mt-3 text-center">Cadastrar Pessoa</h4>
 
         <p class="text-center">Informe seus dados</p>
@@ -78,5 +78,5 @@
         <?php
         echo form_close();
         ?>
-    </article>
+    </section>
 </div>

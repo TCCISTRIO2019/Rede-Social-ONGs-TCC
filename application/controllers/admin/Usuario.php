@@ -263,7 +263,9 @@ class Usuario extends CI_Controller {
         // Se nao estiver logado, mandar para tela inicial
         if(!$this->session->userdata('logado')){
             redirect(base_url('iniciar'));
-        } elseif (md5($this->session->userdata('userlogado')->id_usuario) != $id) { // Validar se o id sendo passado na url eh o mesmo do usuario que estah logado
+
+        // Se está logado, validar se o id sendo passado na url é o mesmo do usuario que está logado
+        } elseif (md5($this->session->userdata('userlogado')->id_usuario) != $id) {
             redirect(base_url('home'));
         }
 
@@ -277,7 +279,7 @@ class Usuario extends CI_Controller {
         }
     }
 
-    public function pag_configurar_pessoa($dados){
+    private function pag_configurar_pessoa(){
         $dados['titulo'] = 'Configurar Pessoa - TCC Rede Social';
 
         $this->load->view('template/html-header', $dados);
@@ -287,7 +289,7 @@ class Usuario extends CI_Controller {
         $this->load->view('template/html-footer');
     }
 
-    public function pag_configurar_instituicao($dados){
+    private function pag_configurar_instituicao(){
         $dados['titulo'] = 'Configurar Instituicao - TCC Rede Social';
 
         $this->load->view('template/html-header', $dados);
@@ -297,22 +299,46 @@ class Usuario extends CI_Controller {
         $this->load->view('template/html-footer');
     }
 
-    public function atualizar_pessoa($id){
+    public function atualizar_pessoa(){
         // Se nao estiver logado, mandar para tela inicial
         if(!$this->session->userdata('logado')){
             redirect(base_url('iniciar'));
-        } elseif (md5($this->session->userdata('userlogado')->id_usuario) != $id) { // Validar se o id sendo passado na url eh o mesmo do usuario que estah logado
-            redirect(base_url('home'));
         }
 
-        if($this->modelusuario->atualizar($dados)){
-            redirect(base_url('iniciar'));
+        $this->form_validation->set_rules('senha', 'Senha', 'required|min_length[8]');
+        $this->form_validation->set_rules('nome', 'Nome', 'required|min_length[2]');
+        $this->form_validation->set_rules('sobrenome', 'Sobrenome', 'required|min_length[2]');
+        $this->form_validation->set_rules('nascimento', 'Nascimento', 'required');
+        $this->form_validation->set_rules('telefone', 'Telefone', 'required|min_length[11]');
+
+        if($this->form_validation->run() == FALSE){
+//            Retorna para a página de configuração do usuário
+            $this->pag_configurar_pessoa();
         } else {
-            echo "Ocorreu um erro no sistema, por favor tente novamente!";
+            $dadosUsuario['id_usuario'] = $this->input->post('id_usuario');
+            $dadosUsuario['email'] = $this->input->post( 'email');
+            $dadosUsuario['senha'] = $this->input->post('senha');
+
+            $dadosPessoa['id_usuario'] = $dadosUsuario['id_usuario'];
+            $dadosPessoa['nome'] = $this->input->post('nome');
+            $dadosPessoa['sobrenome'] = $this->input->post('sobrenome');
+            $dadosPessoa['nascimento'] = $this->input->post('nascimento');
+            $dadosPessoa['sexo'] = $this->input->post('sexo');
+
+            $dadosTelefone['id_usuario'] = $dadosUsuario['id_usuario'];
+            $dadosTelefone['telefone'] = $this->input->post('telefone');
+
+            $this->load->model('PessoaModel', 'modelpessoa');
+
+            if($this->modelusuario->atualizar($dadosUsuario) && $this->modelpessoa->atualizar($dadosPessoa) && $this->modeltelefone->atualizar($dadosTelefone)){
+                redirect(base_url('iniciar'));
+            } else {
+                echo "Ocorreu um erro no sistema, por favor tente novamente!";
+            }
         }
     }
 
-    public function atualizar_instituicao($id){
+    public function atualizar_instituicao(){
         // Se nao estiver logado, mandar para tela inicial
         if(!$this->session->userdata('logado')){
             redirect(base_url('iniciar'));

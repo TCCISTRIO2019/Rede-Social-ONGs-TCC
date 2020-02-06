@@ -19,4 +19,15 @@ class PessoaModel extends CI_Model {
     {
         return $this->db->insert('pessoa',$dados);
     }
+
+    public function atualizar($dados){
+        try {
+            $this->db->update('pessoa',$dados);
+            $this->db->where('id_usuario', $dados['id_usuario']);
+
+            return TRUE;
+        } catch(Exception $exception) {
+            return FALSE;
+        }
+    }
 }

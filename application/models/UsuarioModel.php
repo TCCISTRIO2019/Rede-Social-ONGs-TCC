@@ -28,7 +28,7 @@ class UsuarioModel extends CI_Model {
         if ($dados->tipo_usuario == 'fisica') {
             // Checar se está chegando uma entrada e se é o id correto
             $this->db->select('usuario.id_usuario, usuario.email, usuario.senha, usuario.criacao, usuario.modificacao, usuario.foto_perfil, usuario.tipo_usuario,
-            pessoa.id_pessoa, pessoa.id_usuario, pessoa.nome, pessoa.sobrenome, pessoa.nascimento,
+            pessoa.id_pessoa, pessoa.id_usuario, pessoa.nome, pessoa.sobrenome, pessoa.nascimento, pessoa.sexo,
             telefone.id_telefone, telefone.id_usuario, telefone.telefone');
             $this->db->from('usuario');
             $this->db->join('pessoa', 'usuario.id_usuario = pessoa.id_usuario');
@@ -62,7 +62,13 @@ class UsuarioModel extends CI_Model {
     }
 
     public function atualizar($dados){
-	    $this->db->update('usuario',$dados);
-        $this->db->where('id', $dados['email']);
+	    try {
+            $this->db->update('usuario',$dados);
+            $this->db->where('id_usuario', $dados['id_usuario']);
+
+            return TRUE;
+        } catch(Exception $exception) {
+            return FALSE;
+        }
     }
 }
