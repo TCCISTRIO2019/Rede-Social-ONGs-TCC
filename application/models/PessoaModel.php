@@ -22,10 +22,25 @@ class PessoaModel extends CI_Model {
 
     public function atualizar($dados){
         try {
-            $this->db->update('pessoa',$dados);
             $this->db->where('id_usuario', $dados['id_usuario']);
+            $this->db->set('nome', $dados['nome']);
+            $this->db->set('sobrenome', $dados['sobrenome']);
+            $this->db->set('nascimento', $dados['nascimento']);
+            $this->db->set('sexo', $dados['sexo']);
+            $this->db->update('pessoa');
 
-            return TRUE;
+            if($this->db->trans_status() === TRUE){
+                $this->db->trans_commit();
+                return TRUE;
+            }else{
+                $this->db->trans_rollback();
+                return FALSE;
+            }
+
+//            $this->db->update('pessoa',$dados);
+//            $this->db->where('id_usuario', $dados['id_usuario']);
+//
+//            return TRUE;
         } catch(Exception $exception) {
             return FALSE;
         }

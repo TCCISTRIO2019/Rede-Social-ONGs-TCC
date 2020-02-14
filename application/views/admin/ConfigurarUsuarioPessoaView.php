@@ -10,13 +10,15 @@
             echo form_open('admin/usuario/atualizar_pessoa');
             ?>
 
-            <input type="hidden" value="<?php echo $this->session->userdata('userlogado')->id_usuario ?>" name="id_usuario">
+            <input name="id_usuario" value="<?php echo $this->session->userdata('userlogado')->id_usuario ?>" type="hidden">
+            <input name="email" value="<?php echo $this->session->userdata('userlogado')->email ?>" type="hidden">
+            <input name="tipo_usuario" value="<?php echo $this->session->userdata('userlogado')->tipo_usuario ?>" type="hidden">
 
             <div class="form-group input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"> Email </span>
                 </div>
-                <input name="email" class="form-control" value="<?php echo $this->session->userdata('userlogado')->email ?>" type="email" disabled>
+                <input class="form-control" value="<?php echo $this->session->userdata('userlogado')->email ?>" type="email" disabled>
             </div>
 
             <div class="form-group input-group">

@@ -318,6 +318,10 @@ class Usuario extends CI_Controller {
             $dadosUsuario['id_usuario'] = $this->input->post('id_usuario');
             $dadosUsuario['email'] = $this->input->post( 'email');
             $dadosUsuario['senha'] = $this->input->post('senha');
+            $dadosUsuario['tipo_usuario'] = $this->input->post('tipo_usuario');
+            $now = new DateTime();
+            $datetime = $now->format('Y-m-d H:i:s');
+            $dadosUsuario['modificacao'] = $datetime;
 
             $dadosPessoa['id_usuario'] = $dadosUsuario['id_usuario'];
             $dadosPessoa['nome'] = $this->input->post('nome');
@@ -331,6 +335,17 @@ class Usuario extends CI_Controller {
             $this->load->model('PessoaModel', 'modelpessoa');
 
             if($this->modelusuario->atualizar($dadosUsuario) && $this->modelpessoa->atualizar($dadosPessoa) && $this->modeltelefone->atualizar($dadosTelefone)){
+
+                $this->db->where('id_usuario', $dadosUsuario['id_usuario']);
+                $userLogado = $this->db->get('usuario')->result();
+
+                $retornoUsuario = $this->modelusuario->verifica_login($userLogado[0]);
+
+                $dadosSessao['userlogado'] = $retornoUsuario[0];
+                $dadosSessao['logado'] = TRUE;
+
+                $this->session->set_userdata($dadosSessao);
+
                 redirect(base_url('iniciar'));
             } else {
                 echo "Ocorreu um erro no sistema, por favor tente novamente!";

@@ -63,10 +63,24 @@ class UsuarioModel extends CI_Model {
 
     public function atualizar($dados){
 	    try {
-            $this->db->update('usuario',$dados);
             $this->db->where('id_usuario', $dados['id_usuario']);
+            $this->db->set('email', $dados['email']);
+            $this->db->set('senha', $dados['senha']);
+            $this->db->set('modificacao', $dados['modificacao']);
+            $this->db->update('usuario');
 
-            return TRUE;
+            if($this->db->trans_status() === TRUE){
+                $this->db->trans_commit();
+                return TRUE;
+            }else{
+                $this->db->trans_rollback();
+                return FALSE;
+            }
+
+//            $this->db->update('usuario',$dados);
+//            $this->db->where('id_usuario', $dados['id_usuario']);
+
+//            return TRUE;
         } catch(Exception $exception) {
             return FALSE;
         }
