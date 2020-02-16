@@ -36,11 +36,6 @@ class PessoaModel extends CI_Model {
                 $this->db->trans_rollback();
                 return FALSE;
             }
-
-//            $this->db->update('pessoa',$dados);
-//            $this->db->where('id_usuario', $dados['id_usuario']);
-//
-//            return TRUE;
         } catch(Exception $exception) {
             return FALSE;
         }

@@ -75,7 +75,7 @@ class Usuario extends CI_Controller {
 
         $this->load->view('template/html-header', $dados);
         $this->load->view('admin/template/header');
-        $this->load->view('admin/cadastrarpessoaview', $dados);
+        $this->load->view('admin/cadastrarpessoaview');
         $this->load->view('template/footer');
         $this->load->view('template/html-footer');
     }
@@ -86,7 +86,7 @@ class Usuario extends CI_Controller {
 
         $this->load->view('template/html-header', $dados);
         $this->load->view('admin/template/header');
-        $this->load->view('admin/cadastrarinstituicaoview', $dados);
+        $this->load->view('admin/cadastrarinstituicaoview');
         $this->load->view('template/footer');
         $this->load->view('template/html-footer');
     }
@@ -99,9 +99,7 @@ class Usuario extends CI_Controller {
         $this->form_validation->set_rules('telefone', 'Telefone', 'required');
 
         if($this->form_validation->run() == FALSE){
-//            Modificar para mandar para a respectiva página de cadastro
-//            redirect(base_url('welcome'));
-            $this->index();
+            $this->pag_cadastrar_pessoa();
         } else {
 
             // Pegando a hora atual de criacao do usuario
@@ -163,8 +161,7 @@ class Usuario extends CI_Controller {
         $this->form_validation->set_rules('telefone', 'Telefone', 'required');
 
         if($this->form_validation->run() == FALSE){
-//            Modificar para mandar para a respectiva página de cadastro
-            redirect(base_url('iniciar'));
+            $this->pag_cadastrar_instituicao();
         } else {
 
             // ajustar pois esta vindo do dia seguinte
@@ -357,32 +354,64 @@ class Usuario extends CI_Controller {
         // Se nao estiver logado, mandar para tela inicial
         if(!$this->session->userdata('logado')){
             redirect(base_url('iniciar'));
-        } elseif (md5($this->session->userdata('userlogado')->id_usuario) != $id) { // Validar se o id sendo passado na url eh o mesmo do usuario que estah logado
-            redirect(base_url('home'));
         }
 
-        if($this->modelusuario->atualizar($dados)){
-            redirect(base_url('iniciar'));
+        $this->form_validation->set_rules('senha', 'Senha', 'required|min_length[8]');
+        $this->form_validation->set_rules('nome', 'Nome', 'required|min_length[2]');
+        $this->form_validation->set_rules('criacao_instituicao', 'Data de fundação', 'required');
+        $this->form_validation->set_rules('logradouro', 'Logradouro', 'required|min_length[2]');
+        $this->form_validation->set_rules('numero', 'Numero', 'required|min_length[2]');
+        $this->form_validation->set_rules('bairro', 'Bairro', 'required|min_length[2]');
+        $this->form_validation->set_rules('cidade', 'Cidade', 'required|min_length[2]');
+        $this->form_validation->set_rules('estado', 'Estado', 'required|min_length[2]');
+        $this->form_validation->set_rules('cep', 'Cep', 'required|min_length[2]');
+        $this->form_validation->set_rules('qtd_funcionarios', 'Quantidade atual de funcinários', 'required');
+        $this->form_validation->set_rules('telefone', 'Telefone', 'required|min_length[10]');
+
+        if($this->form_validation->run() == FALSE){
+            $this->pag_configurar_instituicao();
         } else {
-            echo "Ocorreu um erro no sistema, por favor tente novamente!";
+            $dadosUsuario['id_usuario'] = $this->input->post('id_usuario');
+            $dadosUsuario['email'] = $this->input->post( 'email');
+            $dadosUsuario['senha'] = $this->input->post('senha');
+            $dadosUsuario['tipo_usuario'] = $this->input->post('tipo_usuario');
+            $now = new DateTime();
+            $datetime = $now->format('Y-m-d H:i:s');
+            $dadosUsuario['modificacao'] = $datetime;
+
+            $dadosInstituicao['id_usuario'] = $dadosUsuario['id_usuario'];
+            $dadosInstituicao['nome'] = $this->input->post('nome');
+            $dadosInstituicao['criacao_instituicao'] = $this->input->post('criacao_instituicao');
+            $dadosInstituicao['logradouro'] = $this->input->post('logradouro');
+            $dadosInstituicao['numero'] = $this->input->post('numero');
+            $dadosInstituicao['bairro'] = $this->input->post('bairro');
+            $dadosInstituicao['complemento'] = $this->input->post('complemento');
+            $dadosInstituicao['cidade'] = $this->input->post('cidade');
+            $dadosInstituicao['estado'] = $this->input->post('estado');
+            $dadosInstituicao['cep'] = $this->input->post('cep');
+            $dadosInstituicao['qtd_funcionarios'] = $this->input->post('qtd_funcionarios');
+
+            $dadosTelefone['id_usuario'] = $dadosUsuario['id_usuario'];
+            $dadosTelefone['telefone'] = $this->input->post('telefone');
+
+            $this->load->model('InstituicaoModel', 'modelinstituicao');
+
+            if($this->modelusuario->atualizar($dadosUsuario) && $this->modelinstituicao->atualizar($dadosInstituicao) && $this->modeltelefone->atualizar($dadosTelefone)){
+
+                $this->db->where('id_usuario', $dadosUsuario['id_usuario']);
+                $userLogado = $this->db->get('usuario')->result();
+
+                $retornoUsuario = $this->modelusuario->verifica_login($userLogado[0]);
+
+                $dadosSessao['userlogado'] = $retornoUsuario[0];
+                $dadosSessao['logado'] = TRUE;
+
+                $this->session->set_userdata($dadosSessao);
+
+                redirect(base_url('iniciar'));
+            } else {
+                echo "Ocorreu um erro no sistema, por favor tente novamente!";
+            }
         }
     }
-
-//
-//    public function callback_data_check($data)
-//    {
-//        $dia = (int) substr($data, 0, 2);
-//        $mes = (int) substr($data, 3, 2);
-//        $ano = (int) substr($data, 6, 4);
-//
-//        if (checkdate($mes, $dia, $ano))
-//        {
-//            $this->form_validation->set_message('data_check', 'O campo {field} precisa ser dd-mm-yyyy');
-//            return TRUE;
-//        }
-//        else
-//        {
-//            return FALSE;
-//        }
-//    }
 }

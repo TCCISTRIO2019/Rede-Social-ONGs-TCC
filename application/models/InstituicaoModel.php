@@ -23,4 +23,31 @@ class InstituicaoModel extends CI_Model {
     {
         return $this->db->insert('instituicao',$dados);
     }
+
+    public function atualizar($dados){
+        try {
+            $this->db->where('id_usuario', $dados['id_usuario']);
+            $this->db->set('nome', $dados['nome']);
+            $this->db->set('criacao_instituicao', $dados['criacao_instituicao']);
+            $this->db->set('logradouro', $dados['logradouro']);
+            $this->db->set('numero', $dados['numero']);
+            $this->db->set('bairro', $dados['bairro']);
+            $this->db->set('complemento', $dados['complemento']);
+            $this->db->set('cidade', $dados['cidade']);
+            $this->db->set('estado', $dados['estado']);
+            $this->db->set('cep', $dados['cep']);
+            $this->db->set('qtd_funcionarios', $dados['qtd_funcionarios']);
+            $this->db->update('instituicao');
+
+            if($this->db->trans_status() === TRUE){
+                $this->db->trans_commit();
+                return TRUE;
+            }else{
+                $this->db->trans_rollback();
+                return FALSE;
+            }
+        } catch(Exception $exception) {
+            return FALSE;
+        }
+    }
 }

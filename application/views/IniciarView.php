@@ -12,21 +12,21 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
                 </div>
-                <input class="form-control" name="email" placeholder="Email" type="email">
+                <input class="form-control" name="email" placeholder="Email" type="email" value="<?php echo set_value('email'); ?>">
             </div>
 
             <div class="form-group input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                 </div>
-                <input class="form-control" name="senha" placeholder="Criar senha" type="password">
+                <input class="form-control" name="senha" placeholder="Criar senha" type="password" value="<?php echo set_value('senha'); ?>">
             </div>
 
             <div class="form-group input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                 </div>
-                <input class="form-control" name="senha_conf" placeholder="Repetir senha" type="password">
+                <input class="form-control" name="senha_conf" placeholder="Repetir senha" type="password" value="<?php echo set_value('senha_conf'); ?>">
             </div>  
 
 			<div class="input-group">
