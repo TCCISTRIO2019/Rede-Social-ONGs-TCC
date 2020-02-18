@@ -50,4 +50,21 @@ class InstituicaoModel extends CI_Model {
             return FALSE;
         }
     }
+
+    // Atualizar para pegar todas as instituições
+    public function listar_instituicoes()
+    {
+        $this->db->select('usuario.id_usuario, usuario.email, 
+            publicacao.id_publicacao, publicacao.id_usuario, publicacao.curtidas, publicacao.corpo, publicacao.imagem, publicacao.data_criacao,
+            pessoa.id_pessoa, pessoa.id_usuario, pessoa.nome');
+        $this->db->from('publicacao');
+        $this->db->join('usuario','usuario.id_usuario = publicacao.id_usuario');
+        $this->db->join('pessoa','usuario.id_usuario = pessoa.id_usuario');
+
+        $this->db->limit(5);
+        $this->db->order_by('publicacao.data_criacao','DESC');
+
+//	    return $this->db->get('publicacao')->result();
+        return $this->db->get('')->result();
+    }
 }
