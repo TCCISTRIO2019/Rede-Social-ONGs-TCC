@@ -18,9 +18,9 @@
                     if($this->session->userdata('logado') == TRUE) {
                         $atributos = array('class' => 'form-inline mt-2 mt-md-0 mr-auto');
 
-                        echo form_open('instituicao/pesquisar',$atributos);
+                        echo form_open('instituicao',$atributos);
                         ?>
-                        <input class="form-control mr-sm-2" type="text" placeholder="Procurar Instituição" aria-label="Procurar Instituição" name="instituicao">
+                        <input class="form-control mr-sm-2" type="text" placeholder="Procurar nome da Instituição" aria-label="Procurar Instituição" name="nome_instituicao">
                         <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Pesquisar</button>
 
                     <?php

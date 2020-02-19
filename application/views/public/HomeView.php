@@ -37,7 +37,7 @@
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="corpo" placeholder="Faça sua publicação"></textarea>
                     </div>
 
-                    <button type="submit" class="btn btn-primary mb-2">Publicar</button>
+                    <button type="submit" class="btn btn-outline-primary mb-2">Publicar</button>
                 </div>
                 <?php
                 echo form_close();

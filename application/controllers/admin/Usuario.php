@@ -12,6 +12,7 @@ class Usuario extends CI_Controller {
         $this->load->model('PublicacaoModel', 'modelpublicacao');
 	}
 
+	// Perfil do usuário logado
 	public function index($id)
 	{
 	    // Se nao estiver logado, mandar para tela inicial

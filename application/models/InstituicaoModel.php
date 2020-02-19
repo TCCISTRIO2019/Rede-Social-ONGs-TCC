@@ -54,17 +54,22 @@ class InstituicaoModel extends CI_Model {
     // Atualizar para pegar todas as instituições
     public function listar_instituicoes()
     {
-        $this->db->select('usuario.id_usuario, usuario.email, 
-            publicacao.id_publicacao, publicacao.id_usuario, publicacao.curtidas, publicacao.corpo, publicacao.imagem, publicacao.data_criacao,
-            pessoa.id_pessoa, pessoa.id_usuario, pessoa.nome');
-        $this->db->from('publicacao');
-        $this->db->join('usuario','usuario.id_usuario = publicacao.id_usuario');
-        $this->db->join('pessoa','usuario.id_usuario = pessoa.id_usuario');
+        $this->db->select('usuario.id_usuario, usuario.foto_perfil,
+            instituicao.id_usuario, instituicao.id_instituicao, instituicao.nome');
+        $this->db->from('instituicao');
+        $this->db->join('usuario','usuario.id_usuario = instituicao.id_usuario');
 
-        $this->db->limit(5);
-        $this->db->order_by('publicacao.data_criacao','DESC');
+//        $this->db->limit(5);
+        $this->db->order_by('instituicao.nome','ASC');
 
 //	    return $this->db->get('publicacao')->result();
         return $this->db->get('')->result();
+    }
+
+    public function pesquisar_instituicoes($dados)
+    {
+        $this->db->like('nome', $dados['nome']);
+        $this->db->join('usuario','usuario.id_usuario = instituicao.id_usuario');
+        RETURN $this->db->get('instituicao')->result();
     }
 }
