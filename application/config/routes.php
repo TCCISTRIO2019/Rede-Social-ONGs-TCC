@@ -59,3 +59,5 @@ $route['admin/cadastrar_pessoa'] = 'admin/usuario/pag_cadastrar_pessoa';
 $route['admin/cadastrar_instituicao'] = 'admin/usuario/pag_cadastrar_instituicao';
 $route['admin/usuario/id_(:any)'] = 'admin/usuario/index/$1';
 $route['admin/conversa/id_(:any)'] = 'admin/conversa/index/$1';
+$route['admin/conversa/carrega_conversa/id_(:any)'] = 'admin/conversa/index/$1';
+$route['admin/conversa/inicia_conversa/id_(:any)'] = 'admin/conversa/inicia_conversa/$1';

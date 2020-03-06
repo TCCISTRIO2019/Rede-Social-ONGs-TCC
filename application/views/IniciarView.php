@@ -49,7 +49,7 @@
 			</div>
 
             <div class="form-group">
-                <button type="submit" class="form-control btn btn-outline-primary btn-block"> Cadastrar-se </button>
+                <button type="submit" class="form-control btn btn-primary btn-block"> Cadastrar-se </button>
             </div>
         <?php
             echo form_close();

@@ -18,8 +18,6 @@ class Usuario extends CI_Controller {
 	    // Se nao estiver logado, mandar para tela inicial
         if(!$this->session->userdata('logado')){
             redirect(base_url('iniciar'));
-        } elseif (md5($this->session->userdata('userlogado')->id_usuario) != $id) { // Validar se o id sendo passado na url eh o mesmo do usuario que estah logado
-            redirect(base_url('home'));
         }
 
         $publicacoes = $this->modelpublicacao->publicacoes_usuario($id);
@@ -27,6 +25,7 @@ class Usuario extends CI_Controller {
         // Dados a serem enviados para o Cabeçalho
         $dados['titulo'] = 'TCC Rede Social - Perfil Usuario';
         $dados['publicacoes'] = $publicacoes;
+        $dados['id_usuario'] = $id;
 
         $this->load->view('template/html-header', $dados);
         $this->load->view('template/header');

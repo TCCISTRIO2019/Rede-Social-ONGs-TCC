@@ -19,7 +19,6 @@
     </aside>
 
     <section class="col-md-6">
-
         <div class="row justify-content-md-center">
             <div class="col-md-auto">
 
@@ -33,7 +32,6 @@
                     <input type="hidden" value="<?php echo $this->session->userdata('userlogado')->id_usuario; ?>" name="id_usuario">
 
                     <div class="form-group ">
-            <!--                <label for="exampleFormControlTextarea1">Example textarea</label>-->
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="corpo" placeholder="Faça sua publicação"></textarea>
                     </div>
 
@@ -49,7 +47,7 @@
                         ?>
                         <li class="card bg-light" style="width: 30rem;">
                             <div class="card-body">
-                                <h5 class="card-title">Usuario: <a href="<?php echo base_url('autor/'.$publicacao->id_usuario.'/'.limpar($publicacao->nome)) ?>">
+                                <h5 class="card-title">Usuario: <a href="<?php echo base_url('/admin/usuario/id_'.md5($publicacao->id_usuario)) ?>">
                                         <?php echo $publicacao->nome ?> </a>
                                 </h5>
                             </div>
@@ -57,26 +55,12 @@
                             <div class="card-body">
                                 <p class="card-text"> <?php echo $publicacao->corpo ?> </p>
                             </div>
-    <!--                        <ul class="list-group list-group-flush">-->
-    <!--                            <li class="list-group-item">Cras justo odio</li>-->
-    <!--                            <li class="list-group-item">Dapibus ac facilisis in</li>-->
-    <!--                            <li class="list-group-item">Vestibulum at eros</li>-->
-    <!--                        </ul>-->
                             <div class="card-body">
                                 <p class="card-text"> Curtidas: <a href="#" class="card-link"><?php echo $publicacao->curtidas ?></a> </p>
                                 <p class="card-text"> Postado em: <?php echo postadoem($publicacao->data_criacao) ?></p>
                             </div>
                         </li>
                         <br><br>
-    <!--                    <li>ID: --><?php //echo $publicacao->id_publicacao ?><!--</li>-->
-    <!--                    <li>Usuario: <a href="--><?php //echo base_url('autor/'.$publicacao->id_usuario.'/'.limpar($publicacao->nome)) ?><!--">-->
-    <!--                            --><?php //echo $publicacao->nome ?><!-- </a>-->
-    <!--                    </li>-->
-    <!--                    <li>Corpo: --><?php //echo $publicacao->corpo ?><!--</li>-->
-    <!--                    <li>Curtidas: --><?php //echo $publicacao->curtidas ?><!--</li>-->
-    <!--                    <li>Imagem: --><?php //echo $publicacao->imagem ?><!--</li>-->
-    <!--                    <li>Data Publicacao: --><?php //echo postadoem($publicacao->data_criacao) /*Helper*/ ?><!--</li>-->
-    <!--                    <br><br>-->
                         <?php
                     }
                     ?>
