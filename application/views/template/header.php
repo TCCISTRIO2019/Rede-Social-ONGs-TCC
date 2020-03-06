@@ -38,7 +38,7 @@
                     <!--                            <a class="dropdown-item" href="#">Pessoa --><?php //echo $this->session->userdata('userlogado')->tipo_usuario; ?><!--</a>-->
                     <!--                            <a class="dropdown-item" href="#">--><?php //echo $this->session->userdata('userlogado')->criacao; ?><!--</a>-->
 <!--                                    Manda o ID do usuário para pegar todas as conversas que ele está-->
-                                    <a class="dropdown-item" href="<?php echo base_url('/admin/conversa/id_'.md5($this->session->userdata('userlogado')->id_usuario)) ?>">Conversas</a>
+                                    <a class="dropdown-item" href="<?php echo base_url('/conversa/lista_conversas/id_'.md5($this->session->userdata('userlogado')->id_usuario)) ?>">Conversas</a>
                                     <a class="dropdown-item" href="<?php echo base_url('/admin/usuario/id_'.md5($this->session->userdata('userlogado')->id_usuario)) ?>">Perfil</a>
                                     <a class="dropdown-item" href="<?php echo base_url('/admin/usuario/pag_configurar/'.md5($this->session->userdata('userlogado')->id_usuario)) ?>">Configuração</a>
                                     <div class="dropdown-divider"></div>

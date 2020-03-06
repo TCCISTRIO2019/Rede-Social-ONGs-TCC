@@ -34,7 +34,7 @@
                 } else {
                     // Ajustar para mostrar mensagens quando ja houver conversa com este usuario, sem abrir uma nova conversa
                     ?>
-                    <a href="<?php echo base_url('/admin/conversa/inicia_conversa/id_'.$publicacoes[0]->id_usuario) ?>" class="btn btn-success btn-lg active" role="button" aria-pressed="true">Mandar Mensagem</a>
+                    <a href="<?php echo base_url('conversa/inicia_conversa/id_'.$publicacoes[0]->id_usuario) ?>" class="btn btn-success btn-lg active" role="button" aria-pressed="true">Mandar Mensagem</a>
                     <?php
                 }
                 ?>

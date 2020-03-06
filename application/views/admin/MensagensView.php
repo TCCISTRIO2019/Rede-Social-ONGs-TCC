@@ -1,17 +1,17 @@
 <div class="row justify-content-md-center">
-    <h4 class="col-md-auto">Conversas</h4>
+    <h4 class="col-md-auto">Mensagens</h4>
 </div>
 
 <main class="row justify-content-md-center">
     <section class="col-md-12">
         <div class="row justify-content-md-center">
             <?php
-            foreach ($conversas as $conversa){
+            foreach ($mensagens as $mensagem){
             ?>
             <div class="col-md-auto">
                 <ul class="list-unstyled">
                     <li class="card bg-light" style="width: 30rem;">
-                        <a href="<?php echo base_url('/conversa/id_'.md5($conversa->id_conversa)) ?>" class="card-link">
+                        <a href="<?php /*echo base_url('/admin/usuario/id_'.md5($instituicao->id_usuario)) */ ?>" class="card-link">
                             <img src="<?php echo 'https://imagens.canaltech.com.br/empresas/690.400.jpg' /*$instituicao->foto_perfil*/ ?>" class="img-thumbnail card-img-top rounded-circle" alt="..." style="max-width: 11rem; object-fit: cover;">
                             <div class="card-body">
                                 <p class="card-title">

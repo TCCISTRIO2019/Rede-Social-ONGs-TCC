@@ -12,9 +12,30 @@ class Conversa extends CI_Controller {
         $this->load->model('MensagemModel', 'modelmensagem');
 	}
 
+	// Tela da conversa
 	public function index($id)
 	{
-	    // Se nao estiver logado, mandar para tela inicial
+        // Se nao estiver logado, mandar para tela inicial
+        if(!$this->session->userdata('logado')){
+            redirect(base_url('iniciar'));
+        }
+
+        $conversa = $this->modelconversa->buscar_conversa($id);
+        $mensagens = $this->modelmensagem->buscar_mensagens($conversa->id_conversa);
+
+        $dados['titulo'] = 'TCC Rede Social - Conversa';
+        $dados['mensagens'] = $mensagens;
+
+        $this->load->view('template/html-header', $dados);
+        $this->load->view('template/header');
+        $this->load->view('admin/mensagensview');
+        $this->load->view('template/footer');
+        $this->load->view('template/html-footer');
+	}
+
+	public function lista_conversas($id)
+    {
+        // Se nao estiver logado, mandar para tela inicial
         if(!$this->session->userdata('logado')){
             redirect(base_url('iniciar'));
         } elseif (md5($this->session->userdata('userlogado')->id_usuario) != $id) { //Controle para o usuário poder ver apenas as prórias conversas
@@ -32,7 +53,7 @@ class Conversa extends CI_Controller {
         $this->load->view('admin/conversasview');
         $this->load->view('template/footer');
         $this->load->view('template/html-footer');
-	}
+    }
 
 	public function inicia_conversa($id)
     {
@@ -51,24 +72,5 @@ class Conversa extends CI_Controller {
 
         redirect(base_url('home'));
 //        $this->carrega_conversa($conversa->id_conversa);
-    }
-
-    public function carrega_conversa($id)
-    {
-        if(!$this->session->userdata('logado')){
-            redirect(base_url('iniciar'));
-        }
-
-        $conversa = $this->modelconversa->buscar_conversa($id);
-        $mensagens = $this->modelmensagem->buscar_mensagens($conversa->id_conversa);
-
-        $dados['titulo'] = 'TCC Rede Social - Conversa';
-        $dados['mensagens'] = $mensagens;
-
-        $this->load->view('template/html-header', $dados);
-        $this->load->view('template/header');
-        $this->load->view('admin/conversasview');
-        $this->load->view('template/footer');
-        $this->load->view('template/html-footer');
     }
 }
