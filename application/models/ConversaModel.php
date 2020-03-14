@@ -30,7 +30,7 @@ class ConversaModel extends CI_Model {
 
         $result = $this->db->get('')->result();
 
-        // Não está como usuário 1, testar como usuário 2
+        // Verificando se não está como usuário 1, testar como usuário 2
         if(count($result) == 0){
             $this->db->select('pessoa.id_pessoa, pessoa.id_usuario, pessoa.nome, 
             conversa.id_conversa, conversa.id_usuario1, conversa.id_usuario2, conversa.data_inicio,
@@ -44,7 +44,7 @@ class ConversaModel extends CI_Model {
             $result =  $this->db->get('')->result();
         }
 
-        // Retorna se for 1, 2 ou se for nenhum
+        // Retorna se for usuário 1, 2 ou nenhum
         return $result;
     }
 

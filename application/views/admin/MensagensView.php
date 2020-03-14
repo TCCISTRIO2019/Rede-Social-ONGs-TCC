@@ -6,35 +6,51 @@
     <section class="col-md-12">
         <div class="row justify-content-md-center">
             <?php
-            foreach ($mensagens as $mensagem){
-            ?>
-            <div class="col-md-auto">
-                <ul class="list-unstyled">
-                    <li class="card bg-light" style="width: 30rem;">
-                        <a href="<?php /*echo base_url('/admin/usuario/id_'.md5($instituicao->id_usuario)) */ ?>" class="card-link">
-                            <img src="<?php echo 'https://imagens.canaltech.com.br/empresas/690.400.jpg' /*$instituicao->foto_perfil*/ ?>" class="img-thumbnail card-img-top rounded-circle" alt="..." style="max-width: 11rem; object-fit: cover;">
-                            <div class="card-body">
-                                <p class="card-title">
-                                    <?php
-                                        echo "Conversa com: ".$conversa->nome;
-                                    ?>
-                                </p>
-                            </div>
+            if($mensagens != NULL && $mensagens != ''){
+                foreach ($mensagens as $mensagem){
+                    ?>
+                    <div class="col-md-auto">
+                        <ul class="list-unstyled">
+                            <li class="card bg-light bottom-right" style="width: 10rem;">
+                                <div class="card-body">
+                                    <p class="card-title">
+                                        <?php
+                                        echo $mensagem->usuario;
+                                        ?>
+                                    </p>
+                                </div>
 
-                            <div class="card-body">
-                                <h5 class="card-text">
-                                    <?php echo 'ID da Conversa -> '.$conversa->id_conversa ?>
-                                </h5>
-                            </div>
-                        </a>
-                    </li>
+                                <div class="card-body">
+                                    <h5 class="card-text">
+                                        <?php echo $mensagem->corpo ?>
+                                    </h5>
+                                </div>
+                            </li>
 
-                    <br><br>
+                            <br><br>
 
-                </ul>
-            </div>
-                <?php
+                        </ul>
+                    </div>
+                    <?php
+                }
             }
+
+            echo form_open('admin/conversa/manda_mensagem');
+            ?>
+
+            <div>
+                <input type="hidden" value="<?php echo $this->session->userdata('userlogado')->id_usuario; ?>" name="id_usuario_remetente">
+                <input type="hidden" value="<?php echo $id_conversa; ?>" name="id_conversa">
+
+                <div class="form-group">
+                    <!--                <label for="exampleFormControlTextarea1">Example textarea</label>-->
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="1" name="corpo"></textarea>
+
+                    <button type="submit" class="btn btn-outline-primary mb-2">Publicar</button>
+                </div>
+            </div>
+            <?php
+            echo form_close();
             ?>
         </div>
     </section>

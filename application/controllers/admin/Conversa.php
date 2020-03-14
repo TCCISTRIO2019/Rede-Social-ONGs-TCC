@@ -13,18 +13,18 @@ class Conversa extends CI_Controller {
 	}
 
 	// Tela da conversa
-	public function index($id)
+	public function index($id_conversa)
 	{
         // Se nao estiver logado, mandar para tela inicial
         if(!$this->session->userdata('logado')){
             redirect(base_url('iniciar'));
         }
 
-        $conversa = $this->modelconversa->buscar_conversa($id);
-        $mensagens = $this->modelmensagem->buscar_mensagens($conversa->id_conversa);
+        $mensagens = $this->modelmensagem->buscar_mensagens($id_conversa);
 
         $dados['titulo'] = 'TCC Rede Social - Conversa';
         $dados['mensagens'] = $mensagens;
+        $dados['id_conversa'] = $id_conversa;
 
         $this->load->view('template/html-header', $dados);
         $this->load->view('template/header');
@@ -70,7 +70,31 @@ class Conversa extends CI_Controller {
 
         $conversa = $this->modelconversa->inserir_conversa($dadosRequest);
 
-        redirect(base_url('home'));
+        redirect(base_url('/conversa/id_'.md5($conversa->id_conversa)));
 //        $this->carrega_conversa($conversa->id_conversa);
+    }
+
+    public function manda_mensagem()
+    {
+        if(!$this->session->userdata('logado')){
+            redirect(base_url('iniciar'));
+        }
+
+        $this->form_validation->set_rules('senha', 'Senha', 'required|min_length[1]');
+
+        if($this->form_validation->run() == FALSE){
+            redirect(base_url('/conversa/id_'.md5($conversa->id_conversa)));
+        } else {
+            $dadosRequest['id_usuario_remetente'] = $this->input->post( 'id_usuario_remetente');
+            $dadosRequest['id_conversa'] = $this->input->post( 'id_conversa');
+            $dadosRequest['corpo'] = $this->input->post( 'corpo');
+
+            $now = new DateTime();
+            $datetime = $now->format('Y-m-d h:m:s');
+            $dadosRequest['data_criacao'] = $datetime;
+
+            $this->modelmensagem->inserir($dadosRequest);
+            $mensagens = $this->modelmensagem->buscar_mensagens($id_conversa);
+        }
     }
 }
