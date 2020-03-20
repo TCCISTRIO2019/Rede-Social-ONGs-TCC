@@ -22,7 +22,7 @@ class Conversa extends CI_Controller {
 
         $mensagens = $this->modelmensagem->buscar_mensagens($id_conversa);
 
-        $dados['titulo'] = 'TCC Rede Social - Conversa';
+        $dados['titulo'] = 'TCC Rede Social - Mensagens';
         $dados['mensagens'] = $mensagens;
         $dados['id_conversa'] = $id_conversa;
 
@@ -70,7 +70,7 @@ class Conversa extends CI_Controller {
 
         $conversa = $this->modelconversa->inserir_conversa($dadosRequest);
 
-        redirect(base_url('/conversa/id_'.md5($conversa->id_conversa)));
+        redirect(base_url('/conversa/id_'.$conversa->id_conversa));
 //        $this->carrega_conversa($conversa->id_conversa);
     }
 
@@ -80,21 +80,23 @@ class Conversa extends CI_Controller {
             redirect(base_url('iniciar'));
         }
 
-        $this->form_validation->set_rules('senha', 'Senha', 'required|min_length[1]');
+        $this->form_validation->set_rules('corpo', 'Corpo', 'required|min_length[1]');
+
+        $dadosRequest['id_conversa'] = $this->input->post( 'id_conversa');
 
         if($this->form_validation->run() == FALSE){
-            redirect(base_url('/conversa/id_'.md5($conversa->id_conversa)));
+            redirect(base_url('/conversa/id_'.$dadosRequest['id_conversa']));
         } else {
             $dadosRequest['id_usuario_remetente'] = $this->input->post( 'id_usuario_remetente');
-            $dadosRequest['id_conversa'] = $this->input->post( 'id_conversa');
             $dadosRequest['corpo'] = $this->input->post( 'corpo');
 
             $now = new DateTime();
             $datetime = $now->format('Y-m-d h:m:s');
-            $dadosRequest['data_criacao'] = $datetime;
+            $dadosRequest['hora_envio'] = $datetime;
 
             $this->modelmensagem->inserir($dadosRequest);
-            $mensagens = $this->modelmensagem->buscar_mensagens($id_conversa);
+
+            redirect(base_url('/conversa/id_'.$dadosRequest['id_conversa']));
         }
     }
 }

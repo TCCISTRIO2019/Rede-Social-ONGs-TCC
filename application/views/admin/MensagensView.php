@@ -3,39 +3,37 @@
 </div>
 
 <main class="row justify-content-md-center">
-    <section class="col-md-12">
-        <div class="row justify-content-md-center">
+    <section class="col-md-7">
+        <ul class="list-group">
             <?php
             if($mensagens != NULL && $mensagens != ''){
                 foreach ($mensagens as $mensagem){
+                    if($mensagem->id_usuario == $this->session->userdata('userlogado')->id_usuario)
+                    {
+                        $cor = 'list-group-item-dark';
+                        $posicao = 'text-right';
+                    }
+                    else
+                    {
+                        $cor = 'list-group-item-secondary';
+                        $posicao = 'text-left';
+                    }
                     ?>
-                    <div class="col-md-auto">
-                        <ul class="list-unstyled">
-                            <li class="card bg-light bottom-right" style="width: 10rem;">
-                                <div class="card-body">
-                                    <p class="card-title">
-                                        <?php
-                                        echo $mensagem->usuario;
-                                        ?>
-                                    </p>
-                                </div>
 
-                                <div class="card-body">
-                                    <h5 class="card-text">
-                                        <?php echo $mensagem->corpo ?>
-                                    </h5>
-                                </div>
-                            </li>
-
-                            <br><br>
-
-                        </ul>
-                    </div>
+                    <li class="<?php echo $cor." ".$posicao; ?> list-group-item mb-1">
+                        <h6 class="mb-1 font-weight-light"> <?php echo $mensagem->usuario; ?> </h6 class="mb-1 font-weight-light">
+                        <h5 class="mb-1 font-weight-bold"> <?php echo $mensagem->corpo; ?> </h5>
+                        <small> <?php echo $mensagem->hora_envio; ?> </small>
+                    </li>
                     <?php
                 }
             }
+            ?>
+        </ul>
+            <?php
+            $atributos = array('class' => 'form-inline mt-2 mt-md-0 mr-auto');
 
-            echo form_open('admin/conversa/manda_mensagem');
+            echo form_open('admin/conversa/manda_mensagem', $atributos);
             ?>
 
             <div>
@@ -44,15 +42,14 @@
 
                 <div class="form-group">
                     <!--                <label for="exampleFormControlTextarea1">Example textarea</label>-->
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="1" name="corpo"></textarea>
+                    <input type="text" class="form-control" id="exampleFormControlTextarea1" rows="1" name="corpo" placeholder="Mensagem"></input>
 
-                    <button type="submit" class="btn btn-outline-primary mb-2">Publicar</button>
+                    <input type="submit" class="btn btn-outline-primary mb-2" value="Enviar Mensagem">
                 </div>
             </div>
             <?php
             echo form_close();
             ?>
-        </div>
     </section>
 
 <!--    <section class="col-md-3">-->

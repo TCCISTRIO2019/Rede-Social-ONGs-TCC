@@ -11,7 +11,7 @@
             <div class="col-md-auto">
                 <ul class="list-unstyled">
                     <li class="card bg-light" style="width: 30rem;">
-                        <a href="<?php echo base_url('/conversa/id_'.md5($conversa->id_conversa)) ?>" class="card-link">
+                        <a href="<?php echo base_url('/conversa/id_'.$conversa->id_conversa) ?>" class="card-link">
                             <img src="<?php echo 'https://imagens.canaltech.com.br/empresas/690.400.jpg' /*$instituicao->foto_perfil*/ ?>" class="img-thumbnail card-img-top rounded-circle" alt="..." style="max-width: 11rem; object-fit: cover;">
                             <div class="card-body">
                                 <p class="card-title">
