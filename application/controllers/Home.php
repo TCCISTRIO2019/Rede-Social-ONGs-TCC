@@ -16,7 +16,10 @@ class Home extends CI_Controller {
         $dados['titulo'] = 'Publicações - TCC Rede Social';
 
         $this->load->model('PublicacaoModel', 'modelpublicacao');
+        $this->load->model('UsuarioModel', 'modelusuario');
+
         $this->publicacoes = $this->modelpublicacao->listar_publicacoes(); // Chamando o metodo da model
+        $dados['usuario'] = $this->modelusuario->buscar_usuario(md5($this->session->userdata('userlogado')->id_usuario));
         $dados['publicacoes'] = $this->publicacoes;
 
 		$this->load->view('template/html-header', $dados);

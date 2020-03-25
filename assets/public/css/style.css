@@ -45,14 +45,16 @@ a:link {
     color: black;
 }
 
-.capa {
-
-}
-
 .capa > img {
-    width: 100%;
+    width:100%;
+    max-height: 20rem;
+    object-fit: cover;
 }
 
 p {
     color: black;
+}
+
+.header-input::placeholder {
+    font-size: 0.8em;
 }

@@ -20,7 +20,7 @@
 
                         echo form_open('instituicao',$atributos);
                         ?>
-                        <input class="form-control mr-sm-2" type="text" placeholder="Procurar nome da Instituição" aria-label="Procurar Instituição" name="nome_instituicao">
+                        <input class="form-control mr-sm-2 header-input" type="text" placeholder="Procurar nome da Instituição" aria-label="Procurar Instituição" name="nome_instituicao">
                         <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Pesquisar</button>
 
                     <?php

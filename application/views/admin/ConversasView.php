@@ -23,9 +23,7 @@
                             <div class="media-body overflow-hidden">
                                 <div class="d-flex align-items-center mb-1">
                                     <h6 class="text-truncate mb-0 mr-auto"><?php echo $conversa->nome; ?></h6>
-                                    <!--                                    <p class="small text-muted text-nowrap ml-4">10:42 am</p>-->
                                 </div>
-                                <!--                                <div class="text-truncate">Anna Bridges: Hey, Maher! How are you? The weather is great isn't it?</div>-->
                             </div>
                         </div>
 

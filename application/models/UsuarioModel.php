@@ -16,6 +16,16 @@ class UsuarioModel extends CI_Model {
 		parent::__construct();
     }
 
+    public function buscar_usuario($id)
+    {
+        $this->db->from('usuario');
+        $this->db->where('md5(id_usuario)', $id);
+
+        $result = $this->db->get()->result();
+
+        return $result[0];
+    }
+
     public function listar_usuarios()
     {
 	    $this->db->order_by('id_usuario','ASC');
@@ -26,7 +36,6 @@ class UsuarioModel extends CI_Model {
     public function verifica_login($dados)
     {
         if ($dados->tipo_usuario == 'fisica') {
-            // Checar se está chegando uma entrada e se é o id correto
             $this->db->select('usuario.id_usuario, usuario.email, usuario.senha, usuario.criacao, usuario.modificacao, usuario.foto_perfil, usuario.tipo_usuario,
             pessoa.id_pessoa, pessoa.id_usuario, pessoa.nome, pessoa.sobrenome, pessoa.nascimento, pessoa.sexo,
             telefone.id_telefone, telefone.id_usuario, telefone.telefone');
@@ -76,11 +85,6 @@ class UsuarioModel extends CI_Model {
                 $this->db->trans_rollback();
                 return FALSE;
             }
-
-//            $this->db->update('usuario',$dados);
-//            $this->db->where('id_usuario', $dados['id_usuario']);
-
-//            return TRUE;
         } catch(Exception $exception) {
             return FALSE;
         }

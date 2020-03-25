@@ -21,11 +21,12 @@ class Usuario extends CI_Controller {
         }
 
         $publicacoes = $this->modelpublicacao->publicacoes_usuario($id);
+        $usuario = $this->modelusuario->buscar_usuario($id);
 
         // Dados a serem enviados para o Cabeçalho
         $dados['titulo'] = 'TCC Rede Social - Perfil Usuario';
         $dados['publicacoes'] = $publicacoes;
-        $dados['id_usuario'] = $id;
+        $dados['usuario'] = $usuario;
 
         $this->load->view('template/html-header', $dados);
         $this->load->view('template/header');
