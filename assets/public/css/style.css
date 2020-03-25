@@ -52,3 +52,7 @@ a:link {
 .capa > img {
     width: 100%;
 }
+
+p {
+    color: black;
+}

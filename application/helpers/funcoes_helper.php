@@ -68,3 +68,42 @@ function postadoem($string){
 
     return $semana.', '.$dia.' de '.$mes.' de '.$ano.' - '.$hora;
 }
+
+function fundadoem($string){
+
+    // Pega o dia da semana com o 'w'
+    $dia_sem= date('w', strtotime($string));
+
+    $dia= date('d', strtotime($string));
+
+    $mes_num = date('m', strtotime($string));
+    if($mes_num == 01){
+        $mes= "Janeiro";
+    }elseif($mes_num == 02){
+        $mes = "Fevereiro";
+    }elseif($mes_num == 03){
+        $mes = "Março";
+    }elseif($mes_num == 04){
+        $mes = "Abril";
+    }elseif($mes_num == 05){
+        $mes = "Maio";
+    }elseif($mes_num == 06){
+        $mes = "Junho";
+    }elseif($mes_num == 07){
+        $mes = "Julho";
+    }elseif($mes_num == 8){
+        $mes = "Agosto";
+    }elseif($mes_num == 9){
+        $mes = "Setembro";
+    }elseif($mes_num == 10){
+        $mes = "Outubro";
+    }elseif($mes_num == 11){
+        $mes = "Novembro";
+    }else{
+        $mes = "Dezembro";
+    }
+
+    $ano = date('Y', strtotime($string));
+
+    return $dia.' de '.$mes.' de '.$ano;
+}

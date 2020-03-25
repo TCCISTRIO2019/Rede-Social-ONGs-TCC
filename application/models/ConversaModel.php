@@ -17,13 +17,14 @@ class ConversaModel extends CI_Model {
     {
         $result = null;
 
+//        A lógica é: Se é o usuario1 que está abrindo a página, deve aparecer a foto do usuário2 e vice-versa
 //        Pegando nome do usuario2 e id_usuario e email do usuario1
         $this->db->select('pessoa.id_pessoa, pessoa.id_usuario, pessoa.nome, 
             conversa.id_conversa, conversa.id_usuario1, conversa.id_usuario2, conversa.data_inicio,
-            usuario.id_usuario, usuario.email');
+            usuario.id_usuario, usuario.email, usuario.foto_perfil');
         $this->db->from('conversa');
 //        Rever esta parte de usuario1 e usuario2
-        $this->db->join('usuario','usuario.id_usuario = conversa.id_usuario1');
+        $this->db->join('usuario','usuario.id_usuario = conversa.id_usuario2');
         $this->db->join('pessoa','pessoa.id_usuario = conversa.id_usuario2');
         $this->db->where('md5(conversa.id_usuario1)',$id);
         $this->db->order_by('conversa.data_inicio','DESC');
@@ -34,9 +35,9 @@ class ConversaModel extends CI_Model {
         if(count($result) == 0){
             $this->db->select('pessoa.id_pessoa, pessoa.id_usuario, pessoa.nome, 
             conversa.id_conversa, conversa.id_usuario1, conversa.id_usuario2, conversa.data_inicio,
-            usuario.id_usuario, usuario.email');
+            usuario.id_usuario, usuario.email, usuario.foto_perfil');
             $this->db->from('conversa');
-            $this->db->join('usuario','usuario.id_usuario = conversa.id_usuario2');
+            $this->db->join('usuario','usuario.id_usuario = conversa.id_usuario1');
             $this->db->join('pessoa','pessoa.id_usuario = conversa.id_usuario1');
             $this->db->where('md5(conversa.id_usuario2)',$id);
             $this->db->order_by('conversa.data_inicio','DESC');

@@ -159,6 +159,7 @@ class Usuario extends CI_Controller {
         $this->form_validation->set_rules('cep', 'Cep', 'required');
         $this->form_validation->set_rules('qtd_funcionarios', 'Qtd Funcionarios', 'required');
         $this->form_validation->set_rules('telefone', 'Telefone', 'required');
+        $this->form_validation->set_rules('descricao', 'Descricao', 'required');
 
         if($this->form_validation->run() == FALSE){
             $this->pag_cadastrar_instituicao();
@@ -168,10 +169,10 @@ class Usuario extends CI_Controller {
             $now = new DateTime();
             $datetime = $now->format('Y-m-d');
             $dadosUsuario['criacao'] = $datetime;
-
             $dadosUsuario['email'] = $this->input->post('email');
             $dadosUsuario['senha'] = $this->input->post('senha');
             $dadosUsuario['tipo_usuario'] = $this->input->post('tipo_usuario');
+
             $dadosInstituicao['nome'] = $this->input->post('nome');
             $dadosInstituicao['criacao_instituicao'] = $this->input->post('criacao_instituicao');
             $dadosInstituicao['logradouro'] = $this->input->post('logradouro');
@@ -182,6 +183,8 @@ class Usuario extends CI_Controller {
             $dadosInstituicao['estado'] = $this->input->post('estado');
             $dadosInstituicao['cep'] = $this->input->post('cep');
             $dadosInstituicao['qtd_funcionarios'] = $this->input->post('qtd_funcionarios');
+            $dadosInstituicao['descricao'] = $this->input->post('descricao');
+
             $dadosTelefone['telefone'] = $this->input->post('telefone');
 
             $this->load->model('InstituicaoModel', 'modelinstituicao');
@@ -367,6 +370,7 @@ class Usuario extends CI_Controller {
         $this->form_validation->set_rules('cep', 'Cep', 'required|min_length[2]');
         $this->form_validation->set_rules('qtd_funcionarios', 'Quantidade atual de funcinários', 'required');
         $this->form_validation->set_rules('telefone', 'Telefone', 'required|min_length[10]');
+        $this->form_validation->set_rules('descricao', 'Descricao', 'required');
 
         if($this->form_validation->run() == FALSE){
             $this->pag_configurar_instituicao();
@@ -390,6 +394,7 @@ class Usuario extends CI_Controller {
             $dadosInstituicao['estado'] = $this->input->post('estado');
             $dadosInstituicao['cep'] = $this->input->post('cep');
             $dadosInstituicao['qtd_funcionarios'] = $this->input->post('qtd_funcionarios');
+            $dadosInstituicao['descricao'] = $this->input->post('descricao');
 
             $dadosTelefone['id_usuario'] = $dadosUsuario['id_usuario'];
             $dadosTelefone['telefone'] = $this->input->post('telefone');

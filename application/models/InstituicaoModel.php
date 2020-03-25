@@ -37,6 +37,7 @@ class InstituicaoModel extends CI_Model {
             $this->db->set('estado', $dados['estado']);
             $this->db->set('cep', $dados['cep']);
             $this->db->set('qtd_funcionarios', $dados['qtd_funcionarios']);
+            $this->db->set('descricao', $dados['descricao']);
             $this->db->update('instituicao');
 
             if($this->db->trans_status() === TRUE){
@@ -55,7 +56,7 @@ class InstituicaoModel extends CI_Model {
     public function listar_instituicoes()
     {
         $this->db->select('usuario.id_usuario, usuario.foto_perfil,
-            instituicao.id_usuario, instituicao.id_instituicao, instituicao.nome');
+            instituicao.id_usuario, instituicao.id_instituicao, instituicao.nome, instituicao.descricao, instituicao.criacao_instituicao');
         $this->db->from('instituicao');
         $this->db->join('usuario','usuario.id_usuario = instituicao.id_usuario');
 

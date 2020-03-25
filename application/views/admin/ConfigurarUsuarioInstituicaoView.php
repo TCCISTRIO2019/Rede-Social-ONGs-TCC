@@ -106,6 +106,13 @@
             <input name="telefone" class="form-control" value="<?php echo $this->session->userdata('userlogado')->telefone ?>" type="text">
         </div>
 
+        <div class="form-group input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"> Descrição </span>
+            </div>
+            <textarea name="descricao" class="form-control" placeholder="Diga um pouco sobre o que se trata sua instituição" rows="5" cols="30"></textarea>
+        </div>
+
         <div class="form-group">
             <button type="submit" class="btn btn-primary btn-block"> Atualizar Dados </button>
         </div>

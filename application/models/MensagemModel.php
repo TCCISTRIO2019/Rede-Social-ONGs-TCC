@@ -8,6 +8,11 @@ class MensagemModel extends CI_Model {
 		parent::__construct();
     }
 
+    public function inserir($mensagem)
+    {
+        return $this->db->insert('mensagem',$mensagem);
+    }
+
     public function buscar_mensagens($id_conversa)
     {
         $this->db->select('pessoa.id_pessoa, pessoa.id_usuario, pessoa.nome as usuario, 
@@ -23,10 +28,5 @@ class MensagemModel extends CI_Model {
         $this->db->order_by('mensagem.id_mensagem','ASC');
 
         return $this->db->get('')->result();
-    }
-
-    public function inserir($mensagem)
-    {
-        return $this->db->insert('mensagem',$mensagem);
     }
 }
