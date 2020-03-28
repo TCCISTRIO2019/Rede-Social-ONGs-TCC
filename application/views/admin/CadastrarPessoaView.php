@@ -50,7 +50,7 @@
             <input name="telefone" class="form-control" placeholder="Digite seu telefone" type="text">
         </div>
 
-        <div class="input-group">
+        <div class="form-group input-group">
             <div class="input-group-prepend">
                 <div class="input-group-text">
                     <input type="radio" name="sexo" value="m" aria-label="Radio button para genero" checked>
@@ -78,5 +78,11 @@
         <?php
         echo form_close();
         ?>
+
+        <div class="form-group">
+            <a href="<?php base_url('iniciar') ?>">
+                <button class="btn btn-outline-primary btn-block"> Voltar </button>
+            </a>
+        </div>
     </section>
 </div>

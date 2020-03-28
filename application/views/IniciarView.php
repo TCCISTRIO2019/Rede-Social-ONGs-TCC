@@ -1,6 +1,6 @@
 <div class="card bg-light">
     <article class="card-body mx-auto" style="max-width: 400px;">
-        <h4 class="card-title mt-3 text-center">Abra sua conta</h4>
+        <h3 class="card-title mt-3 text-center">Abra sua conta</h3>
         <p class="text-center">Comece com sua conta grátis</p>
 
         <?php
@@ -29,7 +29,7 @@
                 <input class="form-control" name="senha_conf" placeholder="Repetir senha" type="password" value="<?php echo set_value('senha_conf'); ?>">
             </div>  
 
-			<div class="input-group">
+			<div class="form-group input-group">
                 <div class="input-group-text">
                     <input type="radio" name="tipo_usuario" value="fisica" aria-label="Radio button para tipo de usuario" checked>
                 </div>
@@ -56,14 +56,3 @@
         ?>
     </article>
 </div>
-
-<!--<script>-->
-<!--    function setDate()-->
-<!--    {-->
-<!--        var date = document.querySelector("#data").value;-->
-<!---->
-<!--        var vetDate = date.split("/");-->
-<!---->
-<!--        var newDate = vetDate[2].concat("-", vetDate[1],"-", vetDate[0]);-->
-<!--    }-->
-<!--</script>-->
