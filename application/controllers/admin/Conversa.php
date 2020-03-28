@@ -12,8 +12,8 @@ class Conversa extends CI_Controller {
         $this->load->model('MensagemModel', 'modelmensagem');
 	}
 
-	// Tela da conversa
-	public function index($id_conversa)
+	// Tela da conversa, com as mensagens
+	public function index($id_conversa /*Recebe sem md5()*/)
 	{
         // Se nao estiver logado, mandar para tela inicial
         if(!$this->session->userdata('logado')){

@@ -8,6 +8,9 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="<?php echo base_url('assets/public/js/bootstrap.min.js') ?>"></script>
 
+    <!-- JavaScript tela de mensagens -->
+    <script src="<?php echo base_url('assets/public/js/script_mensagens.js') ?>"></script>
+
     <script>
         var er = new RegExp('([0-9]{5}-[0-9]{3})');
 
