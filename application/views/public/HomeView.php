@@ -23,41 +23,50 @@
             <div class="col-md-auto">
 
                 <?php
-                echo validation_errors('<div class="alert alert-danger">', '</div>');
 
-                echo form_open('publicacao/fazer_publicacao');
-                ?>
+                if ($this->session->userdata('userlogado')->tipo_usuario == "juridica")
+                {
+                    echo validation_errors('<div class="alert alert-danger">', '</div>');
 
-                <div>
-                    <input type="hidden" value="<?php echo $this->session->userdata('userlogado')->id_usuario; ?>" name="id_usuario">
+                    echo form_open('publicacao/fazer_publicacao');
+                    ?>
 
-                    <div class="form-group ">
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="corpo" placeholder="Faça sua publicação"></textarea>
+                    <div>
+                        <input type="hidden" value="<?php echo $this->session->userdata('userlogado')->id_usuario; ?>" name="id_usuario">
+
+                        <div class="form-group ">
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="corpo" placeholder="Faça sua publicação"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-outline-primary mb-2">Publicar</button>
                     </div>
-
-                    <button type="submit" class="btn btn-outline-primary mb-2">Publicar</button>
-                </div>
-                <?php
-                echo form_close();
+                    <?php
+                    echo form_close();
+                }
                 ?>
 
                 <ul class="list-unstyled">
                     <?php
                     foreach ($publicacoes as $publicacao){
                         ?>
-                        <li class="card bg-light" style="width: 30rem;">
-                            <div class="card-body">
-                                <h5 class="card-title">Usuario: <a href="<?php echo base_url('/admin/usuario/id_'.md5($publicacao->id_usuario)) ?>">
-                                        <?php echo $publicacao->nome ?> </a>
-                                </h5>
+                        <li class="card bg-light container" style="width: 30rem;">
+                            <div class="card-body row ml-0">
+                                <a href="<?php echo base_url('/admin/usuario/id_'.md5($publicacao->id_usuario)) ?>" class="row">
+                                    <img src="<?php echo $publicacao->foto_perfil ?>" class="avatar float-left" alt="Avatar">
+                                    <h5 class="card-title align-self-center ml-3 mt-1">
+                                            <?php echo $publicacao->nome ?>
+                                    </h5>
+                                </a>
                             </div>
-                            <img src="http://s2.glbimg.com/7Et2QlxLzBs1FQ5Z_C-GDSa2DTE=/i.glbimg.com/og/ig/infoglobo1/f/original/2017/01/16/blog_shark.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <p class="card-text"> <?php echo $publicacao->corpo ?> </p>
-                            </div>
-                            <div class="card-body">
-                                <p class="card-text"> Curtidas: <a href="#" class="card-link"><?php echo $publicacao->curtidas ?></a> </p>
-                                <p class="card-text"> Postado em: <?php echo postadoem($publicacao->data_criacao) ?></p>
+                            <div class="row">
+                                <img src="http://s2.glbimg.com/7Et2QlxLzBs1FQ5Z_C-GDSa2DTE=/i.glbimg.com/og/ig/infoglobo1/f/original/2017/01/16/blog_shark.jpg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text"> <?php echo $publicacao->corpo ?> </p>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text"> Curtidas: <a href="#" class="card-link"><?php echo $publicacao->curtidas ?></a> </p>
+                                    <p class="card-text"> Postado em: <?php echo postadoem($publicacao->data_criacao) ?></p>
+                                </div>
                             </div>
                         </li>
                         <br><br>

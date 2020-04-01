@@ -3,7 +3,7 @@
 <!--</div>-->
 
 <!-- Tempo em segundos que o navegador fica dando refresh na pagina -->
-<meta http-equiv="refresh" content="5" >
+<meta http-equiv="refresh" content="10" >
 
 <main class="row justify-content-md-center">
     <section class="col-md-7">

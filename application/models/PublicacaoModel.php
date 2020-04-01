@@ -18,7 +18,7 @@ class PublicacaoModel extends CI_Model {
 
     public function listar_publicacoes()
     {
-        $this->db->select('usuario.id_usuario, usuario.email, 
+        $this->db->select('usuario.id_usuario, usuario.email, usuario.foto_perfil,
             publicacao.id_publicacao, publicacao.id_usuario, publicacao.curtidas, publicacao.corpo, publicacao.imagem, publicacao.data_criacao,
             pessoa.id_pessoa, pessoa.id_usuario, pessoa.nome');
         $this->db->from('publicacao');
@@ -34,7 +34,7 @@ class PublicacaoModel extends CI_Model {
 
     public function publicacoes_usuario($id)
     {
-        $this->db->select('usuario.id_usuario, usuario.email, 
+        $this->db->select('usuario.id_usuario, usuario.email, usuario.foto_perfil,
             publicacao.id_publicacao, publicacao.id_usuario, publicacao.curtidas, publicacao.corpo, publicacao.imagem, publicacao.data_criacao,
             pessoa.id_pessoa, pessoa.id_usuario, pessoa.nome');
         $this->db->from('publicacao');
