@@ -12,15 +12,17 @@ class Conversa extends CI_Controller {
         $this->load->model('MensagemModel', 'modelmensagem');
 	}
 
-	// Tela da conversa, com as mensagens
-	public function index($id_conversa /*Recebe sem md5()*/)
+	// Tela das mensagens da conversa
+	public function index($id_conversa) /*Recebe sem md5()*/
 	{
         // Se nao estiver logado, mandar para tela inicial
         if(!$this->session->userdata('logado')){
             redirect(base_url('iniciar'));
         }
 
-        $mensagens = $this->modelmensagem->buscar_mensagens($id_conversa);
+        $tipo_usuario = $this->session->userdata('userlogado')->tipo_usuario;
+
+        $mensagens = $this->modelmensagem->buscar_mensagens($id_conversa, $tipo_usuario);
 
         $dados['titulo'] = 'TCC Rede Social - Mensagens';
         $dados['mensagens'] = $mensagens;
@@ -55,6 +57,7 @@ class Conversa extends CI_Controller {
         $this->load->view('template/html-footer');
     }
 
+    // ID do usuario que vai receber a msg
 	public function inicia_conversa($id)
     {
         if(!$this->session->userdata('logado')){

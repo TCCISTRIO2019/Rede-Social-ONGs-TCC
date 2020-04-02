@@ -24,7 +24,7 @@
                     ?>
 
                     <li class="<?php echo $cor." ".$posicao; ?> list-group-item mb-1 border border-secondary">
-                        <h6 class="mb-1 font-weight-light"> <?php echo $mensagem->usuario; ?> </h6 class="mb-1 font-weight-light">
+                        <h6 class="mb-1 font-weight-light"> <?php echo $mensagem->nome; ?> </h6 class="mb-1 font-weight-light">
                         <h5 class="mb-1 font-weight-bold"> <?php echo $mensagem->corpo; ?> </h5>
                         <small> <?php echo $mensagem->hora_envio; ?> </small>
                     </li>
@@ -51,10 +51,6 @@
                         Enviar
                     </button>
                 </div>
-
-<!--                <div class="form-group w-25 p-3">-->
-<!--                    <button type="submit" class="btn btn-primary"> Enviar </button>-->
-<!--                </div>-->
             </div>
             <?php
             echo form_close();

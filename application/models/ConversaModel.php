@@ -51,7 +51,17 @@ class ConversaModel extends CI_Model {
 
     public function inserir_conversa($conversa)
     {
-        return $this->db->insert('conversa',$conversa);
+        $this->db->insert('conversa',$conversa);
+
+        $this->db->where('id_usuario1', $conversa['id_usuario1']);
+        $this->db->where('id_usuario2', $conversa['id_usuario2']);
+        $retorno = $this->db->get('conversa')->result();
+
+        if(count($retorno) == 1) {
+            return $retorno[0];
+        } else {
+            return NULL;
+        }
     }
 
     public function buscar_conversa($id)
