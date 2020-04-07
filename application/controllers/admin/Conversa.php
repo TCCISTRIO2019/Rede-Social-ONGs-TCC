@@ -22,7 +22,8 @@ class Conversa extends CI_Controller {
 
         $tipo_usuario = $this->session->userdata('userlogado')->tipo_usuario;
 
-        $mensagens = $this->modelmensagem->buscar_mensagens($id_conversa, $tipo_usuario);
+//        $mensagens = $this->modelmensagem->buscar_mensagens($id_conversa, $tipo_usuario);
+        $mensagens = $this->modelmensagem->buscar_mensagens($id_conversa);
 
         $dados['titulo'] = 'TCC Rede Social - Mensagens';
         $dados['mensagens'] = $mensagens;
@@ -34,6 +35,24 @@ class Conversa extends CI_Controller {
         $this->load->view('template/footer');
         $this->load->view('template/html-footer');
 	}
+
+    public function carregar_quadro_mensagens($id_conversa) /*Recebe sem md5()*/
+    {
+        // Se nao estiver logado, mandar para tela inicial
+        if(!$this->session->userdata('logado')){
+            redirect(base_url('iniciar'));
+        }
+
+        $tipo_usuario = $this->session->userdata('userlogado')->tipo_usuario;
+
+//        $mensagens = $this->modelmensagem->buscar_mensagens($id_conversa, $tipo_usuario);
+        $mensagens = $this->modelmensagem->buscar_mensagens($id_conversa);
+
+        $dados['titulo'] = 'TCC Rede Social - Mensagens';
+        $dados['mensagens'] = $mensagens;
+
+        $this->load->view('admin/quadromensagensview', $dados);
+    }
 
 	public function lista_conversas($id)
     {

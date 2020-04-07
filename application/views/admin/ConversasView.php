@@ -10,12 +10,10 @@
         ?>
         <nav class="shadow p-3 nav d-block list-discussions-js mb-n6 col-md-4">
             <!-- Link Instituicao -->
-            <a class="text-reset nav-link p-0 mb-6" href="<?php echo base_url('/conversa/id_'.$conversa->id_conversa); ?>">
+            <a class="text-reset nav-link p-0 mb-6 border border-secondary rounded" href="<?php echo base_url('/conversa/id_'.$conversa->id_conversa); ?>">
                 <div class="card card-active-listener mb-3">
                     <div class="card-body">
-
                         <div class="media">
-
                             <div class="avatar mr-5">
                                 <img class="avatar-img rounded-circle" src="<?php echo $conversa->foto_perfil; ?>" alt="..." style="max-width: 5rem; object-fit: cover;">
                             </div>

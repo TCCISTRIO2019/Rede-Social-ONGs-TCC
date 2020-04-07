@@ -8,7 +8,7 @@
         foreach ($instituicoes as $instituicao){
         ?>
 
-            <div class="card">
+            <div class="card border border-secondary">
                 <a href="<?php echo base_url('/admin/usuario/id_'.md5($instituicao->id_usuario)) ?>">
                 <img src="<?php echo $instituicao->foto_perfil ?>" class="card-img-top" alt="..." style="max-width:100%; max-height: 10rem; object-fit: cover;">
                 <div class="card-body">
