@@ -5,14 +5,20 @@
 <main class="row justify-content-md-center">
     <aside class="col-md-3">
         <div class="card mx-auto sticky-top" style="width: 11rem; top:5rem;">
-            <a href="<?php echo base_url('/admin/usuario/id_'.md5($this->session->userdata('userlogado')->id_usuario)) ?>">
+            <?php
+            if($this->session->userdata('userlogado')->tipo_usuario == 'juridica')
+            {  // Se for instituicao, abrir pagina normal com as publicacoes
+                $href = base_url('/admin/usuario/id_' . md5($this->session->userdata('userlogado')->id_usuario));
+                $nome = $this->session->userdata('userlogado')->nome;
+            } else {  // Se for pessoa, abrir pagina de configuracao dos dados
+                $href = base_url('/admin/usuario/pag_configurar/'.md5($this->session->userdata('userlogado')->id_usuario));
+                $nome = $this->session->userdata('userlogado')->nome." ".$this->session->userdata('userlogado')->sobrenome;
+            }
+            ?>
+            <a href="<?php echo $href ?>">
                 <img class="card-img-top rounded" src="<?php echo $usuario->foto_perfil ?>" alt="Sua foto de perfil">
                 <div class="card-body">
-                    <?php if($this->session->userdata('userlogado')->tipo_usuario == "fisica") {   ?>
-                        <p class="card-text"><?php echo $this->session->userdata('userlogado')->nome." ".$this->session->userdata('userlogado')->sobrenome; ?></p>
-                        <?php } else {  ?>
-                        <p class="card-text"><?php echo $this->session->userdata('userlogado')->nome?></p>
-                    <?php } ?>
+                    <p class="card-text"><?php echo $nome?></p>
                 </div>
             </a>
         </div>

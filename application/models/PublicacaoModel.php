@@ -18,12 +18,12 @@ class PublicacaoModel extends CI_Model {
 
     public function listar_publicacoes()
     {
-        $this->db->select('usuario.id_usuario, usuario.email, usuario.foto_perfil,
+        $this->db->select('usuario.id_usuario, usuario.email, usuario.foto_perfil, usuario.nome,
             publicacao.id_publicacao, publicacao.id_usuario, publicacao.curtidas, publicacao.corpo, publicacao.imagem, publicacao.data_criacao,
-            pessoa.id_pessoa, pessoa.id_usuario, pessoa.nome');
+            instituicao.id_instituicao, instituicao.id_usuario');
         $this->db->from('publicacao');
         $this->db->join('usuario','usuario.id_usuario = publicacao.id_usuario');
-        $this->db->join('pessoa','usuario.id_usuario = pessoa.id_usuario');
+        $this->db->join('instituicao','usuario.id_usuario = instituicao.id_usuario');
 
         $this->db->limit(5);
 	    $this->db->order_by('publicacao.data_criacao','DESC');
@@ -34,12 +34,12 @@ class PublicacaoModel extends CI_Model {
 
     public function publicacoes_usuario($id)
     {
-        $this->db->select('usuario.id_usuario, usuario.email, usuario.foto_perfil,
+        $this->db->select('usuario.id_usuario, usuario.email, usuario.foto_perfil, usuario.nome,
             publicacao.id_publicacao, publicacao.id_usuario, publicacao.curtidas, publicacao.corpo, publicacao.imagem, publicacao.data_criacao,
-            pessoa.id_pessoa, pessoa.id_usuario, pessoa.nome');
+            instituicao.id_instituicao, instituicao.id_usuario');
         $this->db->from('publicacao');
         $this->db->join('usuario','usuario.id_usuario = publicacao.id_usuario');
-        $this->db->join('pessoa','usuario.id_usuario = pessoa.id_usuario');
+        $this->db->join('instituicao','usuario.id_usuario = instituicao.id_usuario');
 
         $this->db->where('md5(usuario.id_usuario)',$id);
 

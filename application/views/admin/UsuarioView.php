@@ -32,7 +32,6 @@
                         <?php
                         echo form_close();
                     } else {
-                        // Ajustar para mostrar mensagens quando ja houver conversa com este usuario, sem abrir uma nova conversa
                         ?>
                         <a href="<?php echo base_url('conversa/inicia_conversa/id_'.$usuario->id_usuario) ?>">
                             <button type="button" class="btn btn-outline-success btn-lg">Mandar Mensagem</button>

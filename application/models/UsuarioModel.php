@@ -36,14 +36,14 @@ class UsuarioModel extends CI_Model {
     public function verifica_login($dados)
     {
         if ($dados->tipo_usuario == 'fisica') {
-            $this->db->select('usuario.id_usuario, usuario.email, usuario.senha, usuario.criacao, usuario.modificacao, usuario.foto_perfil, usuario.tipo_usuario,
-            pessoa.id_pessoa, pessoa.id_usuario, pessoa.nome, pessoa.sobrenome, pessoa.nascimento, pessoa.sexo,
+            $this->db->select('usuario.id_usuario, usuario.email, usuario.senha, usuario.criacao, usuario.modificacao, usuario.foto_perfil, usuario.tipo_usuario, usuario.nome,
+            pessoa.id_pessoa, pessoa.id_usuario, pessoa.sobrenome, pessoa.nascimento, pessoa.sexo,
             telefone.id_telefone, telefone.id_usuario, telefone.telefone');
             $this->db->from('usuario');
             $this->db->join('pessoa', 'usuario.id_usuario = pessoa.id_usuario');
         } else {
-            $this->db->select('usuario.id_usuario, usuario.email, usuario.senha, usuario.criacao, usuario.modificacao, usuario.foto_perfil, usuario.tipo_usuario,
-            instituicao.id_instituicao, instituicao.id_usuario, instituicao.nome, instituicao.criacao_instituicao, instituicao.logradouro,
+            $this->db->select('usuario.id_usuario, usuario.email, usuario.senha, usuario.criacao, usuario.modificacao, usuario.foto_perfil, usuario.tipo_usuario, usuario.nome,
+            instituicao.id_instituicao, instituicao.id_usuario, instituicao.criacao_instituicao, instituicao.logradouro,
             instituicao.numero, instituicao.bairro, instituicao.complemento, instituicao.cidade, instituicao.estado, instituicao.cep, instituicao.qtd_funcionarios,
             telefone.id_telefone, telefone.id_usuario, telefone.telefone');
             $this->db->from('usuario');
@@ -76,6 +76,7 @@ class UsuarioModel extends CI_Model {
             $this->db->set('email', $dados['email']);
             $this->db->set('senha', $dados['senha']);
             $this->db->set('modificacao', $dados['modificacao']);
+            $this->db->set('nome', $dados['nome']);
             $this->db->update('usuario');
 
             if($this->db->trans_status() === TRUE){

@@ -16,56 +16,56 @@
 
         <div class="form-group input-group">
             <div class="input-group-prepend">
-                <span class="input-group-text"> Email <!--<i class="fa fa-envelope"></i>--> </span>
+                <span class="input-group-text"> Email </span>
             </div>
             <input type="email" class="form-control" value="<?php echo $email ?>" name="email" disabled>
         </div>
 
         <div class="form-group input-group">
             <div class="input-group-prepend">
-                <span class="input-group-text"> Nome <!--<i class="fa fa-envelope"></i>--> </span>
+                <span class="input-group-text"> Nome </span>
             </div>
             <input name="nome" class="form-control" placeholder="Digite o nome" type="text">
         </div>
 
         <div class="form-group input-group">
             <div class="input-group-prepend">
-                <span class="input-group-text"> Data de fundação <!--<i class="fa fa-lock"></i>--> </span>
+                <span class="input-group-text"> Data de fundação </span>
             </div>
             <input name="criacao_instituicao" class="form-control" type="date">
         </div>
 
         <div class="form-group input-group">
             <div class="input-group-prepend">
-                <span class="input-group-text"> Logradouro <!--<i class="fa fa-lock"></i>--> </span>
+                <span class="input-group-text"> Logradouro </span>
             </div>
             <input name="logradouro" class="form-control" placeholder="Digite o logradouro" type="text">
         </div>
 
         <div class="form-group input-group">
             <div class="input-group-prepend">
-                <span class="input-group-text"> Numero <!--<i class="fa fa-lock"></i>--> </span>
+                <span class="input-group-text"> Numero </span>
             </div>
             <input name="numero" class="form-control" placeholder="Digite o numero do endereço" type="text">
         </div>
 
         <div class="form-group input-group">
             <div class="input-group-prepend">
-                <span class="input-group-text"> Bairro <!--<i class="fa fa-lock"></i>--> </span>
+                <span class="input-group-text"> Bairro </span>
             </div>
             <input name="bairro" class="form-control" placeholder="Digite o bairro" type="text">
         </div>
 
         <div class="form-group input-group">
             <div class="input-group-prepend">
-                <span class="input-group-text"> Complemento <!--<i class="fa fa-lock"></i>--> </span>
+                <span class="input-group-text"> Complemento </span>
             </div>
             <input name="complemento" class="form-control" placeholder="Digite o complemento" type="text">
         </div>
 
         <div class="form-group input-group">
             <div class="input-group-prepend">
-                <span class="input-group-text"> Cidade <!--<i class="fa fa-lock"></i>--> </span>
+                <span class="input-group-text"> Cidade </span>
             </div>
             <input name="cidade" class="form-control" placeholder="Digite a cidade" type="text">
         </div>
@@ -73,7 +73,7 @@
         <!-- Mudar para "Selecione o estado" -->
         <div class="form-group input-group">
             <div class="input-group-prepend">
-                <span class="input-group-text"> Estado <!--<i class="fa fa-lock"></i>--> </span>
+                <span class="input-group-text"> Estado </span>
             </div>
             <input name="estado" class="form-control" placeholder="Digite o estado" type="text">
         </div>
@@ -81,14 +81,14 @@
         <!-- Criar mascara com JS -->
         <div class="form-group input-group">
             <div class="input-group-prepend">
-                <span class="input-group-text"> Cep <!--<i class="fa fa-lock"></i>--> </span>
+                <span class="input-group-text"> Cep </span>
             </div>
             <input name="cep" class="form-control" placeholder="Digite o cep" type="text">
         </div>
 
         <div class="form-group input-group">
             <div class="input-group-prepend">
-                <span class="input-group-text"> Quantidade atual de funcionários <!--<i class="fa fa-lock"></i>--> </span>
+                <span class="input-group-text"> Quantidade atual de funcionários </span>
             </div>
             <input name="qtd_funcionarios" class="form-control" placeholder="0" type="number">
         </div>
@@ -96,7 +96,7 @@
         <!-- Criar mascara com JS -->
         <div class="form-group input-group">
             <div class="input-group-prepend">
-                <span class="input-group-text"> Telefone <!--<i class="fa fa-lock"></i>--> </span>
+                <span class="input-group-text"> Telefone </span>
             </div>
             <input name="telefone" class="form-control" placeholder="Digite seu telefone" type="text">
         </div>
@@ -117,7 +117,7 @@
         ?>
 
         <div class="form-group">
-            <a href="<?php base_url('iniciar') ?>">
+            <a href="<?php echo base_url('iniciar') ?>">
                 <button class="btn btn-outline-primary btn-block"> Voltar </button>
             </a>
         </div>

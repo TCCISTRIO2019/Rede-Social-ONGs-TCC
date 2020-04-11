@@ -23,7 +23,6 @@ class PessoaModel extends CI_Model {
     public function atualizar($dados){
         try {
             $this->db->where('id_usuario', $dados['id_usuario']);
-            $this->db->set('nome', $dados['nome']);
             $this->db->set('sobrenome', $dados['sobrenome']);
             $this->db->set('nascimento', $dados['nascimento']);
             $this->db->set('sexo', $dados['sexo']);

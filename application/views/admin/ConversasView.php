@@ -3,15 +3,15 @@
 </div>
 
 <main class="row justify-content-md-center">
-    <div class="container-fluid py-6 col-md-12">
+    <div class="container-fluid col-md-12 card-deck mt-3">
         <!-- Instituicoes -->
         <?php
         foreach ($conversas as $conversa){
         ?>
-        <nav class="shadow p-3 nav d-block list-discussions-js mb-n6 col-md-4">
+        <nav class="shadow nav d-block list-discussions-js card border-secondary rounded">
             <!-- Link Instituicao -->
-            <a class="text-reset nav-link p-0 mb-6 border border-secondary rounded" href="<?php echo base_url('/conversa/id_'.$conversa->id_conversa); ?>">
-                <div class="card card-active-listener mb-3">
+            <a class="text-reset nav-link p-0 mb-6" href="<?php echo base_url('/conversa/id_'.$conversa->id_conversa); ?>">
+                <div class="card-active-listener mb-3">
                     <div class="card-body">
                         <div class="media">
                             <div class="avatar mr-5">

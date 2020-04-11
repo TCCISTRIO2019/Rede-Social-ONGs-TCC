@@ -112,7 +112,8 @@ class Usuario extends CI_Controller {
             $dadosUsuario['email'] = $this->input->post('email');
             $dadosUsuario['senha'] = $this->input->post('senha');
             $dadosUsuario['tipo_usuario'] = $this->input->post('tipo_usuario');
-            $dadosPessoa['nome'] = $this->input->post('nome');
+            $dadosUsuario['nome'] = $this->input->post('nome');
+
             $dadosPessoa['sobrenome'] = $this->input->post('sobrenome');
             $dadosPessoa['nascimento'] = $this->input->post('nascimento');
             $dadosTelefone['telefone'] = $this->input->post('telefone');
@@ -173,8 +174,8 @@ class Usuario extends CI_Controller {
             $dadosUsuario['email'] = $this->input->post('email');
             $dadosUsuario['senha'] = $this->input->post('senha');
             $dadosUsuario['tipo_usuario'] = $this->input->post('tipo_usuario');
+            $dadosUsuario['nome'] = $this->input->post('nome');
 
-            $dadosInstituicao['nome'] = $this->input->post('nome');
             $dadosInstituicao['criacao_instituicao'] = $this->input->post('criacao_instituicao');
             $dadosInstituicao['logradouro'] = $this->input->post('logradouro');
             $dadosInstituicao['numero'] = $this->input->post('numero');
@@ -320,12 +321,12 @@ class Usuario extends CI_Controller {
             $dadosUsuario['email'] = $this->input->post( 'email');
             $dadosUsuario['senha'] = $this->input->post('senha');
             $dadosUsuario['tipo_usuario'] = $this->input->post('tipo_usuario');
+            $dadosUsuario['nome'] = $this->input->post('nome');
             $now = new DateTime();
             $datetime = $now->format('Y-m-d H:i:s');
             $dadosUsuario['modificacao'] = $datetime;
 
             $dadosPessoa['id_usuario'] = $dadosUsuario['id_usuario'];
-            $dadosPessoa['nome'] = $this->input->post('nome');
             $dadosPessoa['sobrenome'] = $this->input->post('sobrenome');
             $dadosPessoa['nascimento'] = $this->input->post('nascimento');
             $dadosPessoa['sexo'] = $this->input->post('sexo');
@@ -380,12 +381,12 @@ class Usuario extends CI_Controller {
             $dadosUsuario['email'] = $this->input->post( 'email');
             $dadosUsuario['senha'] = $this->input->post('senha');
             $dadosUsuario['tipo_usuario'] = $this->input->post('tipo_usuario');
+            $dadosUsuario['nome'] = $this->input->post('nome');
             $now = new DateTime();
             $datetime = $now->format('Y-m-d H:i:s');
             $dadosUsuario['modificacao'] = $datetime;
 
             $dadosInstituicao['id_usuario'] = $dadosUsuario['id_usuario'];
-            $dadosInstituicao['nome'] = $this->input->post('nome');
             $dadosInstituicao['criacao_instituicao'] = $this->input->post('criacao_instituicao');
             $dadosInstituicao['logradouro'] = $this->input->post('logradouro');
             $dadosInstituicao['numero'] = $this->input->post('numero');

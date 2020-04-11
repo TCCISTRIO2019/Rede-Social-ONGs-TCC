@@ -15,18 +15,11 @@ class MensagemModel extends CI_Model {
 
     public function buscar_mensagens($id_conversa)
     {
-//        $this->db->select('pessoa.id_pessoa, pessoa.id_usuario, pessoa.nome,
-//            instituicao.id_instituicao, instituicao.id_usuario, instituicao.nome,
-//            mensagem.id_mensagem, mensagem.id_conversa, mensagem.id_usuario_remetente, mensagem.hora_envio, mensagem.corpo,
-//            usuario.id_usuario, usuario.email');
-//        $this->db->join('instituicao','instituicao.id_usuario = mensagem.id_usuario_remetente');
-        $this->db->select('pessoa.id_pessoa, pessoa.id_usuario, pessoa.nome,
-            mensagem.id_mensagem, mensagem.id_conversa, mensagem.id_usuario_remetente, mensagem.hora_envio, mensagem.corpo,
-            usuario.id_usuario, usuario.email');
+        $this->db->select('mensagem.id_mensagem, mensagem.id_conversa, mensagem.id_usuario_remetente, mensagem.hora_envio, mensagem.corpo,
+            usuario.id_usuario, usuario.email, usuario.nome');
         $this->db->from('mensagem');
         // Precisa buscar os nomes dos dois
         $this->db->join('usuario','usuario.id_usuario = mensagem.id_usuario_remetente');
-        $this->db->join('pessoa','pessoa.id_usuario = mensagem.id_usuario_remetente');
 
         $this->db->where('mensagem.id_conversa',$id_conversa);
 

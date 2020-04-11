@@ -27,7 +27,6 @@ class InstituicaoModel extends CI_Model {
     public function atualizar($dados){
         try {
             $this->db->where('id_usuario', $dados['id_usuario']);
-            $this->db->set('nome', $dados['nome']);
             $this->db->set('criacao_instituicao', $dados['criacao_instituicao']);
             $this->db->set('logradouro', $dados['logradouro']);
             $this->db->set('numero', $dados['numero']);
@@ -55,13 +54,13 @@ class InstituicaoModel extends CI_Model {
     // Atualizar para pegar todas as instituições
     public function listar_instituicoes()
     {
-        $this->db->select('usuario.id_usuario, usuario.foto_perfil,
-            instituicao.id_usuario, instituicao.id_instituicao, instituicao.nome, instituicao.descricao, instituicao.criacao_instituicao');
+        $this->db->select('usuario.id_usuario, usuario.foto_perfil, usuario.nome,
+            instituicao.id_usuario, instituicao.id_instituicao, instituicao.descricao, instituicao.criacao_instituicao');
         $this->db->from('instituicao');
         $this->db->join('usuario','usuario.id_usuario = instituicao.id_usuario');
 
 //        $this->db->limit(5);
-        $this->db->order_by('instituicao.nome','ASC');
+        $this->db->order_by('usuario.nome','ASC');
 
 //	    return $this->db->get('publicacao')->result();
         return $this->db->get('')->result();

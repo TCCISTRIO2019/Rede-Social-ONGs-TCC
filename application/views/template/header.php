@@ -21,7 +21,7 @@
                         echo form_open('instituicao',$atributos);
                         ?>
                         <input class="form-control mr-sm-2 header-input" type="text" placeholder="Procurar nome da Instituição" aria-label="Procurar Instituição" name="nome_instituicao">
-                        <button class="btn btn-outline-warning my-2 my-sm-0" type="submit" title="Pesquise sem digitar para aparecer todos">Pesquisar</button>
+                        <button class="btn btn-outline-warning my-2 my-sm-0" type="submit" title="Para aparecer todos, pesquise sem digitar">Pesquisar</button>
 
                     <?php
                         echo form_close();

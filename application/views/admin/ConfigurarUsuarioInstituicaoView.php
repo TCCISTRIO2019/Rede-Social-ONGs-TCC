@@ -120,5 +120,11 @@
         <?php
         echo form_close();
         ?>
+
+        <div class="form-group">
+            <a href="<?php echo base_url('iniciar') ?>">
+                <button class="btn btn-outline-primary btn-block"> Voltar </button>
+            </a>
+        </div>
     </section>
 </main>
