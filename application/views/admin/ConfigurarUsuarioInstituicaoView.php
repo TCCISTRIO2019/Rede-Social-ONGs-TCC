@@ -1,5 +1,5 @@
 <div class="row justify-content-md-center">
-    <h4 class="col-md-auto">Atualizar seus dados - Instituição</h4>
+    <h4 class="col-md-auto">Atualizar seus dados</h4>
 </div>
 
 <main class="row justify-content-md-center">
@@ -114,7 +114,7 @@
         </div>
 
         <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-block"> Atualizar Dados </button>
+            <button type="submit" class="form-control btn btn-primary btn-block"> Atualizar Dados </button>
         </div>
 
         <?php

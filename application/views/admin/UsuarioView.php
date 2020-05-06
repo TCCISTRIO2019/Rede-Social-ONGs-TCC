@@ -6,15 +6,17 @@
         <img src="<?php echo $usuario->capa ?>" alt="Capa do usuário" class="rounded">
     </section>
 
-    <main class="row justify-content-md-center m-4">
+    <main class="row m-4">
         <section class="col-md-12">
             <div class="row justify-content-md-center">
-                <div class="col-md-auto">
+                <div class="col-md-auto container">
                     <?php
                     if($usuario->id_usuario == $this->session->userdata('userlogado')->id_usuario) {
                         echo validation_errors('<div class="alert alert-danger">', '</div>');
 
-                        echo form_open('publicacao/fazer_publicacao');
+                        $atributos = array('class' => 'tamanho-post');
+
+                        echo form_open('publicacao/fazer_publicacao', $atributos);
                         ?>
 
                         <div>
@@ -33,9 +35,11 @@
                         echo form_close();
                     } else {
                         ?>
-                        <a href="<?php echo base_url('conversa/inicia_conversa/id_'.$usuario->id_usuario) ?>">
-                            <button type="button" class="btn btn-outline-success btn-lg">Mandar Mensagem</button>
-                        </a>
+                        <div class="row justify-content-md-center">
+                            <a href="<?php echo base_url('conversa/inicia_conversa/id_'.$usuario->id_usuario) ?>">
+                                <button type="button" class="btn btn-outline-success btn-lg">Mandar Mensagem</button>
+                            </a>
+                        </div>
                         <?php
                     }
                     ?>

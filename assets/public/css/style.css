@@ -65,3 +65,7 @@ p {
     height: 50px;
     border-radius: 50%;
 }
+
+.tamanho-post {
+    width: 30rem;
+}

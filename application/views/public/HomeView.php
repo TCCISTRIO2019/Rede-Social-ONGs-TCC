@@ -34,7 +34,9 @@
                 {
                     echo validation_errors('<div class="alert alert-danger">', '</div>');
 
-                    echo form_open('publicacao/fazer_publicacao');
+                    $atributos = array('class' => 'tamanho-post');
+
+                    echo form_open('publicacao/fazer_publicacao', $atributos);
                     ?>
 
                     <div>

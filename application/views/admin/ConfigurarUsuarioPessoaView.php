@@ -1,5 +1,5 @@
 <div class="row justify-content-md-center">
-    <h4 class="col-md-auto">Atualizar seus dados - Pessoa</h4>
+    <h4 class="col-md-auto">Atualizar seus dados</h4>
 </div>
 
 <main class="row justify-content-md-center">
@@ -57,7 +57,7 @@
             <input name="telefone" class="form-control" value="<?php echo $this->session->userdata('userlogado')->telefone ?>" type="text">
         </div>
 
-        <div class="input-group">
+        <div class="form-group input-group">
             <div class="input-group-prepend">
                 <div class="input-group-text">
                     <input type="radio" name="sexo" value="m" aria-label="Radio button para genero"
@@ -87,7 +87,7 @@
         </div>
 
         <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-block"> Atualizar Dados </button>
+            <button type="submit" class="form-control btn btn-primary btn-block"> Atualizar Dados </button>
         </div>
 
         <?php
