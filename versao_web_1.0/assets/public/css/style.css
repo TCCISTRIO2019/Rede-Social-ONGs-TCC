@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap');
+
+html,body{
+    height: 100%;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.divider-text {
+    position: relative;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.divider-text span {
+    padding: 7px;
+    font-size: 12px;
+    position: relative;   
+    z-index: 2;
+}
+.divider-text:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    top: 55%;
+    left: 0;
+    z-index: 1;
+}
+
+.btn-facebook {
+    background-color: #405D9D;
+    color: #fff;
+}
+.btn-twitter {
+    background-color: #42AEEC;
+    color: #fff;
+}
+
+.base {
+    margin-top: 5rem;
+}
+
+a:link {
+    text-decoration: none;
+    color: black;
+}
+
+.capa > img {
+    width:100%;
+    max-height: 20rem;
+    object-fit: cover;
+}
+
+p {
+    color: black;
+}
+
+.header-input::placeholder {
+    font-size: 0.8em;
+}
+
+.avatar {
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.tamanho-post {
+    width: 30rem;
+}

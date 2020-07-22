@@ -11,7 +11,7 @@ class Home extends CI_Controller {
         }
 	}
 
-	public function index()
+	public function index($erro = '')
 	{
         $dados['titulo'] = 'Publicações - TCC Rede Social';
 
@@ -24,7 +24,7 @@ class Home extends CI_Controller {
 
 		$this->load->view('template/html-header', $dados);
 		$this->load->view('template/header');
-		$this->load->view('public/HomeView', $dados);
+		$this->load->view('public/HomeView', array('dados' => $dados, 'erro' => ' '));
 		$this->load->view('template/footer');
 		$this->load->view('template/html-footer');
 	}

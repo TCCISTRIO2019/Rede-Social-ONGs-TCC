@@ -3,6 +3,7 @@
 <!--</div>-->
 
 <main class="row justify-content-md-center">
+    <!-- Bloco da esquerda -->
     <aside class="col-md-3">
         <div class="card mx-auto sticky-top" style="width: 11rem; top:5rem;">
             <?php
@@ -24,6 +25,7 @@
         </div>
     </aside>
 
+    <!-- Bloco central -->
     <section class="col-md-6">
         <div class="row justify-content-md-center">
             <div class="col-md-auto">
@@ -36,14 +38,35 @@
 
                     $atributos = array('class' => 'tamanho-post');
 
-                    echo form_open('publicacao/fazer_publicacao', $atributos);
+                    echo form_open_multipart('publicacao/fazer_publicacao', $atributos);
                     ?>
 
                     <div>
                         <input type="hidden" value="<?php echo $this->session->userdata('userlogado')->id_usuario; ?>" name="id_usuario">
 
-                        <div class="form-group ">
+                        <div class="form-group">
                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="corpo" placeholder="Faça sua publicação"></textarea>
+                        </div>
+                        
+                        <!-- <div class="form-group">
+                            <input type="file" name="imagem-publicacao" class="btn btn-outline-primary mb-2">
+                            <div class="input-group-prepend col-3">
+                                <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                            </div>
+                            <div class="custom-file col-9">
+                                <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                            </div>
+                        </div> -->
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroupFileAddon01">Imagem</span>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" name="imagem_publicacao">
+                                <label class="custom-file-label" for="inputGroupFile01">Escolher imagem do post</label>
+                            </div>
                         </div>
 
                         <button type="submit" class="btn btn-outline-primary mb-2">Publicar</button>
@@ -67,7 +90,8 @@
                                 </a>
                             </div>
                             <div class="row">
-                                <img src="http://s2.glbimg.com/7Et2QlxLzBs1FQ5Z_C-GDSa2DTE=/i.glbimg.com/og/ig/infoglobo1/f/original/2017/01/16/blog_shark.jpg" class="card-img-top" alt="...">
+                                <!-- <img src="http://s2.glbimg.com/7Et2QlxLzBs1FQ5Z_C-GDSa2DTE=/i.glbimg.com/og/ig/infoglobo1/f/original/2017/01/16/blog_shark.jpg" class="card-img-top" alt="..."> -->
+                                <img src="./assets/public/images/<?php echo $publicacao->imagem ?>" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <p class="card-text"> <?php echo $publicacao->corpo ?> </p>
                                 </div>
@@ -86,6 +110,7 @@
         </div>
     </section>
 
+    <!-- Bloco da direita apenas para alinhar os demais -->
     <section class="col-md-3">
     </section>
 </main>

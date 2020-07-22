@@ -30,22 +30,29 @@
             </div>  
 
 			<div class="form-group input-group">
-                <div class="input-group-text">
-                    <input type="radio" name="tipo_usuario" value="fisica" aria-label="Radio button para tipo de usuario" checked>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <!-- <input type="radio" name="tipo_usuario" value="fisica" aria-label="Radio button para tipo de usuario" checked> -->
+                    <input type="radio" id="customRadioInline1" name="tipo_usuario" class="custom-control-input" value="fisica" checked>
+                    <label class="custom-control-label" for="customRadioInline1">Pessoa</label>
                 </div>
-                <div class="input-group-text">
+                <!-- <div class="input-group-text">
                     <label class="form-check-label">
                         Pessoa
                     </label>
+                </div> -->
+                <div class="custom-control custom-radio custom-control-inline">
+                    <!-- <input type="radio" name="tipo_usuario" value="fisica" aria-label="Radio button para tipo de usuario" checked> -->
+                    <input type="radio" id="customRadioInline2" name="tipo_usuario" class="custom-control-input" value="juridica">
+                    <label class="custom-control-label" for="customRadioInline2">Instituição</label>
                 </div>
-                <div class="input-group-text">
+                <!-- <div class="input-group-text">
                     <input type="radio" name="tipo_usuario" value="juridica" aria-label="Radio button para tipo de usuario">
                 </div>
                 <div class="input-group-text">
                     <label class="form-check-label">
                         Instituição
                     </label>
-                </div>
+                </div> -->
 			</div>
 
             <div class="form-group">

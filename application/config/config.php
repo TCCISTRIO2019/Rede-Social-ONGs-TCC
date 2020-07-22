@@ -28,7 +28,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $config['base_url'] = 'http://localhost/tcc_rede_social';
 
 //  PROD:
-//$config['base_url'] = 'https://tccistredesocial.000webhostapp.com/';
+// $config['base_url'] = 'https://tccistredesocial.000webhostapp.com/';
 
 /*
 |--------------------------------------------------------------------------
@@ -40,7 +40,9 @@ $config['base_url'] = 'http://localhost/tcc_rede_social';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php';
+// $config['index_page'] = 'index.php';
+
+$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------

@@ -96,25 +96,25 @@ $db['default'] = array(
 	'save_queries' => TRUE
 );
 
-//  SERVIDOR
-//$db['default'] = array(
-//	'dsn'	=> '',
-//	'hostname' => 'localhost',
-//	'username' => 'id12345760_tccist2019',
-//	'password' => 'isttcc2019*',
-//	'database' => 'id12345760_tcc_rede_social',
-//	'dbdriver' => 'mysqli',
-//	'dbprefix' => '',
-//	'pconnect' => FALSE,
-//	'db_debug' => (ENVIRONMENT !== 'production'),
-//	'cache_on' => FALSE,
-//	'cachedir' => '',
-//	'char_set' => 'utf8',
-//	'dbcollat' => 'utf8_general_ci',
-//	'swap_pre' => '',
-//	'encrypt' => FALSE,
-//	'compress' => FALSE,
-//	'stricton' => FALSE,
-//	'failover' => array(),
-//	'save_queries' => TRUE
-//);
+// //  SERVIDOR
+// $db['default'] = array(
+// 	'dsn'	=> '',
+// 	'hostname' => 'https://databases.000webhost.com',
+// 	'username' => 'id12345760_tccist2019',
+// 	'password' => '32165498700aA*',
+// 	'database' => 'id12345760_tcc_rede_social',
+// 	'dbdriver' => 'mysqli',
+// 	'dbprefix' => '',
+// 	'pconnect' => FALSE,
+// 	'db_debug' => (ENVIRONMENT !== 'production'),
+// 	'cache_on' => FALSE,
+// 	'cachedir' => '',
+// 	'char_set' => 'utf8',
+// 	'dbcollat' => 'utf8_general_ci',
+// 	'swap_pre' => '',
+// 	'encrypt' => FALSE,
+// 	'compress' => FALSE,
+// 	'stricton' => FALSE,
+// 	'failover' => array(),
+// 	'save_queries' => TRUE
+// );
