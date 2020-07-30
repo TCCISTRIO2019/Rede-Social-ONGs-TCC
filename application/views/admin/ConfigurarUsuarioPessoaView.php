@@ -7,12 +7,19 @@
         <?php
         echo validation_errors('<div class="alert alert-danger">', '</div>');
 
-        echo form_open('admin/usuario/atualizar_pessoa');
+        echo form_open_multipart('admin/usuario/atualizar_pessoa');
         ?>
 
         <input name="id_usuario" value="<?php echo $this->session->userdata('userlogado')->id_usuario ?>" type="hidden">
         <input name="email" value="<?php echo $this->session->userdata('userlogado')->email ?>" type="hidden">
         <input name="tipo_usuario" value="<?php echo $this->session->userdata('userlogado')->tipo_usuario ?>" type="hidden">
+
+        <div class="input-group mb-3">
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" name="foto_perfil">
+                <label class="custom-file-label" for="inputGroupFile01">Escolher sua imagem de usuário</label>
+            </div>
+        </div>
 
         <div class="form-group input-group">
             <div class="input-group-prepend">

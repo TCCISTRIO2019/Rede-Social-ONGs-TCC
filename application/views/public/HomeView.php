@@ -17,7 +17,9 @@
             }
             ?>
             <a href="<?php echo $href ?>">
-                <img class="card-img-top rounded" src="<?php echo $usuario->foto_perfil ?>" alt="Sua foto de perfil">
+            <?php if($usuario->foto_perfil != null) { ?>
+                <img class="card-img-top rounded" src="<?php echo base_url($usuario->foto_perfil) ?>" alt="Sua foto de perfil">
+            <?php } ?>
                 <div class="card-body">
                     <p class="card-text"><?php echo $nome?></p>
                 </div>
@@ -39,6 +41,8 @@
                     $atributos = array('class' => 'tamanho-post');
 
                     echo form_open_multipart('publicacao/fazer_publicacao', $atributos);
+                    // echo form_upload('userfile');
+
                     ?>
 
                     <div>
@@ -47,17 +51,6 @@
                         <div class="form-group">
                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="corpo" placeholder="Faça sua publicação"></textarea>
                         </div>
-                        
-                        <!-- <div class="form-group">
-                            <input type="file" name="imagem-publicacao" class="btn btn-outline-primary mb-2">
-                            <div class="input-group-prepend col-3">
-                                <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-                            </div>
-                            <div class="custom-file col-9">
-                                <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
-                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                            </div>
-                        </div> -->
 
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
@@ -83,18 +76,23 @@
                         <li class="card bg-light container" style="width: 30rem;">
                             <div class="card-body row ml-0">
                                 <a href="<?php echo base_url('/admin/usuario/id_'.md5($publicacao->id_usuario)) ?>" class="row">
-                                    <img src="<?php echo $publicacao->foto_perfil ?>" class="avatar float-left" alt="Avatar">
+                                    <img src="<?php echo base_url($publicacao->foto_perfil) ?>" class="avatar float-left" alt="Avatar">
                                     <h5 class="card-title align-self-center ml-3 mt-1">
                                             <?php echo $publicacao->nome ?>
                                     </h5>
                                 </a>
                             </div>
                             <div class="row">
-                                <!-- <img src="http://s2.glbimg.com/7Et2QlxLzBs1FQ5Z_C-GDSa2DTE=/i.glbimg.com/og/ig/infoglobo1/f/original/2017/01/16/blog_shark.jpg" class="card-img-top" alt="..."> -->
-                                <img src="./assets/public/images/<?php echo $publicacao->imagem ?>" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text"> <?php echo $publicacao->corpo ?> </p>
-                                </div>
+                                <?php if($publicacao->imagem != null) { ?>
+                                    <img src="<?php echo base_url($publicacao->imagem) ?>" class="card-img-top" alt="...">
+                                <?php } ?>
+                                
+                                <?php if($publicacao->corpo != null) { ?>
+                                    <div class="card-body">
+                                        <p class="card-text"> <?php echo $publicacao->corpo ?> </p>
+                                    </div>
+                                <?php } ?>
+
                                 <div class="card-body">
                                     <p class="card-text"> Curtidas: <a href="#" class="card-link"><?php echo $publicacao->curtidas ?></a> </p>
                                     <p class="card-text"> Postado em: <?php echo postadoem($publicacao->data_criacao) ?></p>

@@ -7,12 +7,19 @@
         <?php
         echo validation_errors('<div class="alert alert-danger">', '</div>');
 
-        echo form_open('admin/usuario/atualizar_instituicao');
+        echo form_open_multipart('admin/usuario/atualizar_instituicao');
         ?>
 
         <input name="id_usuario" value="<?php echo $this->session->userdata('userlogado')->id_usuario ?>" type="hidden">
         <input name="email" value="<?php echo $this->session->userdata('userlogado')->email ?>" type="hidden">
         <input name="tipo_usuario" value="<?php echo $this->session->userdata('userlogado')->tipo_usuario ?>" type="hidden">
+
+        <div class="input-group mb-3">
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" name="foto_perfil">
+                <label class="custom-file-label" for="inputGroupFile01">Escolher sua imagem de usuário</label>
+            </div>
+        </div>
 
         <div class="form-group input-group">
             <div class="input-group-prepend">
@@ -93,7 +100,7 @@
 
         <div class="form-group input-group">
             <div class="input-group-prepend">
-                <span class="input-group-text"> Quantidade atual de funcinários </span>
+                <span class="input-group-text"> Quantidade atual de funcionários </span>
             </div>
             <input name="qtd_funcionarios" class="form-control" value="<?php echo $this->session->userdata('userlogado')->qtd_funcionarios ?>" type="number">
         </div>
@@ -110,7 +117,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text"> Descrição </span>
             </div>
-            <textarea name="descricao" class="form-control" placeholder="Diga um pouco sobre o que se trata sua instituição" rows="5" cols="30"></textarea>
+            <textarea name="descricao" class="form-control" placeholder="Diga um pouco sobre o que se trata sua instituição" rows="5" cols="30" ><?php echo $descricao ?></textarea>
         </div>
 
         <div class="form-group">

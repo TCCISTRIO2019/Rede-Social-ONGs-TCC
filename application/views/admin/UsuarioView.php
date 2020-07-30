@@ -3,13 +3,16 @@
 <!--</div>-->
 <div class="container">
     <section class="row capa">
-        <img src="<?php echo $usuario->capa ?>" alt="Capa do usuário" class="rounded">
+        <?php if($usuario->capa != null) { ?>
+            <img src="<?php echo base_url($usuario->capa) ?>" alt="Capa do usuário" class="rounded">
+        <?php } ?>
     </section>
 
     <main class="row m-4">
         <section class="col-md-12">
             <div class="row justify-content-md-center">
                 <div class="col-md-auto container">
+                    <!-- INICIO - Verificacao do usuario -->
                     <?php
                     if($usuario->id_usuario == $this->session->userdata('userlogado')->id_usuario) {
                         echo validation_errors('<div class="alert alert-danger">', '</div>');
@@ -43,25 +46,35 @@
                         <?php
                     }
                     ?>
+                    <!-- FIM - Verificacao do usuario -->
 
+                    <!-- INICIO - Publicacoes -->
                     <ul class="list-unstyled mt-3">
                         <?php
                         foreach ($publicacoes as $publicacao){
                             ?>
                             <li class="card bg-light container" style="width: 30rem;">
+                                <!-- Informacoes usuario -->
                                 <div class="card-body row ml-0">
                                     <a href="<?php echo base_url('/admin/usuario/id_'.md5($publicacao->id_usuario)) ?>" class="row">
-                                        <img src="<?php echo $publicacao->foto_perfil ?>" class="avatar float-left" alt="Avatar">
+                                        <img src="<?php echo base_url($publicacao->foto_perfil) ?>" class="avatar float-left" alt="Avatar">
                                         <h5 class="card-title align-self-center ml-3 mt-1">
                                             <?php echo $publicacao->nome ?>
                                         </h5>
                                     </a>
                                 </div>
+                                <!-- Conteudo publicacao -->
                                 <div class="row">
-                                    <img src="http://s2.glbimg.com/7Et2QlxLzBs1FQ5Z_C-GDSa2DTE=/i.glbimg.com/og/ig/infoglobo1/f/original/2017/01/16/blog_shark.jpg" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <p class="card-text"> <?php echo $publicacao->corpo ?> </p>
-                                    </div>
+                                    <?php if($publicacao->imagem != null) { ?>
+                                        <img src="<?php echo base_url($publicacao->imagem) ?>" class="card-img-top" alt="...">
+                                    <?php } ?>
+
+                                    <?php if($publicacao->corpo != null) { ?>
+                                        <div class="card-body">
+                                            <p class="card-text"> <?php echo $publicacao->corpo ?> </p>
+                                        </div>
+                                    <?php } ?>
+                                    
                                     <div class="card-body">
                                         <p class="card-text"> Curtidas: <a href="#" class="card-link"><?php echo $publicacao->curtidas ?></a> </p>
                                         <p class="card-text"> Postado em: <?php echo postadoem($publicacao->data_criacao) ?></p>
@@ -73,6 +86,7 @@
                         }
                         ?>
                     </ul>
+                    <!-- FIM - Publicacoes -->
                 </div>
             </div>
         </section>

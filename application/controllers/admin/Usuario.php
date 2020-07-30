@@ -274,14 +274,17 @@ class Usuario extends CI_Controller {
         $this->db->where('md5(id_usuario)', $id);
         $dados = $this->db->get('usuario')->result();  // Executa a query montada acima no where
 
+        $this->db->where('md5(id_usuario)', $id);
+        $instituicao = $this->db->get('instituicao')->result();
+
         if($dados[0]->tipo_usuario == "fisica"){    // Ja existe um usuario com esse email
-            $this->pag_configurar_pessoa($dados);
+            $this->pag_configurar_pessoa($dados[0]);
         } else {
-            $this->pag_configurar_instituicao($dados);
+            $this->pag_configurar_instituicao($instituicao[0]);
         }
     }
 
-    private function pag_configurar_pessoa(){
+    private function pag_configurar_pessoa($entrada){
         $dados['titulo'] = 'Configurar Pessoa - TCC Rede Social';
 
         $this->load->view('template/html-header', $dados);
@@ -291,8 +294,9 @@ class Usuario extends CI_Controller {
         $this->load->view('template/html-footer');
     }
 
-    private function pag_configurar_instituicao(){
+    private function pag_configurar_instituicao($entrada){
         $dados['titulo'] = 'Configurar Instituicao - TCC Rede Social';
+        $dados['descricao'] = $entrada->descricao;
 
         $this->load->view('template/html-header', $dados);
         $this->load->view('admin/template/header');
@@ -314,8 +318,10 @@ class Usuario extends CI_Controller {
         $this->form_validation->set_rules('telefone', 'Telefone', 'required|min_length[11]');
 
         if($this->form_validation->run() == FALSE){
-//            Retorna para a página de configuração do usuário
-            $this->pag_configurar_pessoa();
+            $this->db->where('md5(id_usuario)', (string) $this->session->userdata('userlogado')->id_usuario);
+            $dados = $this->db->get('usuario')->result();
+
+            $this->pag_configurar_pessoa($dados[0]);
         } else {
             $dadosUsuario['id_usuario'] = $this->input->post('id_usuario');
             $dadosUsuario['email'] = $this->input->post( 'email');
@@ -333,6 +339,32 @@ class Usuario extends CI_Controller {
 
             $dadosTelefone['id_usuario'] = $dadosUsuario['id_usuario'];
             $dadosTelefone['telefone'] = $this->input->post('telefone');
+
+            if($_FILES['foto_perfil']['size'] != 0) {
+                $configuracao = array(
+                    'upload_path'   => './assets/public/images/usuarios/perfil/',
+                    'allowed_types' => 'gif|jpg|png',
+                    'file_name'     => $dadosUsuario['id_usuario'],
+                    'overwrite'     => TRUE
+                );
+                $this->load->library('upload', $configuracao);
+                
+                if($this->upload->do_upload('foto_perfil')){
+                    $dadosUsuario['foto_perfil'] = '/assets/public/images/usuarios/perfil/'.$this->upload->data('file_name');
+
+                    $config2['width'] = 500;
+                    $config2['length'] = 500;
+                    $this->load->library('image_lib', $config2);
+                } else {
+                    // $erro = array('error' => $this->upload->display_errors());
+    
+                    // redirect(base_url('home', $erro));
+    
+                    // $this->load->view('upload_success', $data);
+    
+                    echo $this->upload->display_errors();
+                }
+            }
 
             $this->load->model('PessoaModel', 'modelpessoa');
 
@@ -375,7 +407,10 @@ class Usuario extends CI_Controller {
         $this->form_validation->set_rules('descricao', 'Descricao', 'required');
 
         if($this->form_validation->run() == FALSE){
-            $this->pag_configurar_instituicao();
+            $this->db->where('md5(id_usuario)', (string) $this->session->userdata('userlogado')->id_usuario);
+            $dados = $this->db->get('usuario')->result();
+
+            $this->pag_configurar_instituicao($dados[0]);
         } else {
             $dadosUsuario['id_usuario'] = $this->input->post('id_usuario');
             $dadosUsuario['email'] = $this->input->post( 'email');
@@ -400,6 +435,32 @@ class Usuario extends CI_Controller {
 
             $dadosTelefone['id_usuario'] = $dadosUsuario['id_usuario'];
             $dadosTelefone['telefone'] = $this->input->post('telefone');
+
+            if($_FILES['foto_perfil']['size'] != 0) {
+                $config = array(
+                    'upload_path'   => './assets/public/images/usuarios/perfil/',
+                    'allowed_types' => 'gif|jpg|png',
+                    'file_name'     => $dadosUsuario['id_usuario'],
+                    'overwrite'     => TRUE
+                );
+                $this->load->library('upload', $config);
+                
+                if($this->upload->do_upload('foto_perfil')){
+                    $dadosUsuario['foto_perfil'] = '/assets/public/images/usuarios/perfil/'.$this->upload->data('file_name');
+
+                    $config2['width'] = 500;
+                    $config2['length'] = 500;
+                    $this->load->library('image_lib', $config2);
+                } else {
+                    // $erro = array('error' => $this->upload->display_errors());
+    
+                    // redirect(base_url('home', $erro));
+    
+                    // $this->load->view('upload_success', $data);
+    
+                    echo $this->upload->display_errors();
+                }
+            }
 
             $this->load->model('InstituicaoModel', 'modelinstituicao');
 

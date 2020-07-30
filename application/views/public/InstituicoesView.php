@@ -10,7 +10,7 @@
 
             <div class="card border border-secondary">
                 <a href="<?php echo base_url('/admin/usuario/id_'.md5($instituicao->id_usuario)) ?>">
-                <img src="<?php echo $instituicao->foto_perfil ?>" class="card-img-top" alt="..." style="max-width:100%; max-height: 10rem; object-fit: cover;">
+                <img src="<?php echo base_url($instituicao->foto_perfil) ?>" class="card-img-top" alt="..." style="max-width:100%; max-height: 10rem; object-fit: cover;">
                 <div class="card-body">
                     <h5 class="card-title font-weight-bold"><?php echo $instituicao->nome ?></h5>
                     <p class="card-text"><?php echo $instituicao->descricao ?></p>

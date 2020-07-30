@@ -77,6 +77,10 @@ class UsuarioModel extends CI_Model {
             $this->db->set('senha', $dados['senha']);
             $this->db->set('modificacao', $dados['modificacao']);
             $this->db->set('nome', $dados['nome']);
+            $this->db->set('foto_perfil', $dados['foto_perfil']);
+            if(!empty($dados['capa'])) {
+                $this->db->set('capa', $dados['capa']);
+            }                
             $this->db->update('usuario');
 
             if($this->db->trans_status() === TRUE){
