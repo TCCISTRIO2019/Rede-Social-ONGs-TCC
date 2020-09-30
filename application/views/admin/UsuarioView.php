@@ -14,7 +14,8 @@
                 <div class="col-md-auto container">
                     <!-- INICIO - Verificacao do usuario -->
                     <?php
-                    if($usuario->id_usuario == $this->session->userdata('userlogado')->id_usuario) {
+                    if($usuario->id_usuario == $this->session->userdata('userlogado')->id_usuario &&
+                       $usuario->tipo_usuario == 'juridica') {
                         echo validation_errors('<div class="alert alert-danger">', '</div>');
 
                         $atributos = array('class' => 'tamanho-post');
@@ -36,7 +37,7 @@
                         </div>
                         <?php
                         echo form_close();
-                    } else {
+                    } elseif ($usuario->id_usuario != $this->session->userdata('userlogado')->id_usuario) {
                         ?>
                         <div class="row justify-content-md-center">
                             <a href="<?php echo base_url('conversa/inicia_conversa/id_'.$usuario->id_usuario) ?>">

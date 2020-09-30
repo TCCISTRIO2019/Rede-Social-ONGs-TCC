@@ -7,7 +7,7 @@
         <?php
         echo validation_errors('<div class="alert alert-danger">', '</div>');
 
-        echo form_open('admin/usuario/cadastrar_pessoa');
+        echo form_open_multipart('admin/usuario/cadastrar_pessoa');
         ?>
 
         <input type="hidden" value="<?php echo $email ?>" name="email">
@@ -19,6 +19,13 @@
                 <span class="input-group-text"> Email <!--<i class="fa fa-envelope"></i>--> </span>
             </div>
             <input type="email" class="form-control" value="<?php echo $email ?>" disabled>
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" name="foto_perfil">
+                <label class="custom-file-label" for="inputGroupFile01">Escolher sua imagem de usuário</label>
+            </div>
         </div>
 
         <div class="form-group input-group">

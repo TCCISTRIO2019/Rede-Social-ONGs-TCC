@@ -77,7 +77,9 @@ class UsuarioModel extends CI_Model {
             $this->db->set('senha', $dados['senha']);
             $this->db->set('modificacao', $dados['modificacao']);
             $this->db->set('nome', $dados['nome']);
-            $this->db->set('foto_perfil', $dados['foto_perfil']);
+            if(!empty($dados['foto_perfil'])) {
+                $this->db->set('foto_perfil', $dados['foto_perfil']);
+            }
             if(!empty($dados['capa'])) {
                 $this->db->set('capa', $dados['capa']);
             }                

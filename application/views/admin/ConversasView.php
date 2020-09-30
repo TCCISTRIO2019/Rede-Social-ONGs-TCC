@@ -15,7 +15,7 @@
                     <div class="card-body">
                         <div class="media">
                             <div class="avatar mr-5">
-                                <img class="avatar-img rounded-circle" src="<?php echo $conversa->foto_perfil; ?>" alt="..." style="max-width: 5rem; object-fit: cover;">
+                                <img class="avatar-img rounded-circle" src="<?php echo base_url($conversa->foto_perfil); ?>" alt="..." style="max-width: 5rem; object-fit: cover;">
                             </div>
 
                             <div class="media-body overflow-hidden">

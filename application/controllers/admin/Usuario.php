@@ -119,6 +119,35 @@ class Usuario extends CI_Controller {
             $dadosTelefone['telefone'] = $this->input->post('telefone');
             $dadosPessoa['sexo'] = $this->input->post('sexo');
 
+            $file_name = 'imagem_perfil_generica.png';
+
+            if($_FILES['foto_perfil']['size'] != 0) {
+                $config = array(
+                    'upload_path'   => './assets/public/images/usuarios/perfil/',
+                    'allowed_types' => 'gif|jpg|png',
+                    'file_name'     => 'perfil_'.$dadosUsuario['id_usuario'],
+                    'overwrite'     => TRUE
+                );
+                $this->load->library('upload', $config);
+                
+                if($this->upload->do_upload('foto_perfil')){
+                    $dadosUsuario['foto_perfil'] = '/assets/public/images/usuarios/perfil/'.$this->upload->data('file_name');
+    
+                    $config2['width'] = 500;
+                    $config2['length'] = 500;
+                    $this->load->library('image_lib', $config2);
+                } else {
+                    // $erro = array('error' => $this->upload->display_errors());
+    
+                    // redirect(base_url('home', $erro));
+    
+                    // $this->load->view('upload_success', $data);
+                    echo $this->upload->display_errors();
+                }
+            } else {
+                $dadosUsuario['foto_perfil'] = '/assets/public/images/usuarios/perfil/imagem_perfil_generica.png';
+            }            
+
             $this->load->model('PessoaModel', 'modelpessoa');
 
             // Insere o usuario para pegar o id e passar para as demais tabelas
@@ -188,6 +217,62 @@ class Usuario extends CI_Controller {
             $dadosInstituicao['descricao'] = $this->input->post('descricao');
 
             $dadosTelefone['telefone'] = $this->input->post('telefone');
+
+            // Para caso a foto de perfil esteja vazia
+            if($_FILES['foto_perfil']['size'] != 0) {
+                $config = array(
+                    'upload_path'   => './assets/public/images/usuarios/perfil/',
+                    'allowed_types' => 'gif|jpg|png',
+                    'file_name'     => 'perfil_'.$dadosUsuario['id_usuario'],
+                    'overwrite'     => TRUE
+                );
+                $this->load->library('upload', $config);
+                
+                if($this->upload->do_upload('foto_perfil')){
+                    $dadosUsuario['foto_perfil'] = '/assets/public/images/usuarios/perfil/'.$this->upload->data('file_name');
+    
+                    $config2['width'] = 500;
+                    $config2['length'] = 500;
+                    $this->load->library('image_lib', $config2);
+                } else {
+                    // $erro = array('error' => $this->upload->display_errors());
+    
+                    // redirect(base_url('home', $erro));
+    
+                    // $this->load->view('upload_success', $data);
+    
+                    echo $this->upload->display_errors();
+                }
+            } else {
+                $dadosUsuario['foto_perfil'] = '/assets/public/images/usuarios/perfil/imagem_perfil_generica.png';
+            } 
+
+            // Caso a imagem da capa esteja vazia, não aparecerá nada no lugar
+            if($_FILES['capa']['size'] != 0) {
+                $config = array(
+                    'upload_path'   => './assets/public/images/usuarios/capa/',
+                    'allowed_types' => 'gif|jpg|png',
+                    'file_name'     => 'capa_'.$dadosUsuario['id_usuario'],
+                    'overwrite'     => TRUE
+                );
+                $this->load->library('upload', $config);
+                
+                if($this->upload->do_upload('capa')){
+                    $dadosUsuario['capa'] = '/assets/public/images/usuarios/capa/'.$this->upload->data('file_name');
+
+                    $config2['width'] = 1110;
+                    $config2['length'] = 320;
+                    $this->load->library('image_lib', $config2);
+                } else {
+                    // $erro = array('error' => $this->upload->display_errors());
+
+                    // redirect(base_url('home', $erro));
+
+                    // $this->load->view('upload_success', $data);
+
+                    echo $this->upload->display_errors();
+                }
+            }
 
             $this->load->model('InstituicaoModel', 'modelinstituicao');
 
@@ -440,7 +525,7 @@ class Usuario extends CI_Controller {
                 $config = array(
                     'upload_path'   => './assets/public/images/usuarios/perfil/',
                     'allowed_types' => 'gif|jpg|png',
-                    'file_name'     => $dadosUsuario['id_usuario'],
+                    'file_name'     => 'perfil_'.$dadosUsuario['id_usuario'],
                     'overwrite'     => TRUE
                 );
                 $this->load->library('upload', $config);
@@ -450,6 +535,32 @@ class Usuario extends CI_Controller {
 
                     $config2['width'] = 500;
                     $config2['length'] = 500;
+                    $this->load->library('image_lib', $config2);
+                } else {
+                    // $erro = array('error' => $this->upload->display_errors());
+    
+                    // redirect(base_url('home', $erro));
+    
+                    // $this->load->view('upload_success', $data);
+    
+                    echo $this->upload->display_errors();
+                }
+            }
+
+            if($_FILES['capa']['size'] != 0) {
+                $config = array(
+                    'upload_path'   => './assets/public/images/usuarios/capa/',
+                    'allowed_types' => 'gif|jpg|png',
+                    'file_name'     => 'capa_'.$dadosUsuario['id_usuario'],
+                    'overwrite'     => TRUE
+                );
+                $this->load->library('upload', $config);
+                
+                if($this->upload->do_upload('capa')){
+                    $dadosUsuario['capa'] = '/assets/public/images/usuarios/capa/'.$this->upload->data('file_name');
+
+                    $config2['width'] = 1110;
+                    $config2['length'] = 320;
                     $this->load->library('image_lib', $config2);
                 } else {
                     // $erro = array('error' => $this->upload->display_errors());

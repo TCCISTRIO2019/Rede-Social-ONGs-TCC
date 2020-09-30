@@ -21,6 +21,13 @@
             </div>
         </div>
 
+        <div class="input-group mb-3">
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="inputGroupFile02" aria-describedby="inputGroupFileAddon02" name="capa">
+                <label class="custom-file-label" for="inputGroupFile02">Escolher sua imagem de capa</label>
+            </div>
+        </div>
+
         <div class="form-group input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text"> Email </span>
