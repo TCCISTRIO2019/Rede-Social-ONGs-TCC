@@ -37,6 +37,9 @@ class InstituicaoModel extends CI_Model {
             $this->db->set('cep', $dados['cep']);
             $this->db->set('qtd_funcionarios', $dados['qtd_funcionarios']);
             $this->db->set('descricao', $dados['descricao']);
+            $this->db->set('banco', $dados['banco']);
+            $this->db->set('conta', $dados['conta']);
+            $this->db->set('agencia', $dados['agencia']);
             $this->db->update('instituicao');
 
             if($this->db->trans_status() === TRUE){
@@ -59,17 +62,17 @@ class InstituicaoModel extends CI_Model {
         $this->db->from('instituicao');
         $this->db->join('usuario','usuario.id_usuario = instituicao.id_usuario');
 
-//        $this->db->limit(5);
+        //$this->db->limit(5);
         $this->db->order_by('usuario.nome','ASC');
 
-//	    return $this->db->get('publicacao')->result();
+	    //return $this->db->get('publicacao')->result();
         return $this->db->get('')->result();
     }
 
-    public function pesquisar_instituicoes($dados)
+    public function pesquisar_instituicao_nome($nome)
     {
-        $this->db->like('nome', $dados['nome']);
+        $this->db->like('nome', $nome);
         $this->db->join('usuario','usuario.id_usuario = instituicao.id_usuario');
-        RETURN $this->db->get('instituicao')->result();
+        RETURN $this->db->get('instituicao')->result()[0];
     }
 }

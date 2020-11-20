@@ -122,6 +122,43 @@
             <textarea name="descricao" class="form-control" placeholder="Diga um pouco sobre o que se trata sua instituição" rows="5" cols="30"></textarea>
         </div>
 
+        <div class="container bancario">
+            <div class="row form-group input-group">
+                <h5> Dados Bancários - Doações </h5>
+            </div>
+
+            <div class="row">
+                <div class="form-group input-group col-sm-12">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> Banco </span>
+                    </div>
+                    <select name="banco" class="custom-select">
+                        <option value="">Escolha seu banco</option>
+                        <option value="Bradesco">Bradesco</option>
+                        <option value="Santander">Santander</option>
+                        <option value="Banco do Brasil">Banco do Brasil</option>
+                        <option value="Itaú">Itaú</option>
+                        <option value="Caixa Econômica federal">Caixa Econômica federal</option>
+                        <option value="Safra">Safra</option>
+                    </select>
+                </div>
+
+                <div class="form-group input-group col-sm-6">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> Agência </span>
+                    </div>
+                    <input name="agencia" class="form-control" placeholder="Agência" type="text">
+                </div>
+
+                <div class="form-group input-group col-sm-6">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> Conta </span>
+                    </div>
+                    <input name="conta" class="form-control" placeholder="Conta" type="text">
+                </div>
+            </div>
+        </div>
+
         <div class="form-group">
             <button type="submit" class="btn btn-primary btn-block"> Cadastrar-se </button>
         </div>

@@ -10,6 +10,7 @@ class Usuario extends CI_Controller {
         $this->load->model('UsuarioModel', 'modelusuario');
         $this->load->model('TelefoneModel', 'modeltelefone');
         $this->load->model('PublicacaoModel', 'modelpublicacao');
+        $this->load->model('InstituicaoModel', 'modelinstituicao');
 	}
 
 	// Perfil do usuário logado
@@ -22,6 +23,10 @@ class Usuario extends CI_Controller {
 
         $publicacoes = $this->modelpublicacao->publicacoes_usuario($id);
         $usuario = $this->modelusuario->buscar_usuario($id);
+
+        if($usuario->tipo_usuario == 'juridica') {
+            $dados['instituicao'] = $this->modelinstituicao->pesquisar_instituicao_nome($usuario->nome);
+        }
 
         // Dados a serem enviados para o Cabeçalho
         $dados['titulo'] = 'TCC Rede Social - Perfil Usuario';
@@ -38,7 +43,7 @@ class Usuario extends CI_Controller {
 	// Verifica se o usuario ja existe e redireciona para a pagina de login correta
 	public function pag_cadastrar()
     {
-//        $this->load->library('form-validation');
+        //$this->load->library('form-validation');
         $this->form_validation->set_rules('email', 'Email', 'required|is_unique[usuario.senha]');
         $this->form_validation->set_rules('senha', 'Senha', 'required|min_length[8]');
         $this->form_validation->set_rules('senha_conf', 'Confirmacao Senha', 'required|matches[senha]');
@@ -96,7 +101,7 @@ class Usuario extends CI_Controller {
     {
         $this->form_validation->set_rules('nome', 'Nome', 'required');
         $this->form_validation->set_rules('sobrenome', 'Sobrenome', 'required');
-//        $this->form_validation->set_rules('nacimento', 'Nacimento', 'callback_data_check');
+        //$this->form_validation->set_rules('nacimento', 'Nacimento', 'callback_data_check');
         $this->form_validation->set_rules('telefone', 'Telefone', 'required');
 
         if($this->form_validation->run() == FALSE){
@@ -179,8 +184,8 @@ class Usuario extends CI_Controller {
 
     public function cadastrar_instituicao()
     {
-        $this->form_validation->set_rules('nome', 'Nome', 'required|is_unique[instituicao.nome]');
-//        $this->form_validation->set_rules('criacao_instituicao', 'Criacao Instituicao', 'required');
+        $this->form_validation->set_rules('nome', 'Nome', 'required|is_unique[usuario.nome]');
+        //$this->form_validation->set_rules('criacao_instituicao', 'Criacao Instituicao', 'required');
         $this->form_validation->set_rules('logradouro', 'Logradouro', 'required');
         $this->form_validation->set_rules('numero', 'Numero', 'required');
         $this->form_validation->set_rules('bairro', 'Bairro', 'required');
@@ -215,6 +220,9 @@ class Usuario extends CI_Controller {
             $dadosInstituicao['cep'] = $this->input->post('cep');
             $dadosInstituicao['qtd_funcionarios'] = $this->input->post('qtd_funcionarios');
             $dadosInstituicao['descricao'] = $this->input->post('descricao');
+            $dadosInstituicao['banco'] = $this->input->post('banco');
+            $dadosInstituicao['conta'] = $this->input->post('conta');
+            $dadosInstituicao['agencia'] = $this->input->post('agencia');
 
             $dadosTelefone['telefone'] = $this->input->post('telefone');
 
@@ -272,6 +280,16 @@ class Usuario extends CI_Controller {
 
                     echo $this->upload->display_errors();
                 }
+            } else {
+                $dadosUsuario['capa'] = '/assets/public/images/usuarios/capa/capa_generica.jpg';
+            } 
+
+            // Se algum deles vier vazio, nao importar nenhum pro banco
+            if($dadosInstituicao['banco'] == '' || $dadosInstituicao['agencia'] == '' || $dadosInstituicao['conta'] == '')
+            {
+                $dadosInstituicao['banco'] = '';
+                $dadosInstituicao['agencia'] = '';
+                $dadosInstituicao['conta'] = '';
             }
 
             $this->load->model('InstituicaoModel', 'modelinstituicao');
@@ -517,6 +535,9 @@ class Usuario extends CI_Controller {
             $dadosInstituicao['cep'] = $this->input->post('cep');
             $dadosInstituicao['qtd_funcionarios'] = $this->input->post('qtd_funcionarios');
             $dadosInstituicao['descricao'] = $this->input->post('descricao');
+            $dadosInstituicao['banco'] = $this->input->post('banco');
+            $dadosInstituicao['conta'] = $this->input->post('conta');
+            $dadosInstituicao['agencia'] = $this->input->post('agencia');
 
             $dadosTelefone['id_usuario'] = $dadosUsuario['id_usuario'];
             $dadosTelefone['telefone'] = $this->input->post('telefone');
@@ -571,6 +592,14 @@ class Usuario extends CI_Controller {
     
                     echo $this->upload->display_errors();
                 }
+            }
+
+            // Se algum deles vier vazio, nao importar nenhum pro banco
+            if($dadosInstituicao['banco'] == '' || $dadosInstituicao['agencia'] == '' || $dadosInstituicao['conta'] == '')
+            {
+                $dadosInstituicao['banco'] = '';
+                $dadosInstituicao['agencia'] = '';
+                $dadosInstituicao['conta'] = '';
             }
 
             $this->load->model('InstituicaoModel', 'modelinstituicao');

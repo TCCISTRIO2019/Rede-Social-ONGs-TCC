@@ -2,16 +2,60 @@
 <!--    <h4 class="col-md-auto">Usuario Teste</h4>-->
 <!--</div>-->
 <div class="container">
-    <section class="row capa">
-        <?php if($usuario->capa != null) { ?>
+    <header class="row">
+        <section class="capa position-relative">
             <img src="<?php echo base_url($usuario->capa) ?>" alt="Capa do usuário" class="rounded">
-        <?php } ?>
-    </section>
+
+            <?php if ($usuario->id_usuario == $this->session->userdata('userlogado')->id_usuario) { ?>
+            <a href="<?php echo base_url('/admin/usuario/pag_configurar/'.md5($this->session->userdata('userlogado')->id_usuario)); ?>">
+                <section class="foto_perfil position-absolute">
+                    <img src="<?php echo base_url($usuario->foto_perfil) ?>" alt="Foto de perfil do usuário" class="rounded img-thumbnail">
+                </section>
+            </a>
+            <?php } else { ?>
+                <section class="foto_perfil position-absolute">
+                    <img src="<?php echo base_url($usuario->foto_perfil) ?>" alt="Foto de perfil do usuário" class="rounded img-thumbnail">
+                </section>
+            <?php } ?>
+        </section>
+    </header>
 
     <main class="row m-4">
         <section class="col-md-12">
             <div class="row justify-content-md-center">
                 <div class="col-md-auto container">
+                    <!-- INICIO - Descricao -->
+                    <div class="card bg-light container mb-3 descricao">
+                        <div class="card-title mt-3">
+                            <div class="row justify-content-md-center">
+                                <h4 class="col-md-auto">Descrição</h4>
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="row justify-content-md-center">
+                                <p><?php echo $instituicao->descricao ?></p>
+                            </div>
+                        </div>
+
+                        <?php if($instituicao->banco != '') { ?>
+                        <div class="card-title">
+                            <div class="row justify-content-md-center">
+                                <h4 class="col-md-auto">Dados bancários para doações</h4>
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="row justify-content-md-center">
+                                <p class="col">Banco: <?php echo $instituicao->banco ?></p>
+                                <p class="col">Agencia: <?php echo $instituicao->agencia ?></p>
+                                <p class="col">Conta: <?php echo $instituicao->conta ?></p>
+                            </div>
+                        </div>
+                        <?php } ?>
+                    </div>
+                    <!-- FIM - Descricao -->
+
                     <!-- INICIO - Verificacao do usuario -->
                     <?php
                     if($usuario->id_usuario == $this->session->userdata('userlogado')->id_usuario &&

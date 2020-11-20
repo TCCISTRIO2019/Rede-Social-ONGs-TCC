@@ -27,7 +27,7 @@ class Instituicao extends CI_Controller {
         if($dadosRequest['nome'] == '' || $dadosRequest['nome'] == NULL){
             $this->instituicoes = $this->modelinstituicao->listar_instituicoes();
         } else {
-            $this->instituicoes = $this->modelinstituicao->pesquisar_instituicoes($dadosRequest);
+            $this->instituicoes = $this->modelinstituicao->pesquisar_instituicao_nome($dadosRequest['nome']);
         }
 
         $dados['instituicoes'] = $this->instituicoes;
