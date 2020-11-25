@@ -42,7 +42,7 @@ class Conversa extends CI_Controller {
 
         $tipo_usuario = $this->session->userdata('userlogado')->tipo_usuario;
 
-//        $mensagens = $this->modelmensagem->buscar_mensagens($id_conversa, $tipo_usuario);
+        //$mensagens = $this->modelmensagem->buscar_mensagens($id_conversa, $tipo_usuario);
         $mensagens = $this->modelmensagem->buscar_mensagens($id_conversa);
 
         $dados['titulo'] = 'TCC Rede Social - Mensagens';
@@ -87,18 +87,19 @@ class Conversa extends CI_Controller {
         $datetime = $now->format('Y-m-d h:m:s');
         $dadosRequest['data_inicio'] = $datetime;
 
+        $result = null;
         $this->db->where('id_usuario1', $dadosRequest['id_usuario1']);
         $this->db->where('id_usuario2', $dadosRequest['id_usuario2']);
         $result = $this->db->get('conversa')->result();
 
-        if($result == 0){
+        if($result == null){
             $conversa = $this->modelconversa->inserir_conversa($dadosRequest);
         } else {
             $conversa = $result[0];
         }
 
         redirect(base_url('/conversa/id_'.$conversa->id_conversa));
-//        $this->carrega_conversa($conversa->id_conversa);
+        //$this->carrega_conversa($conversa->id_conversa);
     }
 
     public function manda_mensagem()

@@ -96,3 +96,17 @@ p {
 .descricao {
     max-width: 30rem;
 }
+
+.card_instituicao {
+    height: 335px;
+}
+
+.link_instituicao {
+    height: 100%;
+    
+}
+
+.rodape_card {
+    bottom: 0;
+    width: 100%;
+}

@@ -8,7 +8,7 @@
         <?php
         foreach ($conversas as $conversa){
         ?>
-        <nav class="shadow nav d-block list-discussions-js card border-secondary rounded">
+        <nav class="shadow nav d-block list-discussions-js card border-secondary rounded col-lg-4">
             <!-- Link Instituicao -->
             <a class="text-reset nav-link p-0 mb-6" href="<?php echo base_url('/conversa/id_'.$conversa->id_conversa); ?>">
                 <div class="card-active-listener mb-3">
