@@ -103,10 +103,14 @@ p {
 
 .link_instituicao {
     height: 100%;
-    
 }
 
 .rodape_card {
     bottom: 0;
+    width: 100%;
+}
+
+.postado-em {
+    font-size: 0.7rem;
     width: 100%;
 }

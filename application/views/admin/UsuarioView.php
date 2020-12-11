@@ -121,7 +121,6 @@
                                     <?php } ?>
                                     
                                     <div class="card-body">
-                                        <p class="card-text"> Curtidas: <a href="#" class="card-link"><?php echo $publicacao->curtidas ?></a> </p>
                                         <p class="card-text"> Postado em: <?php echo postadoem($publicacao->data_criacao) ?></p>
                                     </div>
                                 </div>
