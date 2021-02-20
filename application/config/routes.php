@@ -62,3 +62,4 @@ $route['conversa/id_(:any)'] = 'admin/conversa/index/$1';
 $route['conversa/inicia_conversa/id_(:any)'] = 'admin/conversa/inicia_conversa/$1';
 $route['conversa/lista_conversas/id_(:any)'] = 'admin/conversa/lista_conversas/$1';
 $route['conversa/carregar_quadro_mensagens/id_(:any)'] = 'admin/conversa/carregar_quadro_mensagens/$1';
+$route['publicacao/listar_comentarios_publicacao/id_(:any)'] = 'publicacao/listar_comentarios_publicacao/$1';

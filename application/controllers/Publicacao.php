@@ -60,8 +60,43 @@ class Publicacao extends CI_Controller {
         // }
     }
 
-    public function curtida()
+    public function criar_comentario()
     {
+        $this->form_validation->set_rules('corpo', 'Comentario', 'required');
 
+        if($this->form_validation->run() == FALSE){
+            redirect(base_url('home'));
+        } else {
+            $dadosRequest['corpo'] = $this->input->post('corpo');
+            $dadosRequest['id_usuario'] = $this->input->post('id_usuario');
+            $dadosRequest['id_publicacao'] = $this->input->post('id_publicacao');
+
+            $now = new DateTime();
+            $datetime = $now->format('Y-m-d h:m:s');
+            $dadosRequest['data_enviado'] = $datetime;
+
+            $this->load->model('ComentarioModel', 'modelcomentario');
+            $this->modelcomentario->inserir_comentario($dadosRequest);
+            
+            redirect($_SERVER['HTTP_REFERER'], 'refresh');
+        }
+    }
+
+    public function listar_comentarios_publicacao($idPublicacao)
+    {
+        $dados['titulo'] = 'Comentários Publicação - TCC Rede Social';
+
+        $this->load->model('PublicacaoModel', 'modelpublicacao');
+        $publicacao = $this->modelpublicacao->buscar_publicacao($idPublicacao);
+        $dados['publicacao'] = $publicacao[0];
+
+        $this->load->model('ComentarioModel', 'modelcomentario');
+        $dados['comentarios'] = $this->modelcomentario->buscar_comentarios($idPublicacao);
+
+        $this->load->view('template/html-header', $dados);
+        $this->load->view('template/header');
+        $this->load->view('public/comentariosview');
+        $this->load->view('template/footer');
+        $this->load->view('template/html-footer');
     }
 }

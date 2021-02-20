@@ -97,6 +97,32 @@
                                     <p class="card-text"> Postado em: <?php echo postadoem($publicacao->data_criacao) ?></p>
                                 </div>
                             </div>
+
+                            <div class="row mx-0">
+                                <a class="dropdown-item" href="<?php echo base_url('/publicacao/listar_comentarios_publicacao/id_'.$publicacao->id_publicacao) ?>">Conversas</a>
+                            </div>
+
+                            <div class="row mx-0">
+                                <?php
+                                echo validation_errors('<div class="alert alert-danger">', '</div>');
+
+                                $atributos = array('class' => 'tamanho-post');
+
+                                echo form_open_multipart('publicacao/criar_comentario', $atributos);
+                                ?>
+                                <div>
+                                <input type="hidden" value="<?php echo $this->session->userdata('userlogado')->id_usuario; ?>" name="id_usuario">
+                                <input type="hidden" value="<?php echo $publicacao->id_publicacao ?>" name="id_publicacao">
+
+                                <div class="form-group">
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="1" name="corpo" placeholder="Faça seu comentário"></textarea>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary mb-2">Comentar</button>
+                                <?php
+                                echo form_close();
+                                ?>
+                            </div>                                
                         </li>
                         <br><br>
                         <?php
