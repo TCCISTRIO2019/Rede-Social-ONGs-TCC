@@ -7,7 +7,6 @@ class PublicacaoModel extends CI_Model {
     private $id_usuario;
     private $corpo;
     private $comentarios;
-    private $curtidas;
     private $imagem;
     private $data_criacao;
 
@@ -48,7 +47,7 @@ class PublicacaoModel extends CI_Model {
     public function publicacoes_usuario($id)
     {
         $this->db->select('usuario.id_usuario, usuario.email, usuario.foto_perfil, usuario.nome,
-            publicacao.id_publicacao, publicacao.id_usuario, publicacao.curtidas, publicacao.corpo, publicacao.imagem, publicacao.data_criacao,
+            publicacao.id_publicacao, publicacao.id_usuario, publicacao.corpo, publicacao.imagem, publicacao.data_criacao,
             instituicao.id_instituicao, instituicao.id_usuario');
         $this->db->from('publicacao');
         $this->db->join('usuario','usuario.id_usuario = publicacao.id_usuario');

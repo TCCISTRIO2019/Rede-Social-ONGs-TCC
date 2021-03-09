@@ -1,22 +1,20 @@
-<!--<div class="row justify-content-md-center">-->
-<!--    <h4 class="col-md-auto">Usuario Teste</h4>-->
-<!--</div>-->
+
 <div class="container">
     <header class="row">
         <section class="capa position-relative">
             <img src="<?php echo base_url($usuario->capa) ?>" alt="Capa do usuário" class="rounded">
 
-            <?php if ($usuario->id_usuario == $this->session->userdata('userlogado')->id_usuario) { ?>
-            <a href="<?php echo base_url('/admin/usuario/pag_configurar/'.md5($this->session->userdata('userlogado')->id_usuario)); ?>">
-                <section class="foto_perfil position-absolute">
-                    <img src="<?php echo base_url($usuario->foto_perfil) ?>" alt="Foto de perfil do usuário" class="rounded img-thumbnail">
-                </section>
-            </a>
-            <?php } else { ?>
-                <section class="foto_perfil position-absolute">
-                    <img src="<?php echo base_url($usuario->foto_perfil) ?>" alt="Foto de perfil do usuário" class="rounded img-thumbnail">
-                </section>
-            <?php } ?>
+            <section class="foto_perfil position-absolute">
+                <?php if ($usuario->id_usuario == $this->session->userdata('userlogado')->id_usuario) { ?>
+                <a href="<?php echo base_url('/admin/usuario/pag_configurar/'.md5($this->session->userdata('userlogado')->id_usuario)); ?>">
+                    <img src="<?php echo base_url($usuario->foto_perfil) ?>" alt="Foto de perfil do usuário" class="rounded img-thumbnail position-relative">
+                </a>
+                <?php } else { ?>
+                    <img src="<?php echo base_url($usuario->foto_perfil) ?>" alt="Foto de perfil do usuário" class="rounded img-thumbnail position-relative">
+                <?php } ?>
+
+                <h3 class="mx-3 position-absolute border-bottom"><?php echo $usuario->nome ?></h3>
+            </section>
         </section>
     </header>
 
@@ -123,6 +121,14 @@
                                     <div class="card-body">
                                         <p class="card-text"> Postado em: <?php echo postadoem($publicacao->data_criacao) ?></p>
                                     </div>
+                                </div>
+                                <!-- Botão Comentários -->
+                                <div class="row mx-0">
+                                    <button class="btn btn-outline-primary mb-2">
+                                        <a class="link-comentario" href="<?php echo base_url('/publicacao/listar_comentarios_publicacao/id_'.$publicacao->id_publicacao) ?>">
+                                            Comentários
+                                        </a>
+                                    </button>
                                 </div>
                             </li>
                             <br><br>

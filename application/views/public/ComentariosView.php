@@ -57,10 +57,10 @@
                     <?php
                     echo validation_errors('<div class="alert alert-danger">', '</div>');
 
-                    $atributos = array('class' => 'tamanho-post');
+                    $atributos = array('class' => 'tamanho-post sticky-top');
 
                     echo form_open_multipart('publicacao/criar_comentario', $atributos);
-                    ?>                
+                    ?>          
 
                     <input type="hidden" value="<?php echo $this->session->userdata('userlogado')->id_usuario; ?>" name="id_usuario">
                     <input type="hidden" value="<?php echo $publicacao->id_publicacao ?>" name="id_publicacao">
@@ -78,8 +78,19 @@
                 
                 <div class="row mx-0">
                     <?php foreach ($comentarios as $comentario) { ?>
-                        <div class="card-body col-12">
-                            <p class="card-text"> <?php echo $comentario->corpo ?> </p>
+                        <div class="card-body col-12 border mb-1">
+                            <div class="postado-em">   
+                                <img class="rounded-circle" src="<?php echo base_url($comentario->foto_perfil); ?>" alt="..." style="max-width: 3rem; object-fit: cover; float:left;">                             
+                                <p class="card-text nome-comentario"> <?php echo $comentario->nome ?> </p>
+                            </div>
+                            
+                            <div class="card-body">
+                                <p class="card-text"> <?php echo $comentario->corpo ?> </p>
+                            </div>
+                                
+                            <div class="postado-em">
+                                <p class="card-text"> Postado em: <?php echo postadoem($comentario->data_enviado) ?></p>
+                            </div>
                         </div>
                     <?php } ?>
                 </div>

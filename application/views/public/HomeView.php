@@ -41,8 +41,6 @@
                     $atributos = array('class' => 'tamanho-post');
 
                     echo form_open_multipart('publicacao/fazer_publicacao', $atributos);
-                    // echo form_upload('userfile');
-
                     ?>
 
                     <div>
@@ -99,7 +97,11 @@
                             </div>
 
                             <div class="row mx-0">
-                                <a class="dropdown-item" href="<?php echo base_url('/publicacao/listar_comentarios_publicacao/id_'.$publicacao->id_publicacao) ?>">Conversas</a>
+                                <button class="btn btn-outline-primary mb-2">
+                                    <a class="link-comentario" href="<?php echo base_url('/publicacao/listar_comentarios_publicacao/id_'.$publicacao->id_publicacao) ?>">
+                                        Comentários
+                                    </a>
+                                </button>
                             </div>
 
                             <div class="row mx-0">

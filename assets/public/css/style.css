@@ -84,7 +84,7 @@ p {
 
 .foto_perfil {
     max-width: 15rem;
-    bottom: -1.5rem;
+    bottom: -3rem;
     margin-left: 3rem;
 }
 
@@ -113,4 +113,19 @@ p {
 .postado-em {
     font-size: 0.7rem;
     width: 100%;
+}
+
+.link-comentario {
+    color: #007bff !important;
+    width:100%;
+}
+
+.link-comentario:hover {
+    color: #ffffff !important;
+}
+
+.nome-comentario {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-left: 4rem;
 }
