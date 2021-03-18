@@ -128,8 +128,8 @@
         </div>
 
         <div class="container bancario">
-            <div class="row form-group input-group text-center offset-md-3">
-                <h5 class=""> Dados Bancários </h5>
+            <div class="row form-group input-group text-center justify-content-md-center">
+                <h5> Dados Bancários </h5>
             </div>
 
             <div class="row">
