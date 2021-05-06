@@ -54,7 +54,8 @@ class Usuario extends CI_Controller {
             array('required' => '. É preciso digitar uma senha.')
         );
         $this->form_validation->set_rules('senha_conf', 'Repetir Senha', 'required|matches[senha]',
-            array('required' => '. O campo Repetir Senha não é igual ao campo Senha.')
+            array('required' => '. É preciso repetir a senha.',
+                  'matches' => '. O campo "Repetir Senha" não está igual ao campo "Senha".')
         );
 
         // Roda a validacao do formulario e valida os campos de "set_rules"
@@ -66,7 +67,6 @@ class Usuario extends CI_Controller {
             }
 
             redirect(base_url('iniciar'), $dados);
-            // $this->load->view('IniciarView');
         } else {
             $email = $this->input->post( 'email');
             $senha = $this->input->post('senha');
@@ -117,11 +117,20 @@ class Usuario extends CI_Controller {
     {
         $this->form_validation->set_rules('nome', 'Nome', 'required');
         $this->form_validation->set_rules('sobrenome', 'Sobrenome', 'required');
-        //$this->form_validation->set_rules('nacimento', 'Nacimento', 'callback_data_check');
         $this->form_validation->set_rules('telefone', 'Telefone', 'required');
 
         if($this->form_validation->run() == FALSE){
-            // $this->pag_cadastrar_pessoa();
+            $this->session->set_flashdata('error', validation_errors());
+
+            if (!empty($this->session->flashdata('error'))) {
+                $dados['error'] = $this->session->flashdata('error');
+            }
+
+            $dados['email'] = $this->input->post('email');
+            $dados['senha'] = $this->input->post('senha');
+            $dados['tipo_usuario'] = $this->input->post('tipo_usuario');
+
+            $this->pag_cadastrar_pessoa($dados);
         } else {
 
             // Pegando a hora atual de criacao do usuario
@@ -209,7 +218,17 @@ class Usuario extends CI_Controller {
         $this->form_validation->set_rules('descricao', 'Descricao', 'required');
 
         if($this->form_validation->run() == FALSE){
-            // $this->pag_cadastrar_instituicao();
+            $this->session->set_flashdata('error', validation_errors());
+
+            if (!empty($this->session->flashdata('error'))) {
+                $dados['error'] = $this->session->flashdata('error');
+            }
+
+            $dados['email'] = $this->input->post('email');
+            $dados['senha'] = $this->input->post('senha');
+            $dados['tipo_usuario'] = $this->input->post('tipo_usuario');
+            
+            $this->pag_cadastrar_instituicao($dados);
         } else {
 
             // ajustar pois esta vindo do dia seguinte

@@ -4,8 +4,12 @@
 
         <p class="text-center">Informe os dados de sua instituição</p>
 
+        <?php if ($this->session->flashdata('error') != null) { ?>
+            <div class="alert alert-danger" style="max-width: 22rem;"> 
+                <?php echo $this->session->flashdata('error'); ?>
+            </div>
         <?php
-        echo validation_errors('<div class="alert alert-danger">', '</div>');
+            }
 
         echo form_open_multipart('admin/usuario/cadastrar_instituicao');
         ?>
@@ -168,7 +172,7 @@
         ?>
 
         <div class="form-group">
-            <a href="<?php echo base_url('iniciar') ?>">
+            <a href="<?php if(isset($_SESSION['error'])){ unset($_SESSION['error']); }; echo base_url('iniciar') ?>">
                 <button class="btn btn-outline-primary btn-block"> Voltar </button>
             </a>
         </div>

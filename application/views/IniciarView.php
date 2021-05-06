@@ -3,13 +3,7 @@
         <h3 class="card-title mt-3 text-center">Abra sua conta</h3>
         <p class="text-center">Comece com sua conta grátis</p>
 
-        <?php
-            // echo validation_errors('<div class="alert alert-danger">', '</div>');
-            // if (isset($error)) {
-            //     echo '<p class="alert alert-danger"><strong>Error: </strong>'.$error.'</p>';
-            // }
-            if ($this->session->flashdata('error') != null) {
-        ?>
+        <?php if ($this->session->flashdata('error') != null) { ?>
             <div class="alert alert-danger" style="max-width: 15rem;"> 
                 <?php echo $this->session->flashdata('error'); ?>
             </div>
