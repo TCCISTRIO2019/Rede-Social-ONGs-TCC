@@ -139,12 +139,12 @@
                     </div>
                     <select name="banco" class="custom-select">
                         <option value="">Escolha seu banco</option>
-                        <option value="Bradesco">Bradesco</option>
-                        <option value="Santander">Santander</option>
-                        <option value="Banco do Brasil">Banco do Brasil</option>
-                        <option value="Itaú">Itaú</option>
-                        <option value="Caixa Econômica federal">Caixa Econômica federal</option>
-                        <option value="Safra">Safra</option>
+                        <option value="Bradesco" <?php if($banco == 'Bradesco'){echo 'selected';} ?> >Bradesco</option>
+                        <option value="Santander" <?php if($banco == 'Santander'){echo 'selected';} ?>>Santander</option>
+                        <option value="Banco do Brasil" <?php if($banco == 'Banco do Brasil'){echo 'selected';} ?>>Banco do Brasil</option>
+                        <option value="Itaú" <?php if($banco == 'Itaú'){echo 'selected';} ?>>Itaú</option>
+                        <option value="Caixa Econômica Federal" <?php if($banco == 'Caixa Econômica Federal'){echo 'selected';} ?>>Caixa Econômica Federal</option>
+                        <option value="Safra" <?php if($banco == 'Safra'){echo 'selected';} ?>>Safra</option>
                     </select>
                 </div>
 
@@ -152,14 +152,14 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> Agência </span>
                     </div>
-                    <input name="agencia" class="form-control" placeholder="Agência" type="text">
+                    <input name="agencia" class="form-control" placeholder="Agência" type="text" value="<?php echo $agencia ?>">
                 </div>
 
                 <div class="form-group input-group col-sm-6">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> Conta </span>
                     </div>
-                    <input name="conta" class="form-control" placeholder="Conta" type="text">
+                    <input name="conta" class="form-control" placeholder="Conta" type="text" value="<?php echo $conta ?>">
                 </div>
             </div>
         </div>

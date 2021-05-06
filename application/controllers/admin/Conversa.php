@@ -28,7 +28,7 @@ class Conversa extends CI_Controller {
 
         $this->load->view('template/html-header', $dados);
         $this->load->view('template/header');
-        $this->load->view('admin/mensagensview');
+        $this->load->view('admin/MensagensView');
         $this->load->view('template/footer');
         $this->load->view('template/html-footer');
 	}
@@ -48,7 +48,7 @@ class Conversa extends CI_Controller {
         $dados['titulo'] = 'TCC Rede Social - Mensagens';
         $dados['mensagens'] = $mensagens;
 
-        $this->load->view('admin/quadromensagensview', $dados);
+        $this->load->view('admin/QuadroMensagensView', $dados);
     }
 
 	public function lista_conversas($id)
@@ -68,7 +68,7 @@ class Conversa extends CI_Controller {
 
         $this->load->view('template/html-header', $dados);
         $this->load->view('template/header');
-        $this->load->view('admin/conversasview');
+        $this->load->view('admin/ConversasView');
         $this->load->view('template/footer');
         $this->load->view('template/html-footer');
     }
@@ -99,7 +99,6 @@ class Conversa extends CI_Controller {
         }
 
         redirect(base_url('/conversa/id_'.$conversa->id_conversa));
-        //$this->carrega_conversa($conversa->id_conversa);
     }
 
     public function manda_mensagem()

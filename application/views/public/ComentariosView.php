@@ -80,7 +80,7 @@
                     <?php foreach ($comentarios as $comentario) { ?>
                         <div class="card-body col-12 border mb-1">
                             <div class="postado-em">   
-                                <img class="rounded-circle" src="<?php echo base_url($comentario->foto_perfil); ?>" alt="..." style="max-width: 3rem; object-fit: cover; float:left;">                             
+                                <img class="rounded-circle" src="<?php echo base_url($comentario->foto_perfil); ?>" alt="..." style="max-width: 3rem; max-height: 3rem; object-fit: cover; float:left;">                             
                                 <p class="card-text nome-comentario"> <?php echo $comentario->nome ?> </p>
                             </div>
                             

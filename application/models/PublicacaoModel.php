@@ -38,8 +38,8 @@ class PublicacaoModel extends CI_Model {
         $this->db->join('usuario','usuario.id_usuario = publicacao.id_usuario');
         $this->db->join('instituicao','usuario.id_usuario = instituicao.id_usuario');
 
-        $this->db->limit(5);
-	    $this->db->order_by('publicacao.data_criacao','DESC');
+        // $this->db->limit(5);
+	    $this->db->order_by('publicacao.id_publicacao','DESC');
 
         return $this->db->get('')->result();
     }
@@ -55,7 +55,7 @@ class PublicacaoModel extends CI_Model {
 
         $this->db->where('md5(usuario.id_usuario)',$id);
 
-        $this->db->order_by('publicacao.data_criacao','DESC');
+        $this->db->order_by('publicacao.id_publicacao','DESC');
 
         return $this->db->get('')->result();
     }

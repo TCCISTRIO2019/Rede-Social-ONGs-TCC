@@ -34,7 +34,7 @@ class Instituicao extends CI_Controller {
 
         $this->load->view('template/html-header', $dados);
         $this->load->view('template/header');
-        $this->load->view('public/instituicoesview');
+        $this->load->view('public/InstituicoesView');
         $this->load->view('template/footer');
         $this->load->view('template/html-footer');
 	}

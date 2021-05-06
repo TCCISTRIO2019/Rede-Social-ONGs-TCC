@@ -73,16 +73,26 @@ class UsuarioModel extends CI_Model {
     public function atualizar($dados){
 	    try {
             $this->db->where('id_usuario', $dados['id_usuario']);
-            $this->db->set('email', $dados['email']);
-            $this->db->set('senha', $dados['senha']);
-            $this->db->set('modificacao', $dados['modificacao']);
-            $this->db->set('nome', $dados['nome']);
+            
+            if(!empty($dados['email'])) {
+                $this->db->set('email', $dados['email']);
+            }
+            if(!empty($dados['senha'])) {
+                $this->db->set('senha', $dados['senha']);
+            }
+            if(!empty($dados['modificacao'])) {
+                $this->db->set('modificacao', $dados['modificacao']);
+            }
+            if(!empty($dados['nome'])) {
+                $this->db->set('nome', $dados['nome']);
+            }            
             if(!empty($dados['foto_perfil'])) {
                 $this->db->set('foto_perfil', $dados['foto_perfil']);
             }
             if(!empty($dados['capa'])) {
                 $this->db->set('capa', $dados['capa']);
-            }                
+            }        
+                    
             $this->db->update('usuario');
 
             if($this->db->trans_status() === TRUE){

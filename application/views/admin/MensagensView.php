@@ -2,7 +2,7 @@
     <body onload="scrollDown()">
     <section class="col-md-7">
         <!-- Chamada à view pra carregar automaticamente a página -->
-        <?php $this->load->view('admin/quadromensagensview', $mensagens); ?>
+        <?php $this->load->view('admin/QuadroMensagensView', $mensagens); ?>
 
         <?php
         $atributos = array('class' => 'form-inline mt-2 mt-md-0 mr-auto');
