@@ -11,6 +11,9 @@ class Usuario extends CI_Controller {
         $this->load->model('TelefoneModel', 'modeltelefone');
         $this->load->model('PublicacaoModel', 'modelpublicacao');
         $this->load->model('InstituicaoModel', 'modelinstituicao');
+
+        $this->load->helper(array('form', 'url'));
+        $this->load->library('form_validation');
 	}
 
 	// Perfil do usuário logado
@@ -44,13 +47,26 @@ class Usuario extends CI_Controller {
 	public function pag_cadastrar()
     {
         //$this->load->library('form-validation');
-        $this->form_validation->set_rules('email', 'Email', 'required');
-        $this->form_validation->set_rules('senha', 'Senha', 'required');
-        $this->form_validation->set_rules('senha_conf', 'Confirmacao Senha', 'required|matches[senha]');
+        $this->form_validation->set_rules('email', 'Email', 'required',
+            array('required' => '. É preciso digitar um email válido.')
+        );
+        $this->form_validation->set_rules('senha', 'Senha', 'required',
+            array('required' => '. É preciso digitar uma senha.')
+        );
+        $this->form_validation->set_rules('senha_conf', 'Repetir Senha', 'required|matches[senha]',
+            array('required' => '. O campo Repetir Senha não é igual ao campo Senha.')
+        );
 
         // Roda a validacao do formulario e valida os campos de "set_rules"
         if($this->form_validation->run() == FALSE){
-            redirect(base_url('iniciar'));
+            $this->session->set_flashdata('error', validation_errors());
+
+            if (!empty($this->session->flashdata('error'))) {
+                $dados['error'] = $this->session->flashdata('error');
+            }
+
+            redirect(base_url('iniciar'), $dados);
+            // $this->load->view('IniciarView');
         } else {
             $email = $this->input->post( 'email');
             $senha = $this->input->post('senha');
@@ -124,7 +140,7 @@ class Usuario extends CI_Controller {
             $dadosTelefone['telefone'] = $this->input->post('telefone');
             $dadosPessoa['sexo'] = $this->input->post('sexo');
 
-            $dadosUsuario['foto_perfil'] = '/assets/public/images/usuarios/perfil/imagem_perfil_generica.png';          
+            $dadosUsuario['foto_perfil'] = '/assets/public/images/usuarios/perfil/imagem_perfil_generica.png';
 
             $this->load->model('PessoaModel', 'modelpessoa');
 
@@ -144,10 +160,10 @@ class Usuario extends CI_Controller {
                         'overwrite'     => TRUE
                     );
                     $this->load->library('upload', $config);
-                    
+
                     if($this->upload->do_upload('foto_perfil')){
                         $dadosAtualizarFoto['foto_perfil'] = '/assets/public/images/usuarios/perfil/'.$this->upload->data('file_name');
-        
+
                         $config2['width'] = 500;
                         $config2['length'] = 500;
                         $this->load->library('image_lib', $config2);
@@ -257,7 +273,7 @@ class Usuario extends CI_Controller {
 
                         if($this->upload->do_upload('foto_perfil')){
                             $dadosAtualizarImagem['foto_perfil'] = '/assets/public/images/usuarios/perfil/'.$this->upload->data('file_name');
-            
+
                             $config2Foto['width'] = 500;
                             $config2Foto['length'] = 500;
                             $this->load->library('image_lib', $config2Foto);
@@ -276,7 +292,7 @@ class Usuario extends CI_Controller {
                         );
 
                         $this->upload->initialize($configCapa, TRUE);
-                        
+
                         if($this->upload->do_upload('capa')){
                             $dadosAtualizarImagem['capa'] = '/assets/public/images/usuarios/capa/'.$this->upload->data('file_name');
 
@@ -289,7 +305,7 @@ class Usuario extends CI_Controller {
                     }
 
                     $this->modelusuario->atualizar($dadosAtualizarImagem);
-                }                
+                }
 
                 $dadosInstituicao['id_usuario'] = $idUsuario;
                 $dadosTelefone['id_usuario'] = $idUsuario;
@@ -448,7 +464,7 @@ class Usuario extends CI_Controller {
                     'overwrite'     => TRUE
                 );
                 $this->load->library('upload', $configuracao);
-                
+
                 if($this->upload->do_upload('foto_perfil')){
                     $dadosUsuario['foto_perfil'] = '/assets/public/images/usuarios/perfil/'.$this->upload->data('file_name');
 
@@ -545,12 +561,12 @@ class Usuario extends CI_Controller {
                         'file_name'     => 'perfil_'.random_string('numeric', 5),
                         'overwrite'     => TRUE
                     );
-                    
+
                     $this->upload->initialize($config, TRUE);
-                    
+
                     if($this->upload->do_upload('foto_perfil')){
                         $dadosUsuario['foto_perfil'] = '/assets/public/images/usuarios/perfil/'.$this->upload->data('file_name');
-    
+
                         $config2['width'] = 500;
                         $config2['length'] = 500;
                         $this->load->library('image_lib', $config2);
@@ -558,7 +574,7 @@ class Usuario extends CI_Controller {
                         echo $this->upload->display_errors();
                     }
                 }
-    
+
                 if($_FILES['capa']['size'] != 0) {
                     $config = array(
                         'upload_path'   => './assets/public/images/usuarios/capa/',
@@ -567,10 +583,10 @@ class Usuario extends CI_Controller {
                         'overwrite'     => TRUE
                     );
                     $this->upload->initialize($config, TRUE);
-                    
+
                     if($this->upload->do_upload('capa')){
                         $dadosUsuario['capa'] = '/assets/public/images/usuarios/capa/'.$this->upload->data('file_name');
-    
+
                         $config2['width'] = 1110;
                         $config2['length'] = 320;
                         $this->load->library('image_lib', $config2);
@@ -578,7 +594,7 @@ class Usuario extends CI_Controller {
                         echo $this->upload->display_errors();
                     }
                 }
-            }            
+            }
 
             // Se algum deles vier vazio, nao importar nenhum pro banco
             if($dadosInstituicao['banco'] == '' || $dadosInstituicao['agencia'] == '' || $dadosInstituicao['conta'] == '')

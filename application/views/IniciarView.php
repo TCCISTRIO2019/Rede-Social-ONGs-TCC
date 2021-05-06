@@ -4,8 +4,17 @@
         <p class="text-center">Comece com sua conta grátis</p>
 
         <?php
-            echo validation_errors('<div class="alert alert-danger">', '</div>');
-
+            // echo validation_errors('<div class="alert alert-danger">', '</div>');
+            // if (isset($error)) {
+            //     echo '<p class="alert alert-danger"><strong>Error: </strong>'.$error.'</p>';
+            // }
+            if ($this->session->flashdata('error') != null) {
+        ?>
+            <div class="alert alert-danger" style="max-width: 15rem;"> 
+                <?php echo $this->session->flashdata('error'); ?>
+            </div>
+        <?php
+            }
             echo form_open('admin/usuario/pag_cadastrar');
         ?>
             <div class="form-group input-group">
