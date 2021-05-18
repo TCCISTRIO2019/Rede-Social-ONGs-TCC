@@ -22,7 +22,7 @@ class Instituicao extends CI_Controller {
 
         $dados['titulo'] = 'Instituições - TCC Rede Social';
 
-        $dadosRequest['nome'] = $this->input->post( 'nome_instituicao');
+        $dadosRequest['nome'] = $this->input->post('nome_instituicao');
 
         if($dadosRequest['nome'] == '' || $dadosRequest['nome'] == NULL){
             $this->instituicoes = $this->modelinstituicao->listar_instituicoes();
