@@ -28,13 +28,14 @@ class Usuario extends CI_Controller {
         $usuario = $this->modelusuario->buscar_usuario($id);
 
         if($usuario->tipo_usuario == 'juridica') {
-            $dados['instituicao'] = $this->modelinstituicao->pesquisar_instituicao_nome($usuario->nome);
+            $instituicao = $this->modelinstituicao->pesquisar_instituicao_nome($usuario->nome);
         }
 
         // Dados a serem enviados para o Cabeçalho
         $dados['titulo'] = 'TCC Rede Social - Perfil Usuario';
         $dados['publicacoes'] = $publicacoes;
         $dados['usuario'] = $usuario;
+        $dados['instituicao'] = $instituicao[0];
 
         $this->load->view('template/html-header', $dados);
         $this->load->view('template/header');
@@ -164,7 +165,7 @@ class Usuario extends CI_Controller {
 
                     $config = array(
                         'upload_path'   => './assets/public/images/usuarios/perfil/',
-                        'allowed_types' => 'gif|jpg|png',
+                        'allowed_types' => 'gif|jpg|png|jpeg',
                         'file_name'     => 'perfil_'.$idUsuario,
                         'overwrite'     => TRUE
                     );
@@ -283,7 +284,7 @@ class Usuario extends CI_Controller {
                     if($_FILES['foto_perfil']['size'] != 0) {
                         $configFoto = array(
                             'upload_path'   => './assets/public/images/usuarios/perfil/',
-                            'allowed_types' => 'gif|jpg|png',
+                            'allowed_types' => 'gif|jpg|png|jpeg',
                             'file_name'     => 'perfil_'.$idUsuario,
                             'overwrite'     => TRUE
                         );
@@ -305,7 +306,7 @@ class Usuario extends CI_Controller {
                     if($_FILES['capa']['size'] != 0) {
                         $configCapa = array(
                             'upload_path'   => './assets/public/images/usuarios/capa/',
-                            'allowed_types' => 'gif|jpg|png',
+                            'allowed_types' => 'gif|jpg|png|jpeg',
                             'file_name'     => 'capa_'.$idUsuario,
                             'overwrite'     => TRUE
                         );
@@ -350,7 +351,7 @@ class Usuario extends CI_Controller {
     public function logar()
     {
         $this->form_validation->set_rules('email', 'Email', 'required');
-        $this->form_validation->set_rules('senha', 'Senha', 'required|min_length[8]');    // Validacao do campo senha para ter 8 digitos
+        $this->form_validation->set_rules('senha', 'Senha', 'required');    // Validacao do campo senha para ter 8 digitos
 
         // Roda a validacao do formulario e valida os campos de "set_rules"
         if($this->form_validation->run() == FALSE){
@@ -478,7 +479,7 @@ class Usuario extends CI_Controller {
 
                 $configuracao = array(
                     'upload_path'   => './assets/public/images/usuarios/perfil/',
-                    'allowed_types' => 'gif|jpg|png',
+                    'allowed_types' => 'gif|jpg|png|jpeg',
                     'file_name'     => 'perfil_'.random_string('numeric', 5),
                     'overwrite'     => TRUE
                 );
@@ -576,7 +577,7 @@ class Usuario extends CI_Controller {
                 if($_FILES['foto_perfil']['size'] != 0) {
                     $config = array(
                         'upload_path'   => './assets/public/images/usuarios/perfil/',
-                        'allowed_types' => 'gif|jpg|png',
+                        'allowed_types' => 'gif|jpg|png|jpeg',
                         'file_name'     => 'perfil_'.random_string('numeric', 5),
                         'overwrite'     => TRUE
                     );
@@ -597,7 +598,7 @@ class Usuario extends CI_Controller {
                 if($_FILES['capa']['size'] != 0) {
                     $config = array(
                         'upload_path'   => './assets/public/images/usuarios/capa/',
-                        'allowed_types' => 'gif|jpg|png',
+                        'allowed_types' => 'gif|jpg|png|jpeg',
                         'file_name'     => 'capa_'.random_string('numeric', 5),
                         'overwrite'     => TRUE
                     );

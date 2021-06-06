@@ -12,7 +12,6 @@
                 <?php } else { ?>
                     <img src="<?php echo base_url($usuario->foto_perfil) ?>" alt="Foto de perfil do usuário" class="rounded img-thumbnail position-relative">
                 <?php } ?>
-
                 <h3 class="mx-3 position-absolute border-bottom"><?php echo $usuario->nome ?></h3>
             </section>
         </section>
@@ -34,6 +33,15 @@
                             <div class="row justify-content-md-center">
                                 <p><?php echo $instituicao->descricao ?></p>
                             </div>
+                        </div>
+
+                        <div class="card-title mt-3" style="margin-bottom:2rem;">
+                            <div class="row justify-content-md-center">
+                                <h4 class="col-md-auto">Telefone: </h4>
+
+                                <span style="padding-top:0.3rem;"><?php echo $this->session->userdata('userlogado')->telefone ?></span>
+                            </div>
+                            
                         </div>
 
                         <?php if($instituicao->banco != '') { ?>
@@ -70,7 +78,6 @@
                                    name="id_usuario">
 
                             <div class="form-group">
-                                <!--                <label for="exampleFormControlTextarea1">Example textarea</label>-->
                                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="corpo"
                                           placeholder="Faça sua publicação"></textarea>
                             </div>

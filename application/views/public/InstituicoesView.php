@@ -1,9 +1,4 @@
-<!--<div class="row justify-content-md-center">-->
-<!--    <h4 class="col-md-auto">Instituições</h4>-->
-<!--</div>-->
-
 <main class="container justify-content-md-center">
-    <!-- <div class="card-deck row row-cols-3"> -->
     <div class="row row-cols-1 row-cols-md-3">
         <?php
         foreach ($instituicoes as $instituicao){

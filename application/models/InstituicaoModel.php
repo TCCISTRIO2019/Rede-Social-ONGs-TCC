@@ -72,7 +72,7 @@ class InstituicaoModel extends CI_Model {
     public function pesquisar_instituicao_nome($nome)
     {
         $this->db->select('usuario.id_usuario, usuario.foto_perfil, usuario.nome,
-            instituicao.id_usuario, instituicao.id_instituicao, instituicao.descricao, instituicao.criacao_instituicao');
+            instituicao.id_usuario, instituicao.id_instituicao, instituicao.descricao, instituicao.criacao_instituicao, instituicao.banco, instituicao.conta, instituicao.agencia');
         $this->db->from('instituicao');
         $this->db->join('usuario','usuario.id_usuario = instituicao.id_usuario');
         $this->db->like('usuario.nome', $nome);
